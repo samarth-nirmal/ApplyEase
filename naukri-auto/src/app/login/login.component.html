@@ -1,0 +1,39 @@
+<br><br>
+<mat-card class="login-card">
+  <mat-card-content>
+    <h2>🔑 Login</h2>
+
+    <!-- Email Input -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" placeholder="Enter your email" required />
+    </mat-form-field>
+
+    <!-- Password Input with View Icon -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Password</mat-label>
+      <input 
+        matInput 
+        [type]="hidePassword ? 'password' : 'text'" 
+        placeholder="Enter your password"
+        required
+      />
+      <button 
+        mat-icon-button 
+        matSuffix 
+        (click)="hidePassword = !hidePassword" 
+        aria-label="Toggle password visibility"
+      >
+        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <!-- Login Button -->
+    <button mat-flat-button color="primary" class="full-width">Login</button>
+    <br>
+    <br>
+
+      <div id="googleSignIn">
+      </div>
+  </mat-card-content>
+</mat-card>

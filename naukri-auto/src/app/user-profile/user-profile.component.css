@@ -1,0 +1,178 @@
+.profile-card {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    width: 600px;
+    margin: 40px auto;
+    transition: transform 0.2s ease-in-out;
+  
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+
+  .sub-profile-card-summary {
+   
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    width: 1650px;
+    margin: 40px auto;
+    transition: transform 0.2s ease-in-out;
+  
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+
+  .sub-profile-card {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    width: 700px;
+    margin: 40px auto;
+    transition: transform 0.2s ease-in-out;
+  
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+  }
+  
+  /* Left Side (Profile Picture) */
+  .profile-left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #007BFF;
+    object-fit: cover;
+  }
+  
+  /* Right Side (User Info) */
+  .profile-right {
+    flex: 2;
+    padding-left: 20px;
+  }
+  
+  h2 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .location, .email {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #555;
+    margin: 5px 0;
+  
+    mat-icon {
+      font-size: 18px;
+      margin-right: 5px;
+      color: #007BFF;
+    }
+  }
+  
+  /* Separator Line */
+  .separator {
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+    margin: 15px 0;
+  }
+  
+  /* Work Experience */
+  .section-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .work-experience {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.5;
+  }
+  
+  /* Skills List */
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+    
+  }
+
+  .skill-item {
+    align-items: center;
+    font-size: 0.9rem;
+    color: #555;
+    margin: 5px 0;
+
+    mat-icon {
+        font-size: 18px;
+        margin-right: 5px;
+        color: #007BFF;
+      }
+  }
+  
+  mat-chip {
+    background-color: #f5f5f5;
+    color: #333;
+    font-weight: 500;
+    border-radius: 16px;
+  }
+  
+
+  .major-card {
+    display: flex;
+  }
+
+  .profile-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    max-width: 600px;
+    margin: 40px auto;
+  }
+  
+  h2 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  /* Projects List */
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  
+    h3 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+  
+    .details {
+      font-size: 0.95rem;
+      color: #555;
+    }
+  

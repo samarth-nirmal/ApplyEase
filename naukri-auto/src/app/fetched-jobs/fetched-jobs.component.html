@@ -1,0 +1,86 @@
+<div *ngIf="jobList.length != 0">
+  <div class="table-container">
+  <div class="upperTable">
+      <mat-chip-listbox aria-label="Job Relevance Filter" [(ngModel)]="selectedFilter" (ngModelChange)="filterJobs()" class="align-left">
+        <mat-chip-option [value]="'mostRelevant'">
+          Most Relevant Jobs
+        </mat-chip-option>
+      </mat-chip-listbox>
+      
+      <div class="align-right">
+        <div *ngIf="errorMessage" class="error-message">
+          <mat-error>{{ errorMessage }}</mat-error>
+        </div>
+        <button mat-fab extended (click)="applyRelavent()">
+          <mat-icon>hotel</mat-icon>
+          Lazy Apply - Most relavent Jobs
+        </button>
+        <button mat-fab extended (click)="applyAll()">
+          <mat-icon>
+          
+            done_outline
+          
+          </mat-icon>
+          Lazy Apply all
+        </button>
+      </div>
+  </div>
+
+    <br>
+    <table mat-table class="mat-elevation-z2">
+      <!-- Table Header -->
+      <tr>
+        <th mat-header-cell> Job Title </th>
+        <th mat-header-cell> Company </th>
+        <th mat-header-cell> Location </th>
+        <th mat-header-cell> Required Experience </th>
+        <th mat-header-cell> Match Score </th>
+        <th mat-header-cell> Apply Status </th>
+        <th mat-header-cell> View Job </th>
+      </tr>
+  
+      <!-- Table Rows -->
+      <tr *ngFor="let job of jobList">
+        <td mat-cell> {{ job.jobTitle }} </td>
+        <td mat-cell> {{ job.companyName }} </td>
+        <td mat-cell> {{ job.location }} </td>
+        <td mat-cell> {{ job.experienceRequired }} </td>
+        <td mat-cell [ngStyle]="{'color': job.matchScore > 80 ? 'green' : (job.matchScore >= 50 ? 'orange' : 'red')}">
+          {{ job.matchScore }} %
+        </td>
+        <td mat-cell> {{ job.isApplied || 'No' }} </td>
+        <td mat-cell>
+          <a [href]="job.link" target="_blank">
+            <button mat-fab extended>
+              <mat-icon>open_in_new</mat-icon>
+              View
+            </button>
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
+  
+</div>
+
+<div *ngIf="jobList.length == 0" class="no-jobs-container">
+  <mat-card>
+    <mat-card-content>
+      <p class="no-jobs-text">Nothing to Display here</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<style>
+  .no-jobs-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+  }
+  .no-jobs-text {
+    text-align: center;
+    font-size: 2rem;
+    color: gray;
+  }
+</style>

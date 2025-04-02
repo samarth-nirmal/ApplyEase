@@ -1,0 +1,6 @@
+@NaukriScraperApi_HostAddress = http://localhost:5076
+
+GET {{NaukriScraperApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

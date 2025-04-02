@@ -1,0 +1,81 @@
+<div class="profile-card">
+    <!-- Left: Profile Picture -->
+    <div class="profile-left">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" alt="Profile Picture" class="avatar">
+    </div>
+  
+    <!-- Right: User Info -->
+    <div class="profile-right">
+      <h2>{{ user.fullName }}</h2>
+      <p class="location"><mat-icon>location_on</mat-icon> {{ user.preferredLocation }}</p>
+      <p class="email"><mat-icon>email</mat-icon>samarth.nirmalgmail.com</p>
+      
+      <!-- Separator Line -->
+      <div class="separator"></div>
+      
+      <!-- Work Experience -->
+      <p class="email"><mat-icon>call</mat-icon>{{user.phoneNumber}}</p>
+      <p class="email"><mat-icon>select_all</mat-icon>{{user.industry}}</p>
+      <p class="email"><mat-icon>rocket_launch</mat-icon>Work Experience : {{user.totalExperience}} Years</p>
+  
+      <!-- Skills -->
+
+    </div>
+  </div>
+
+<div class="sub-profile-card-summary">
+    <div class="profile-rigth">
+        <h2>Summary</h2>
+        <p class="location">{{user.userProfileSummary | slice:0:500}}...</p>
+
+    </div>
+
+</div>
+
+
+
+  <div class="major-card">
+      
+      <div class="sub-profile-card">
+        <div class="profile-rigth">
+            <h2>IT Skills</h2>
+            <mat-chip-listbox class="skills-list">
+                <mat-chip *ngFor="let skill of primarySkills" removable>
+                  {{ skill }} <mat-icon matChipRemove>close</mat-icon>
+                </mat-chip>
+              </mat-chip-listbox>
+              <div class="separator"></div>
+              <mat-chip-listbox class="skills-list">
+                <mat-chip *ngFor="let skill of secondarySkills" removable>
+                  {{ skill }} <mat-icon matChipRemove>close</mat-icon>
+                </mat-chip>
+              </mat-chip-listbox>
+
+        </div>
+      </div>
+    
+      <div class="sub-profile-card">
+        <div class="profile-right">
+          <h2>Projects</h2>
+      
+          <div class="projects-list">
+            <div class="project-card" *ngFor="let project of projects">
+              <h3>{{ project.name }}</h3>
+              
+
+              <mat-chip-listbox class="skills-list">
+                <mat-chip *ngFor="let detail of project.details" removable>
+                  {{ detail }} <mat-icon matChipRemove>close</mat-icon>
+                </mat-chip>
+            </mat-chip-listbox>
+            <div class="separator"></div>
+            </div>
+          </div>
+        </div>      
+      </div>
+
+      
+  </div>
+
+          
+  

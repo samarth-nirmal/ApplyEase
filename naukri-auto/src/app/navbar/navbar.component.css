@@ -1,0 +1,24 @@
+/* Toolbar styles */
+mat-toolbar {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+/* Logo styling */
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-left: 80px;
+}
+
+/* Pushes content to the right */
+.spacer {
+  flex: 1;
+}
+
+/* Three-dot menu icon */
+.menu-icon {
+  margin-left: 30px;
+}
