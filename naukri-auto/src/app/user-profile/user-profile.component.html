@@ -1,3 +1,4 @@
+<div *ngIf="userProfileExist">
 <div class="profile-card">
     <!-- Left: Profile Picture -->
     <div class="profile-left">
@@ -77,5 +78,11 @@
       
   </div>
 
-          
-  
+</div>
+
+<div *ngIf="!userProfileExist" class="empty-profile-card mat-elevation-z3">
+  <div class="empty-profile-message">
+    <mat-icon color="accent" class="icon-large">info</mat-icon>
+    <p class="message-text">Please complete your user profile</p>
+  </div>
+</div>

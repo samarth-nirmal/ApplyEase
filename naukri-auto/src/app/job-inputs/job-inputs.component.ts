@@ -36,15 +36,22 @@ export class JobInputsComponent {
   jobFacts: string[] = [
     "Finding the best jobs for you...",
     "The IT sector in India contributes nearly 8% to the country's GDP.",
+    "Finding the best jobs for you...",
     "Data science and AI-related jobs have seen a 40% increase in hiring in India.",
     "India is the world's second-largest producer of engineers every year.",
+    "Finding the best jobs for you...",
     "Freelancing in India is expected to reach $20–30 billion by 2025.",
     "The demand for cybersecurity jobs in India has increased by 200% since 2020.",
+    "Finding the best jobs for you...",
     "Bangalore is known as the 'Silicon Valley of India' due to its tech startup boom.",
+    "Finding the best jobs for you...",
     "Remote jobs in India have increased by over 120% post-pandemic.",
     "Over 60% of recruiters use AI-powered tools to shortlist candidates in India.",
+    "Finding the best jobs for you...",
     "Cloud computing and DevOps roles are among the highest-paying tech jobs in India.",
-    "Product-based companies offer salaries 2x higher than service-based firms in India."
+    "Finding the best jobs for you...",
+    "Product-based companies offer salaries 2x higher than service-based firms in India.",
+    "Finding the best jobs for you...",
   ];
 
   constructor(
@@ -81,6 +88,13 @@ export class JobInputsComponent {
       preferredJobRole: ['', Validators.required],
       projects : ['', Validators.required],
       preferredLocation: ['', Validators.required],
+      noticePeriod: ['', Validators.required],
+      currentSalary: ['', Validators.required],
+      expectedSalary: ['', Validators.required],
+      willingToRelocate: ['', Validators.required],
+      XPercentage: ['', Validators.required],
+      XIIPercentage: ['', Validators.required],
+      BirthDate: ['', Validators.required],
       userId: [this.AuthService.getUserId(), Validators.required],
       userProfileSummary: ['']
     });
@@ -88,22 +102,22 @@ export class JobInputsComponent {
   readonly panelOpenState = signal(false);
 
   ngOnInit() {
-    this.startJobFacts(); 
-    this.cdr.detectChanges();
+    // this.startJobFacts(); 
     this.jobService
-      .checkUserStatus(this.AuthService.getUserId())
-      .subscribe((data) => {
-        this.naukriLoggedInStatus = data.isNaukriLoggedIn;
-        this.profileCompleteStatus = data.isProfileComplete;
-      });
+    .checkUserStatus(this.AuthService.getUserId())
+    .subscribe((data) => {
+      this.naukriLoggedInStatus = data.isNaukriLoggedIn;
+      this.profileCompleteStatus = data.isProfileComplete;
+    });
+    this.cdr.detectChanges();
   }
 
   
 
   submitForm() {
     this.jobFetchProgress = true;
+    this.startJobFacts(); 
     this.jobService.searchJobs(this.jobForm.value).subscribe((data) => {
-      this.startJobFacts(); 
       if (Array.isArray(data) && data.length === 0) {
         this.errorMessage = 'No jobs found. Please try again.';
         this.cdr.detectChanges();
@@ -127,10 +141,11 @@ export class JobInputsComponent {
       this.updateRandomFact();
     }, 3000); // Change fact every 3 seconds
   }
-
+  
   updateRandomFact() {
     const randomIndex = Math.floor(Math.random() * this.jobFacts.length);
     this.currentFact = this.jobFacts[randomIndex];
+    console.log(this.currentFact)
     this.cdr.detectChanges();
   }
 
@@ -173,8 +188,9 @@ export class JobInputsComponent {
             preferredJobRole: res.extractedData.preferredJobRole || '',
             projects: res.extractedData.projects || '',
             preferredLocation: res.extractedData.preferedLocation || '',
-            userId: this.AuthService.getUserId(),
-            userProfileSummary : res.extractedData.UserProfileSummary || ''
+            XPercentage: res.extractedData.XPercentage  === 'Not Mentioned' ? '' : res.extractedData.XPercentage,
+            XIIPercentage: res.extractedData.XIIPercentage  === 'Not Mentioned' ? '' : res.extractedData.XIIPercentage,
+            userId: this.AuthService.getUserId()
             
             });
           this.showProgressBar = false;

@@ -46,3 +46,48 @@
     display: flex;
     gap: 10px;
   }
+
+  .error-message {
+    color: red;
+  }
+
+  .no-jobs-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+  }
+  .no-jobs-text {
+    text-align: center;
+    font-size: 2rem;
+    color: gray;
+  }
+
+  .success-message {
+    color: green;
+  }
+
+
+  .progress-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+  }
+  
+  .progress-card {
+    width: 50%;
+    padding: 20px;
+    background-color: white; /* Set background to white */
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  }
+  
+  .centered-progress-bar {
+    width: 100%;
+  }
+
+  .filterButtons {
+    display: flex;
+    
+  }

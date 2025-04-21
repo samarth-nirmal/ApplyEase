@@ -23,8 +23,8 @@ namespace NaukriScraperApi.Migrations
                     b.Property<string>("jobId")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<float?>("MatchScore")
-                        .HasColumnType("float");
+                    b.Property<double?>("MatchScore")
+                        .HasColumnType("double");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -68,11 +68,13 @@ namespace NaukriScraperApi.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("GoogleId")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PasswordHash")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Picture")
@@ -97,6 +99,9 @@ namespace NaukriScraperApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<DateOnly?>("BirthDate")
+                        .HasColumnType("date");
+
                     b.Property<string>("Certifications")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -108,6 +113,12 @@ namespace NaukriScraperApi.Migrations
                     b.Property<string>("CurrentJobTitle")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("CurrentSalary")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ExpectedSalary")
+                        .HasColumnType("int");
 
                     b.Property<string>("FullName")
                         .IsRequired()
@@ -167,6 +178,20 @@ namespace NaukriScraperApi.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("UserProfileSummary")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("XIIPercentage")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("XPercentage")
+                        .HasColumnType("int");
+
+                    b.Property<string>("noticePeriod")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("willingToRelocate")
                         .IsRequired()
                         .HasColumnType("longtext");
 

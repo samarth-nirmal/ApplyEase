@@ -2,6 +2,7 @@ using Google.Apis.Auth;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NaukriScraperApi.Model;
+using BCrypt.Net;
 
 [ApiController]
 [Route("api/auth")]
@@ -68,4 +69,47 @@ public class AuthController : ControllerBase
             return StatusCode(500, "Internal server error: " + ex.Message);
         }
     }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginRequest request)
+    {
+        var user = await _db.User.FirstOrDefaultAsync(u => u.Email == request.Email);
+
+        if (user == null || user.PasswordHash == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
+            return Unauthorized("Invalid email or password");
+
+        var token = _jwtService.GenerateToken(user);
+        return Ok(new
+        {
+            user.Id,
+            user.Name,
+            user.Email,
+            user.Picture,
+            user.Role,
+            Token = token
+        });
+    }
+
+    [HttpPost("register")]
+    public async Task<IActionResult> Register([FromBody] RegisterRequest request)
+    {
+        if (await _db.User.AnyAsync(u => u.Email == request.Email))
+            return BadRequest("Email already exists");
+
+        var user = new User
+        {
+            Email = request.Email,
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password),
+            Name = request.Name,
+            Role = "User"
+        };
+
+        _db.User.Add(user);
+        await _db.SaveChangesAsync();
+
+        var token = _jwtService.GenerateToken(user);
+        return Ok(new { user.Id, user.Name, user.Email, user.Role, Token = token });
+    }
+
+
 }

@@ -16,7 +16,7 @@ public class JobService : IJobService
     public List<JobDetails> GetPendingJobs(int userId, bool onlyRelevant)
     {
         var jobs = _context.JobDetails
-            .Where(j => j.UserId == userId && j.isApplied != "Applied")
+            .Where(j => j.UserId == userId && j.isApplied != "Applied" && j.isApplied != "Apply on Company Portal")
             .ToList();
 
         if (onlyRelevant)

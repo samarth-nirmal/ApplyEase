@@ -2,15 +2,8 @@
 mat-toolbar {
   display: flex;
   align-items: center;
-  padding: 0 16px;
-}
-
-/* Logo styling */
-.logo {
-  font-size: 22px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  margin-left: 80px;
+  padding: 38px 16px;
+  
 }
 
 /* Pushes content to the right */
@@ -21,4 +14,24 @@ mat-toolbar {
 /* Three-dot menu icon */
 .menu-icon {
   margin-left: 30px;
+}
+
+/* .app-logo {
+  height: 50px;
+  width: auto;
+  margin-right: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-left: 130px;
+} */
+
+.app-logo {
+  height: 230px; /* adjust as needed */
+  width: auto;
+  margin-right: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-left: 100px;
 }

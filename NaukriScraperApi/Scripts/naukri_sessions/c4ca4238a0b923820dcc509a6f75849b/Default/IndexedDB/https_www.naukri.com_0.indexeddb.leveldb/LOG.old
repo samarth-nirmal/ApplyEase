@@ -1,3 +1,6 @@
-2025/04/02-16:34:28.794 2e0c Reusing MANIFEST C:\Users\10731110\OneDrive - LTIMindtree\Desktop\Practice\Naukri Scraper\NaukriScraperApi\Scripts\naukri_sessions\c4ca4238a0b923820dcc509a6f75849b\Default\IndexedDB\https_www.naukri.com_0.indexeddb.leveldb/MANIFEST-000001
-2025/04/02-16:34:28.795 2e0c Recovering log #21
-2025/04/02-16:34:28.806 2e0c Reusing old log C:\Users\10731110\OneDrive - LTIMindtree\Desktop\Practice\Naukri Scraper\NaukriScraperApi\Scripts\naukri_sessions\c4ca4238a0b923820dcc509a6f75849b\Default\IndexedDB\https_www.naukri.com_0.indexeddb.leveldb/000021.log 
+2025/04/05-22:16:50.832 a84 Reusing MANIFEST C:\Users\10731110\OneDrive - LTIMindtree\Desktop\Practice\Naukri Scraper\NaukriScraperApi\Scripts\naukri_sessions\c4ca4238a0b923820dcc509a6f75849b\Default\IndexedDB\https_www.naukri.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/04/05-22:16:50.834 a84 Recovering log #29
+2025/04/05-22:16:50.851 a84 Reusing old log C:\Users\10731110\OneDrive - LTIMindtree\Desktop\Practice\Naukri Scraper\NaukriScraperApi\Scripts\naukri_sessions\c4ca4238a0b923820dcc509a6f75849b\Default\IndexedDB\https_www.naukri.com_0.indexeddb.leveldb/000029.log 
+2025/04/05-22:16:51.108 8a64 Level-0 table #35: started
+2025/04/05-22:16:51.131 8a64 Level-0 table #35: 1624604 bytes OK
+2025/04/05-22:16:51.137 8a64 Delete type=0 #29

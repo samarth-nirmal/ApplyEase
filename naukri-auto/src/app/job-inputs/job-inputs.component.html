@@ -265,7 +265,7 @@
                 required
               />
               <mat-error *ngIf="userProfileForm.get('projects')?.hasError('required')">
-                Projects are required
+                Projects are required - (Titles if possible)
               </mat-error>
             </mat-form-field>
 
@@ -281,6 +281,103 @@
                 Preferred Location is required
               </mat-error>
             </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Notice Period</mat-label>
+              <mat-select formControlName="noticePeriod" required>
+                <mat-option value="Immediate">Immediate</mat-option>
+                <mat-option value="15 Days or less">15 Days or less</mat-option>
+                <mat-option value="1 Month">1 Month</mat-option>
+                <mat-option value="45 Days">45 Days</mat-option>
+                <mat-option value="2 Months">2 Months</mat-option>
+                <mat-option value="3 Months">3 Months</mat-option>
+                <mat-option value="More than 3 Months">More than 3 Months</mat-option>
+                <mat-option value="Serving Notice Period">Serving Notice Period</mat-option>
+              </mat-select>
+              <mat-error *ngIf="userProfileForm.get('noticePeriod')?.hasError('required')">
+                Notice Period is required
+              </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field class="example-full-width">
+              <mat-label>Current CTC</mat-label>
+              <input
+                matInput
+                placeholder="Enter Current CTC"
+                formControlName="currentSalary"
+                required
+              />
+              <mat-error *ngIf="userProfileForm.get('currentSalary')?.hasError('required')">
+                Current CTC is required
+              </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field class="example-full-width">
+              <mat-label>Expected Salary</mat-label>
+              <input
+                matInput
+                placeholder="Enter Expected Salary"
+                formControlName="expectedSalary"
+                required
+              />
+              <mat-error *ngIf="userProfileForm.get('expectedSalary')?.hasError('required')">
+                Expected Salary is required
+              </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field class="example-full-width">
+              <mat-label>Willing to Relocate?</mat-label>
+              <mat-select formControlName="willingToRelocate" required>
+                <mat-option value="Yes">Yes</mat-option>
+                <mat-option value="No">No</mat-option>
+              </mat-select>
+              <mat-error *ngIf="userProfileForm.get('willingToRelocate')?.hasError('required')">
+                Willing to relocate is required
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>10th Percentage</mat-label>
+              <input
+                matInput
+                placeholder="Enter 10th Percentage"
+                formControlName="XPercentage"
+                required
+              />
+              <mat-error *ngIf="userProfileForm.get('XPercentage')?.hasError('required')">
+                10th Percentage is required
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>12th Percentage</mat-label>
+              <input
+              matInput
+              placeholder="Enter 12th Percentage"
+              formControlName="XIIPercentage"
+              required
+              />
+              <mat-error *ngIf="userProfileForm.get('XIIPercentage')?.hasError('required')">
+              12th Percentage is required
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Birth Date</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker"
+                placeholder="Select Birth Date"
+                formControlName="BirthDate"
+                required
+              />
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker startView="multi-year" panelClass="date-only-picker"></mat-datepicker>
+              <mat-error *ngIf="userProfileForm.get('BirthDate')?.hasError('required')">
+                Birth Date is required
+              </mat-error>
+            </mat-form-field>
+
+            
           </div>
 
           <div class="button-container">
@@ -325,7 +422,9 @@
             <mat-option value="1 Year">1 Year</mat-option>
             <mat-option value="2 Years">2 Years</mat-option>
             <mat-option value="3 Years">3 Years</mat-option>
-            <mat-option value="4+ Years">4+ Years</mat-option>
+            <mat-option value="4+ Years">4 Years</mat-option>
+            <mat-option value="4+ Years">5 Years</mat-option>
+            <mat-option value="4+ Years">6 Years</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field class="full-width">
@@ -356,7 +455,7 @@
 
         <div class="button-container">
           <button mat-flat-button color="primary" type="submit" (click)="submitForm()">Fetch Jobs</button>
-          </div>
+          </div> 
           <div *ngIf="errorMessage" class="error-message">
             <mat-error>{{ errorMessage }}</mat-error>
           </div>    </form>

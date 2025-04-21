@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+
 
 [ApiController]
 [Route("resume")]
@@ -12,7 +14,7 @@ public class ResumeController : ControllerBase
     private readonly string _resumeStoragePath = @"C:\Users\10731110\OneDrive - LTIMindtree\Desktop\Practice\Naukri Scraper\NaukriScraperApi\Resumes\";
     private readonly string _pythonScriptPath = @"C:\Users\10731110\OneDrive - LTIMindtree\Desktop\Practice\Naukri Scraper\NaukriScraperApi\Scripts\resume_parser.py";
 
-    
+    [Authorize]
     [HttpPost("upload")]
     public async Task<IActionResult> UploadResume(IFormFile file)
     {

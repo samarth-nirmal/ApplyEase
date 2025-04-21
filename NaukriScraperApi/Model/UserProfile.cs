@@ -24,7 +24,18 @@ namespace NaukriScraperApi.Model
         public string PreferredJobRole { get; set; } = string.Empty;
         public string Projects {get; set;} = string.Empty;
         public string PreferredLocation { get; set; } = string.Empty;
+        public string noticePeriod { get; set; } = string.Empty;
+        public int CurrentSalary { get; set; }
+        public int ExpectedSalary { get; set; }
+        public string willingToRelocate {get; set;} = string.Empty;
+
         public string UserProfileSummary {get; set;} = string.Empty;
+
+        //Non DB Field 
+        public int ?XPercentage { get; set; }
+        public int ?XIIPercentage { get; set; }
+        public DateOnly ?BirthDate { get; set; }
+
         public int UserId { get; set; }
         
         public User ?User { get; set; }

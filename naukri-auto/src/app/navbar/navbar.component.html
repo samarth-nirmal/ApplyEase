@@ -1,12 +1,13 @@
 <mat-toolbar color="primary">
-  <span class="logo">NaukriAuto</span>
-  <span class="spacer"></span>
+  <img src="assets/appLogo.png" alt="App Logo" class="app-logo" />
 
+  <span class="spacer"></span>
+  
   <!-- Navigation Buttons (Visible when authenticated) -->
   <ng-container *ngIf="authService.isAuthenticated()">
     <button mat-button (click)="dashboard()">Home</button>
-    <button mat-button (click)="fetchedJobs()">Fetched Jobs</button>
     <button mat-button (click)="jobSearch()">Job Search</button>
+    <button mat-button (click)="fetchedJobs()">Fetched Jobs</button>
     <button mat-button (click)="logout()">Logout</button>
     <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-icon">
       <mat-icon>more_vert</mat-icon>

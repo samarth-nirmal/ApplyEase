@@ -49,11 +49,12 @@ def process_resume_with_gemini(resume_text):
       "graduation_year": "Year of Graduation (if available)",
       "projects"": "Project Title 1 (Tech Used)", "Project Title 2 (Tech Used)", (if available)  (return , seperated string)",
       "preferred_job_role": "Desired Job Role (if mentioned)"
-      "linkedin_URL": "Linkedin URL (if mentioned and in proper url format)"
+      "linkedin_URL": "Linkedin URL (if mentioned and in proper url format, with or without http)"
       "Github_URL": "Github URL (if mentioned)"
       "preferredJobRole": "Get this based on Skills, Work experience and Projects" (if Mentioned)
-      "preferedLocation" : "Get if there is any location mentioned in the resume in user info section" (if mentioned)
-      "UserProfileSummary" : (Write a summary of the whole resume in around 300 words. Make sure to make it detailed and user specfic. We want to utilise the resume summary to compare with job descriptions to get personalised jobs for the user.)
+      "preferedLocation" : "Get if there is any location mentioned in the resume in user info section" (if mentioned),
+      "XPercentage" : "10th Standard% (if mentioned)",
+      "XIIPercentage" : "12th Standard% (if mentioned)",
     }}
     ```
     Guidelines:
@@ -69,7 +70,7 @@ def process_resume_with_gemini(resume_text):
     try:
         json_str = response.text.strip()
 
-        # Ensure JSON is properly formatted before parsing
+        
         if json_str.startswith("```json"):
             json_str = json_str[7:-3].strip()
 

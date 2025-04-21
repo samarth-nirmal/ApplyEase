@@ -9,11 +9,12 @@ namespace NaukriScraperApi.Model
         [Key]
         public int Id { get; set; }
 
-        [Required]
-        public string GoogleId { get; set; } = string.Empty;
+        public string? GoogleId { get; set; } = string.Empty;
 
         [Required]
         public string Email { get; set; } = string.Empty;
+
+        public string? PasswordHash { get; set; }
 
         public string Name { get; set; } = string.Empty;
         public string Picture { get; set; } = string.Empty;

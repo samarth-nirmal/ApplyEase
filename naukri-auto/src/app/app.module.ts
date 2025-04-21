@@ -30,15 +30,19 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoadingComponent } from './loading/loading.component';
 import { MatMenuModule } from '@angular/material/menu';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { FetchedJobsComponent } from './fetched-jobs/fetched-jobs.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
-
+import {
+  MatNativeDateModule,
+  provideNativeDateAdapter,
+} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -51,7 +55,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     AdminDashboardComponent,
     LoadingComponent,
     UserProfileComponent,
-    FetchedJobsComponent
+    FetchedJobsComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +79,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatChipsModule,
     MatPaginatorModule,
     FormsModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule
   ],
   providers: [
     provideClientHydration(),

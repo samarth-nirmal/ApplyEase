@@ -18,12 +18,19 @@ export class AuthService {
     this.http.post<any>('http://localhost:5076/api/auth/google-login', { token: response.credential })
       .subscribe(res => {
         localStorage.setItem('authToken', res.token);
-        localStorage.setItem('userId', res.id);
         this.authState.next(res);
         if(this.getUserRole() === 'User') this.router.navigate(['/dashboard']);
         else this.router.navigate(['/admin']);
       });
 
+  }
+
+  loginNormal(email: string, password: string) {
+    return this.http.post<any>('http://localhost:5076/api/auth/login', { email, password })
+  }  
+
+  register(email: string, password: string, name: string) {
+    return this.http.post<any>('http://localhost:5076/api/auth/register', { email, password, name });
   }
 
   isAuthenticated(): boolean {
@@ -52,6 +59,20 @@ export class AuthService {
     return localStorage.getItem('authToken');
   }
 
+  getUserId() {
+    const token = this.getToken();
+    if (!token) return null;
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+
+      return payload.sub || null;
+    } catch (error) {
+      console.error('Error decoding token:', error);
+      return null;
+    }
+  }
+
   getUserRole(): string {
     const token = this.getToken();
     if (!token) return '';
@@ -60,10 +81,14 @@ export class AuthService {
     return payload.role || 'User'; 
   }
 
-  getUserId() {
-      const userId = Number(localStorage.getItem('userId'));
-      return userId;
+  setAuthState(user: any) {
+    this.authState.next(user);
   }
+
+  // getUserId() {
+  //     const userId = Number(localStorage.getItem('userId'));
+  //     return userId;
+  // }
   
   
 

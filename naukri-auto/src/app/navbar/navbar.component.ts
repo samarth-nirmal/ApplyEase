@@ -10,7 +10,7 @@ import { JobService } from '../jobServices/job.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  userId : number | undefined
+  userId : any | undefined
   constructor(public authService: AuthService, private router: Router, private jobService : JobService) {
   }
 

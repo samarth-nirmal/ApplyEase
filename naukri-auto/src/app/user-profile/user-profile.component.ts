@@ -10,11 +10,12 @@ import { JobService } from '../jobServices/job.service';
 })
 export class UserProfileComponent {
 
-  userId : number | undefined
+  userId : any | undefined
   user : any;
   primarySkills : any[] = [];
   secondarySkills : any[] = [];
   projects : any[] = []
+  userProfileExist : boolean = false
   
   constructor(private authService : AuthService, private jobService : JobService) {}
   
@@ -32,12 +33,23 @@ export class UserProfileComponent {
 
   ngOnInit() {
     this.userId = this.authService.getUserId();
-    this.jobService.getUserProfile(this.userId).subscribe((data) => {
-      this.user = data;
-      this.primarySkills = data.primarySkills.split(',');
-      this.secondarySkills = data.secondarySkills.split(',');
-      this.projects = this.parseProjects(data.projects);
-      console.log(this.projects)
-    })
+    this.jobService.getUserProfile(this.userId).subscribe(
+      (data) => {
+        if (data) {
+          this.userProfileExist = true
+          this.user = data;
+          this.primarySkills = data.primarySkills.split(',');
+          this.secondarySkills = data.secondarySkills.split(',');
+          this.projects = this.parseProjects(data.projects);
+          console.log(this.projects);
+        } else {
+          this.userProfileExist = false
+          console.error('Error: User profile does not exist.');
+        }
+      },
+      (error) => {
+        console.error('Error fetching user profile:', error);
+      }
+    );
   }
 }

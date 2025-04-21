@@ -1,30 +1,47 @@
-<div *ngIf="jobList.length != 0">
+<div *ngIf="!jobApplyProgress">
   <div class="table-container">
-  <div class="upperTable">
-      <mat-chip-listbox aria-label="Job Relevance Filter" [(ngModel)]="selectedFilter" (ngModelChange)="filterJobs()" class="align-left">
-        <mat-chip-option [value]="'mostRelevant'">
-          Most Relevant Jobs
-        </mat-chip-option>
-      </mat-chip-listbox>
-      
+    <div class="upperTable">
+      <div class="filterButtons">
+        <mat-chip-listbox aria-label="Job Relevance Filter" [(ngModel)]="selectedFilter" (ngModelChange)="filterJobs()" class="align-left">
+          <mat-chip-option [value]="'mostRelevant'">
+            Most Relevant Jobs
+          </mat-chip-option>
+        </mat-chip-listbox>
+        &nbsp;&nbsp;
+        <mat-chip-listbox aria-label="Successfully Applied Filter" [(ngModel)]="selectedFilter" (ngModelChange)="successfullyAppliedFilter()" class="align-left">
+          <mat-chip-option [value]="'successApply'">
+            Successfully Applied
+          </mat-chip-option>
+        </mat-chip-listbox>
+        &nbsp;&nbsp;
+        <mat-chip-listbox aria-label="Not Applied Filter" [(ngModel)]="selectedFilter" (ngModelChange)="NotAppliedFilter()" class="align-left">
+          <mat-chip-option [value]="'NotApply'">
+            Not Applied
+          </mat-chip-option>
+        </mat-chip-listbox>
+      </div>
+
+      <div *ngIf="errorMessage" class="error-message">
+        <mat-error>{{ errorMessage }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</mat-error>
+      </div>
+      <div *ngIf="successMessage" class="success-message">
+        <mat-icon color="primary">check_circle</mat-icon>
+        <span>{{ successMessage }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      </div>
       <div class="align-right">
-        <div *ngIf="errorMessage" class="error-message">
-          <mat-error>{{ errorMessage }}</mat-error>
-        </div>
         <button mat-fab extended (click)="applyRelavent()">
           <mat-icon>hotel</mat-icon>
-          Lazy Apply - Most relavent Jobs
+          Lazy Apply - Most relevant Jobs
         </button>
+
         <button mat-fab extended (click)="applyAll()">
           <mat-icon>
-          
             done_outline
-          
           </mat-icon>
           Lazy Apply all
         </button>
       </div>
-  </div>
+    </div>
 
     <br>
     <table mat-table class="mat-elevation-z2">
@@ -38,7 +55,7 @@
         <th mat-header-cell> Apply Status </th>
         <th mat-header-cell> View Job </th>
       </tr>
-  
+
       <!-- Table Rows -->
       <tr *ngFor="let job of jobList">
         <td mat-cell> {{ job.jobTitle }} </td>
@@ -58,29 +75,24 @@
           </a>
         </td>
       </tr>
+
+      <!-- Empty Table Message -->
+      <tr *ngIf="jobList.length === 0">
+        <td mat-cell colspan="7" style="text-align: center;">
+          Nothing to show here
+        </td>
+      </tr>
     </table>
   </div>
-  
 </div>
 
-<div *ngIf="jobList.length == 0" class="no-jobs-container">
-  <mat-card>
-    <mat-card-content>
-      <p class="no-jobs-text">Nothing to Display here</p>
+<div *ngIf="jobApplyProgress" class="progress-card-container">
+  <mat-card class="progress-card mat-elevation-z4">
+    <mat-card-content style="text-align: center;">
+      <mat-progress-bar mode="buffer" style="margin-bottom: 30px;"></mat-progress-bar>
+      <p class="job-fact mat-body-1" style="margin: 0; color: #7c7c7c; transition: opacity 0.5s ease-in-out;">
+        💡 {{ currentFact }}
+      </p>
     </mat-card-content>
   </mat-card>
 </div>
-
-<style>
-  .no-jobs-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80%;
-  }
-  .no-jobs-text {
-    text-align: center;
-    font-size: 2rem;
-    color: gray;
-  }
-</style>

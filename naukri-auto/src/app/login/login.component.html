@@ -1,12 +1,13 @@
 <br><br>
-<mat-card class="login-card">
+<mat-card class="login-card" *ngIf="!isRegister">
   <mat-card-content>
-    <h2>🔑 Login</h2>
-
+    <h2>Login</h2>
+    <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+      
     <!-- Email Input -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Email</mat-label>
-      <input matInput type="email" placeholder="Enter your email" required />
+      <input matInput type="email" [(ngModel)]="user.email" name="email" placeholder="Enter your email" required />
     </mat-form-field>
 
     <!-- Password Input with View Icon -->
@@ -14,6 +15,8 @@
       <mat-label>Password</mat-label>
       <input 
         matInput 
+        [(ngModel)]="user.password"
+        name="password"
         [type]="hidePassword ? 'password' : 'text'" 
         placeholder="Enter your password"
         required
@@ -28,12 +31,71 @@
       </button>
     </mat-form-field>
 
+    <button mat-flat-button color="primary" type="submit" class="full-width" [disabled]="loginForm.invalid">Login</button>
     <!-- Login Button -->
-    <button mat-flat-button color="primary" class="full-width">Login</button>
-    <br>
+  </form>
+  <br>
+  <div id="googleSignIn" *ngIf="!isRegister"></div>
+  
+  
+  <br>
+  <p class="register-link" (click)="toggleForm()">
+    {{ isRegister ? 'Already have an account? Login' : 'Not an existing user? Register here' }}
+  </p>
+  <div *ngIf="loginError" class="error">
+    {{ loginError }}
+  </div>
+
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="login-card" *ngIf="isRegister">
+  <mat-card-content>
+    <h2>Register</h2>
+    <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
+      
+      <!-- Name Input -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" [(ngModel)]="newUser.name" name="name" placeholder="Enter your name" required />
+      </mat-form-field>
+
+      <!-- Email Input -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]="newUser.email" name="email" placeholder="Enter your email" required />
+      </mat-form-field>
+
+      <!-- Password Input -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input 
+          matInput 
+          [(ngModel)]="newUser.password"
+          name="password"
+          [type]="hidePassword ? 'password' : 'text'" 
+          placeholder="Enter your password"
+          required
+        />
+        <button 
+          mat-icon-button 
+          matSuffix 
+          (click)="hidePassword = !hidePassword" 
+          aria-label="Toggle password visibility"
+        >
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <!-- Register Button -->
+      <button mat-flat-button color="primary" type="submit" class="full-width" [disabled]="registerForm.invalid">Register</button>
+    </form>
     <br>
 
-      <div id="googleSignIn">
-      </div>
+    <div id="googleSignInRegister" *ngIf="isRegister"></div>
+    <br>
+    <p class="register-link" (click)="toggleForm()">
+      {{ isRegister ? 'Already have an account? Login' : 'Not an existing user? Register here' }}
+    </p>
   </mat-card-content>
 </mat-card>
