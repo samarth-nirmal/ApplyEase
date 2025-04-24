@@ -30,6 +30,7 @@
               "zone.js",
               "@angular/localize/init"
             ],
+            
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -40,7 +41,8 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "@angular/material/prebuilt-themes/azure-blue.css",
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/@ngxpert/hot-toast/src/styles/styles.css"
             ],
             "scripts": [],
             "server": "src/main.server.ts",
@@ -48,6 +50,7 @@
             "ssr": {
               "entry": "server.ts"
             }
+            
           },
           "configurations": {
             "production": {

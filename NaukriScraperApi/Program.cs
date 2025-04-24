@@ -17,13 +17,25 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAuthorization();
 
-
+builder.Services.AddSingleton(new TokenValidationParameters
+{
+    ValidateIssuerSigningKey = true,
+    IssuerSigningKey = key,
+    ValidateIssuer = true,
+    ValidateAudience = true,
+    ValidateLifetime = true,
+    ValidIssuer = config["Jwt:Issuer"],
+    ValidAudience = config["Jwt:Audience"],
+    ClockSkew = TimeSpan.Zero
+});
 
 
 builder.Services.AddHttpClient<GeminiService>();
 builder.Services.AddSingleton<GeminiService>();
 
-builder.Services.AddScoped<IJwtService, JwtService>();
+// builder.Services.AddSingleton<JtiStore>();
+
+builder.Services.AddScoped<JwtService>();
 builder.Services.AddScoped<IJobService, JobService>();
 
 
@@ -70,6 +82,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection"),
         new MySqlServerVersion(new Version(8, 0, 36))  // Adjust MySQL version
     ));
+
 
 builder.Services.AddScoped<JwtService>();
 builder.Services.AddScoped<JobService>();
@@ -124,7 +137,7 @@ if (app.Environment.IsDevelopment())
         c.RoutePrefix = string.Empty;
     });
 }
-
+app.UseMiddleware<JwtValidationMiddleware>();
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");
 app.UseAuthentication();

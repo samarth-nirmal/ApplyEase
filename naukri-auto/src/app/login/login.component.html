@@ -1,5 +1,7 @@
 <br><br>
-<mat-card class="login-card" *ngIf="!isRegister">
+<mat-card class="login-card" [ngClass]="{ 'loading': loading }" *ngIf="!isRegister">
+
+  <div [class.loader]="loading"></div>
   <mat-card-content>
     <h2>Login</h2>
     <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
@@ -30,21 +32,21 @@
         <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>
     </mat-form-field>
+    <br>
 
     <button mat-flat-button color="primary" type="submit" class="full-width" [disabled]="loginForm.invalid">Login</button>
     <!-- Login Button -->
   </form>
   <br>
-  <div id="googleSignIn" *ngIf="!isRegister"></div>
+  <div *ngIf="!isRegister">
+    <div #googleLoginContainer id="googleSignIn"></div>
+  </div>
   
   
   <br>
   <p class="register-link" (click)="toggleForm()">
     {{ isRegister ? 'Already have an account? Login' : 'Not an existing user? Register here' }}
   </p>
-  <div *ngIf="loginError" class="error">
-    {{ loginError }}
-  </div>
 
   </mat-card-content>
 </mat-card>

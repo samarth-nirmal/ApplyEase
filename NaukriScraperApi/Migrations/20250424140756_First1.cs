@@ -5,7 +5,7 @@
 namespace NaukriScraperApi.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstMigration1 : Migration
+    public partial class First1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

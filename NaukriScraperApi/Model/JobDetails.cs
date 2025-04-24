@@ -6,6 +6,7 @@ namespace NaukriScraperApi.Model
     public class JobDetails
     {
         [Key]
+        public int Id { get; set; }
         public string? jobId { get; set; }
         public string? jobTitle { get; set; }
         public string? companyName { get; set; }

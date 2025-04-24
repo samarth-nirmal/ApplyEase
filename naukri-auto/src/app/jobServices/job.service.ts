@@ -14,6 +14,7 @@ export class JobService {
 
   show() {
     this.loading.next(true);
+    
   }
 
   hide() {

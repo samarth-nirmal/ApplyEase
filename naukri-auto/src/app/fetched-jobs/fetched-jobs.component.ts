@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { JobService } from '../jobServices/job.service';
 import { AuthService } from '../jobServices/auth.service';
+import { HotToastService } from '@ngxpert/hot-toast';
 
 @Component({
   selector: 'app-fetched-jobs',
@@ -40,7 +41,7 @@ export class FetchedJobsComponent {
     
   ];
 
-  constructor(private jobService: JobService, private authService: AuthService, private cdr: ChangeDetectorRef) {}
+  constructor(private jobService: JobService, private authService: AuthService, private cdr: ChangeDetectorRef, private toast : HotToastService) {}
 
   ngOnInit() {
     this.jobService.getJobList(this.userId).subscribe((data) => {
@@ -67,16 +68,22 @@ export class FetchedJobsComponent {
           this.filterJobs();
         });
         
-        this.successMessage = 'Successfully Applied to All Relavent the jobs'
+        this.toast.success("Jobs Applied Successfully", {
+          position: 'top-center'
+        });
         this.jobApplyProgress = false;
       },
       error: (err) => {
-        console.error("Error applying relevant jobs:", err.error);
+        this.stopJobFacts();
         if(err.error == "No jobs available for auto-apply.") {
-          this.errorMessage = err.error;
+          this.toast.error("No Jobs to Apply", {
+            position: 'top-center'
+          });
           this.jobApplyProgress = false;
         } else {
-          this.errorMessage = 'Something went wrong, please try again later.';
+          this.toast.error("Please try again", {
+            position: 'top-center'
+          });
           this.jobApplyProgress = false;
         }
       }
@@ -94,20 +101,27 @@ export class FetchedJobsComponent {
         this.jobApplyProgress = false;
         this.jobService.getJobList(this.userId).subscribe((data) => {
           this.allJobs = data;
-          console.log("Fetched Jobs:", this.allJobs);
           this.filterJobs();
         });
 
-        this.successMessage = 'Successfully Applied to All the jobs'
+        this.toast.success("Jobs Applied Successfully", {
+          position: 'top-center'
+        });
         this.jobApplyProgress = false;
       },
       error: (err) => {
+        this.stopJobFacts();
         console.error("Error applying all jobs:", err.error);
         if(err.error == "No jobs available for auto-apply.") {
-          this.errorMessage = err.error;
+          
+          this.toast.error("No Jobs to Apply", {
+            position: 'top-center'
+          });
           this.jobApplyProgress = false;
         } else {
-          this.errorMessage = 'Something went wrong, please try again later.';
+          this.toast.error("Please try again", {
+            position: 'top-center'
+          });
           this.jobApplyProgress = false;
         }
       }
@@ -125,6 +139,13 @@ export class FetchedJobsComponent {
     const randomIndex = Math.floor(Math.random() * this.jobFacts.length);
     this.currentFact = this.jobFacts[randomIndex];
     this.cdr.detectChanges();
+  }
+
+  stopJobFacts() {
+    if (this.factInterval) {
+      clearInterval(this.factInterval);
+      this.factInterval = null;
+    }
   }
 
   filterJobs() {

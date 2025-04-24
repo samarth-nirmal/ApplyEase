@@ -24,6 +24,8 @@
     "@angular/router": "^18.2.13",
     "@angular/ssr": "^18.0.0",
     "@ng-bootstrap/ng-bootstrap": "^17.0.1",
+    "@ngneat/overview": "^6.1.2",
+    "@ngxpert/hot-toast": "^3.1.1",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.2",
     "express": "^4.18.2",
@@ -50,5 +52,4 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.4.2"
   }
-
 }

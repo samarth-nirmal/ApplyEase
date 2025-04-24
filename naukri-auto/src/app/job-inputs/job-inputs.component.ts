@@ -9,6 +9,7 @@ import { AuthService } from '../jobServices/auth.service';
 import { Router } from '@angular/router';
 import { LoadingComponent } from '../loading/loading.component';
 import { ResumeService } from '../jobServices/resume.service';
+import { HotToastService } from '@ngxpert/hot-toast';
 
 @Component({
   selector: 'app-job-inputs',
@@ -60,7 +61,8 @@ export class JobInputsComponent {
     public jobService: JobService,
     private AuthService: AuthService,
     private ResumeService : ResumeService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private toast : HotToastService
   ) {
     this.jobForm = this.fb.group({
       userId: [this.AuthService.getUserId(), Validators.required],
@@ -110,6 +112,7 @@ export class JobInputsComponent {
       this.profileCompleteStatus = data.isProfileComplete;
     });
     this.cdr.detectChanges();
+    console.log(this.AuthService.getUserId())
   }
 
   
@@ -119,16 +122,27 @@ export class JobInputsComponent {
     this.startJobFacts(); 
     this.jobService.searchJobs(this.jobForm.value).subscribe((data) => {
       if (Array.isArray(data) && data.length === 0) {
+        this.stopJobFacts();
         this.errorMessage = 'No jobs found. Please try again.';
         this.cdr.detectChanges();
         this.jobFetchProgress = false;
+        this.toast.error("No Jobs Found", {
+          position: 'top-center'
+        });
       } else {
         console.log('Jobs found:', data);
+        this.toast.success("Jobs Fetched Successfully", {
+          position: 'top-center'
+        });
         this.router.navigate(['fetched-jobs'])
         this.jobFetchProgress = false;
       }
     }, (error) => {
+      this.stopJobFacts();
       this.errorMessage = 'An error occurred while searching for jobs. Please try again.';
+      this.toast.error("No Jobs Found", {
+        position: 'top-center'
+      });;
       this.cdr.detectChanges();
       this.jobFetchProgress = false;
     });
@@ -141,6 +155,14 @@ export class JobInputsComponent {
       this.updateRandomFact();
     }, 3000); // Change fact every 3 seconds
   }
+
+  stopJobFacts() {
+    if (this.factInterval) {
+      clearInterval(this.factInterval);
+      this.factInterval = null;
+    }
+  }
+
   
   updateRandomFact() {
     const randomIndex = Math.floor(Math.random() * this.jobFacts.length);
@@ -169,6 +191,9 @@ export class JobInputsComponent {
         next: (res) => {
           this.uploadSuccess = true;
           console.log('Upload Success:', res);
+          this.toast.success("Resume Uploaded", {
+            position: 'top-center'
+          });
 
           this.userProfileForm.patchValue({
             fullName: res.extractedData.full_name || '',
@@ -197,6 +222,9 @@ export class JobInputsComponent {
         },
         error: (error) => {
           this.selectedFileName = null;
+          this.toast.error("Resume Upload Failed, try again", {
+            position: 'top-center'
+          });
           this.errorMessage = 'Failed to upload resume. Please try again.';
           this.showProgressBar = false;
           this.cdr.detectChanges();
@@ -208,8 +236,12 @@ export class JobInputsComponent {
 
   submitProfileForm() {
     console.log(this.userProfileForm.value);
+    const formData = this.userProfileForm.value;
     this.jobService.submitUserProfile(this.userProfileForm.value).subscribe((data) => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      this.toast.success("Profile Updated", {
+        position: 'top-center'
+      });
     })
     this.jobService.show();
 
@@ -226,6 +258,9 @@ export class JobInputsComponent {
     this.jobService.naukriLogin(this.userId).subscribe((data) => {
       console.log(data);
       window.location.reload();
+      this.toast.success("Logged in to Naukri", {
+        position: 'top-center'
+      });
     })
   }
 }

@@ -38,6 +38,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { provideHotToastConfig } from '@ngxpert/hot-toast';
 
 import {
   MatNativeDateModule,
@@ -88,6 +89,9 @@ import {
     provideClientHydration(),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     provideAnimationsAsync(),
+    provideHotToastConfig({
+      position: 'bottom-center'
+    })
   ],
   bootstrap: [AppComponent],
 })

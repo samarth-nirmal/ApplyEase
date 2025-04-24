@@ -20,8 +20,9 @@ namespace NaukriScraperApi.Migrations
 
             modelBuilder.Entity("NaukriScraperApi.Model.JobDetails", b =>
                 {
-                    b.Property<string>("jobId")
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
                     b.Property<double?>("MatchScore")
                         .HasColumnType("double");
@@ -41,6 +42,9 @@ namespace NaukriScraperApi.Migrations
                     b.Property<string>("jobDescription")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("jobId")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("jobTitle")
                         .HasColumnType("longtext");
 
@@ -50,11 +54,44 @@ namespace NaukriScraperApi.Migrations
                     b.Property<string>("location")
                         .HasColumnType("longtext");
 
-                    b.HasKey("jobId");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("JobDetails");
+                });
+
+            modelBuilder.Entity("NaukriScraperApi.Model.TokenSession", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ExpiresAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("IpAddress")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("IsRevoked")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime>("IssuedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("JtiHash")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UserAgent")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TokenSessions");
                 });
 
             modelBuilder.Entity("NaukriScraperApi.Model.User", b =>
@@ -99,7 +136,7 @@ namespace NaukriScraperApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateOnly?>("BirthDate")
+                    b.Property<DateTime?>("BirthDate")
                         .HasColumnType("date");
 
                     b.Property<string>("Certifications")
@@ -181,11 +218,11 @@ namespace NaukriScraperApi.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("XIIPercentage")
-                        .HasColumnType("int");
+                    b.Property<float?>("XIIPercentage")
+                        .HasColumnType("float");
 
-                    b.Property<int?>("XPercentage")
-                        .HasColumnType("int");
+                    b.Property<float?>("XPercentage")
+                        .HasColumnType("float");
 
                     b.Property<string>("noticePeriod")
                         .IsRequired()

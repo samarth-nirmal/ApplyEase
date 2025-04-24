@@ -5,7 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using NaukriScraperApi.Interfaces;
 using NaukriScraperApi.Model;
 
-public class JwtService : IJwtService
+public class JwtService
 {
     private readonly IConfiguration _config;
     private readonly string _jwtKey;
@@ -24,29 +24,57 @@ public class JwtService : IJwtService
         _jwtExpirationInMinutes = int.TryParse(_config["Jwt:ExpirationMinutes"], out int expiration) ? expiration : 60;
     }
 
-    public string GenerateToken(User user)
-    {
-        var claims = new[]
-        {
-            new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-            new Claim(JwtRegisteredClaimNames.Email, user.Email),
-            new Claim("role", user.Role),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-        };
+    // public string GenerateToken(User user)
+    // {
+    //     var claims = new[]
+    //     {
+    //         new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+    //         new Claim(JwtRegisteredClaimNames.Email, user.Email),
+    //         new Claim("role", user.Role),
+    //         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+    //     };
 
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtKey));
-        var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+    //     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtKey));
+    //     var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
         
-        var token = new JwtSecurityToken(
-            issuer: _jwtIssuer,
-            audience: _jwtAudience,
-            claims: claims,
-            expires: DateTime.UtcNow.AddMinutes(_jwtExpirationInMinutes), // Configurable Expiry Time
-            signingCredentials: credentials
-        );
+    //     var token = new JwtSecurityToken(
+    //         issuer: _jwtIssuer,
+    //         audience: _jwtAudience,
+    //         claims: claims,
+    //         expires: DateTime.UtcNow.AddMinutes(_jwtExpirationInMinutes), // Configurable Expiry Time
+    //         signingCredentials: credentials
+    //     );
 
-        return new JwtSecurityTokenHandler().WriteToken(token);
-    }
+    //     return new JwtSecurityTokenHandler().WriteToken(token);
+    // }
+
+    public (string Token, string Jti, DateTime ExpiresAt) GenerateToken(User user)
+{
+    var jti = Guid.NewGuid().ToString();
+    var expiresAt = DateTime.UtcNow.AddMinutes(_jwtExpirationInMinutes);
+
+    var claims = new[]
+    {
+        new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+        new Claim(JwtRegisteredClaimNames.Email, user.Email),
+        new Claim("role", user.Role),
+        new Claim(JwtRegisteredClaimNames.Jti, jti)
+    };
+
+    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtKey));
+    var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+    var token = new JwtSecurityToken(
+        issuer: _jwtIssuer,
+        audience: _jwtAudience,
+        claims: claims,
+        expires: expiresAt,
+        signingCredentials: credentials
+    );
+
+    return (new JwtSecurityTokenHandler().WriteToken(token), jti, expiresAt);
+}
+
 
     
 }

@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using NaukriScraperApi.Model;
+using System.Security.Cryptography;
+
 
 public class AppDbContext : DbContext
 {
@@ -8,6 +10,7 @@ public class AppDbContext : DbContext
     public DbSet<User> User { get; set; }
     public DbSet<JobDetails> JobDetails { get; set; }
     public DbSet<UserProfile> UserProfile { get; set; }
+    public DbSet<TokenSession> TokenSessions { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

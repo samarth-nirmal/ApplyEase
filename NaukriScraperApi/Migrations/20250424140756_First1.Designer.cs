@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace NaukriScraperApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250322084048_FirstMigration2")]
-    partial class FirstMigration2
+    [Migration("20250424140756_First1")]
+    partial class First1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,11 +23,12 @@ namespace NaukriScraperApi.Migrations
 
             modelBuilder.Entity("NaukriScraperApi.Model.JobDetails", b =>
                 {
-                    b.Property<string>("jobId")
-                        .HasColumnType("varchar(255)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<float?>("MatchScore")
-                        .HasColumnType("float");
+                    b.Property<double?>("MatchScore")
+                        .HasColumnType("double");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -44,6 +45,9 @@ namespace NaukriScraperApi.Migrations
                     b.Property<string>("jobDescription")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("jobId")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("jobTitle")
                         .HasColumnType("longtext");
 
@@ -53,11 +57,44 @@ namespace NaukriScraperApi.Migrations
                     b.Property<string>("location")
                         .HasColumnType("longtext");
 
-                    b.HasKey("jobId");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("JobDetails");
+                });
+
+            modelBuilder.Entity("NaukriScraperApi.Model.TokenSession", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ExpiresAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("IpAddress")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("IsRevoked")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime>("IssuedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("JtiHash")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UserAgent")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TokenSessions");
                 });
 
             modelBuilder.Entity("NaukriScraperApi.Model.User", b =>
@@ -71,11 +108,13 @@ namespace NaukriScraperApi.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("GoogleId")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PasswordHash")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Picture")
@@ -100,6 +139,9 @@ namespace NaukriScraperApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("BirthDate")
+                        .HasColumnType("date");
+
                     b.Property<string>("Certifications")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -111,6 +153,9 @@ namespace NaukriScraperApi.Migrations
                     b.Property<string>("CurrentJobTitle")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("CurrentSalary")
+                        .HasColumnType("int");
 
                     b.Property<int>("ExpectedSalary")
                         .HasColumnType("int");
@@ -154,7 +199,7 @@ namespace NaukriScraperApi.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("ResumeUrl")
+                    b.Property<string>("Projects")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -166,13 +211,27 @@ namespace NaukriScraperApi.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("TotalExperience")
-                        .HasColumnType("int");
+                    b.Property<decimal>("TotalExperience")
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<string>("WorkMode")
+                    b.Property<string>("UserProfileSummary")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<float?>("XIIPercentage")
+                        .HasColumnType("float");
+
+                    b.Property<float?>("XPercentage")
+                        .HasColumnType("float");
+
+                    b.Property<string>("noticePeriod")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("willingToRelocate")
                         .IsRequired()
                         .HasColumnType("longtext");
 

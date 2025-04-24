@@ -245,6 +245,8 @@ public class JobController : ControllerBase
             return StatusCode(500, $"An error occurred: {ex.Message}");
         }
     }
+
+
     [Authorize]
     [HttpPost]
     [Route("create-user-profile")]
@@ -272,6 +274,8 @@ public class JobController : ControllerBase
             return StatusCode(500, $"An error occurred: {ex.Message}");
         }
     }
+
+    
     [Authorize]
     [HttpGet]
     [Route("get-user-profile")]

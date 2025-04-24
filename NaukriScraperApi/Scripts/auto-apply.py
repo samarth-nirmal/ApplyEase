@@ -1,4 +1,3 @@
-from itertools import cycle
 import time
 import json
 import sys
@@ -7,24 +6,13 @@ from playwright.sync_api import sync_playwright
 from naukri_login import get_user_data_dir
 from google import genai
 
-GEMINI_API_KEYS = cycle([
-    "AIzaSyCqKr7pRlibbMekjes3a-T4un1lC_hy8sM",  # Replace with your first API key
-    "AIzaSyXXXXX_REPLACE_WITH_SECOND_KEY"       # Replace with your second API key
-])
+client = genai.Client(api_key="AIzaSyCqKr7pRlibbMekjes3a-T4un1lC_hy8sM")
 
-# Create a reusable Gemini client with a given key
-def get_gemini_client():
-    key = next(GEMINI_API_KEYS)
-    return genai.Client(api_key=key)
 
-# Retry mechanism in case quota exceeded or other failures
-def callGemini(profileSummary, question, max_retries=3):
-    for _ in range(max_retries):
-        try:
-            client = get_gemini_client()
-            response = client.models.generate_content(
-                model="gemini-2.0-flash",
-                contents=f"""   
+def callGemini(profileSummary, question):
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents=f"""
 You are given a user profile summary and a question. Answer the question using only the required word(s), without any explanation or extra context.
 
 Profile Summary: {profileSummary}  
@@ -48,16 +36,13 @@ Strict Answering Guidelines:
    - Do not include time or time zones.
 10. For the questions that ask you whether you are willing to relocate to a specific location, give positive response as Yes.
 11. If asked for a goverment ID or Goverment ID number, give NA as answer.
+12. For Nouns like name, give first letter capital letter for each word, and rest of letters in small case.
 
 Answer Format:
 - Provide only the **final answer**, with **no extra words, punctuation, or context**.
         """,
     )
-            return response.text.strip() if response.text else None
-        except Exception as e:
-            print()
-            time.sleep(1)  # wait before retrying
-    return "NA"
+    return response.text.strip() if response.text else None
 
 
 def is_logged_in(page):
@@ -188,7 +173,7 @@ def auto_apply_jobs(user_id, job_data_str, user_profile_summary):
                         time.sleep(3)
                         if page.query_selector(".chatbot_DrawerContentWrapper"):
                             process_questionnaire(page, user_profile_summary)
-                        time.sleep(3)
+                        time.sleep(1)
                         success_msg = page.query_selector(".apply-status-header")
                         status = "Applied" if success_msg else "Not Applied"
                     else:
