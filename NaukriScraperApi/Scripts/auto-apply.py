@@ -6,7 +6,7 @@ from playwright.sync_api import sync_playwright
 from naukri_login import get_user_data_dir
 from google import genai
 
-client = genai.Client(api_key="AIzaSyCqKr7pRlibbMekjes3a-T4un1lC_hy8sM")
+client = genai.Client(api_key="YOUR_API_KEY")
 
 
 def callGemini(profileSummary, question):
