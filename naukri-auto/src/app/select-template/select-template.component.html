@@ -1,0 +1,18 @@
+<h3 style="text-align: center; margin-top: 50px; font-weight: 500; font-size: 2.5rem;">Best templates for your experience years</h3>
+<h5 style="text-align: center; font-weight: 100; font-size: 1.2rem;">You can change the template later</h5>
+
+
+<div class="container">
+    <div class="resume-template-preview">
+        <div *ngFor="let template of templateList" class="template-card"
+             (click)="selectTemplate(template)"
+             [ngClass]="{'selected': selectedTemplate === template}">
+            <img [src]="template" alt=""/>
+        </div>
+    </div>
+</div>  
+
+
+<div class="bottom-navbar" [class.visible]="selectedTemplate">
+  <button (click)="goToResumeBuilder()">Use This Template</button>
+</div>

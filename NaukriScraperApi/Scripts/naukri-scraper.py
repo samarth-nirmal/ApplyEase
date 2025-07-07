@@ -15,7 +15,7 @@ def is_logged_in(page):
 def scrape_jobs(user_id, role, experience, location, noOfJobs):
     MAX_JOBS = int(noOfJobs)
     jobs_list = []
-    job_count = 0  
+    job_count = 0
 
     user_data_dir = get_user_data_dir(user_id)
     if not os.path.exists(user_data_dir):

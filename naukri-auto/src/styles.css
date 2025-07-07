@@ -1,9 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  font-family: 'Poppins', sans-serif !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.material-icons {
+  font-family: 'Material Icons' !important;
+}
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0;}
 
 
 input {
+    cursor: pointer;
+}
+
+button {
     cursor: pointer;
 }

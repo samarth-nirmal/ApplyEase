@@ -169,7 +169,7 @@ public class GeminiService
         }
     }
 
-    public async Task<string> GenerateCoverLetter(string userProfileSummary, string jobDescription)
+    public async Task<string> GenerateCoverLetter(string userProfileSummary, string jobDescription, string jobTitle, string companyName)
     {
         string apiUrl = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={_apiKey}";
 
@@ -177,7 +177,7 @@ public class GeminiService
         {
             contents = new[]
             {
-                new { role = "user", parts = new[] { new { text = GenerateCoverLetterPrompt(userProfileSummary, jobDescription) } } }
+                new { role = "user", parts = new[] { new { text = GenerateCoverLetterPrompt(userProfileSummary, jobDescription, jobTitle, companyName) } } }
             }
         };
 
@@ -225,12 +225,21 @@ public class GeminiService
     //--------------  PROMPTS ------------------//
 
 
-    private string GenerateCoverLetterPrompt(string userProfileSummary, string jobDescription)
-    {
-        return $"Generate a detailed cover letter based on the following user profile and job description. The cover letter should be professional and tailored to the job description and userSummary provided. Just return the cover letter in proper format nothing else extra\n\n" +
-               $"User Profile:\n{userProfileSummary}\n\n" +
-               $"Job Description:\n{jobDescription}";
-    }
+private string GenerateCoverLetterPrompt(string userProfileSummary, string jobDescription, string jobTitle, string companyName)
+{
+    return $"Generate a professional and concise cover letter using the details below. " +
+           $"The letter must:\n" +
+           $"- Include the candidate's name, experience, skills, and accomplishments based on the user profile.\n" +
+           $"- Align with the responsibilities and qualifications in the job description.\n" +
+           $"- Start with a formal greeting; if the company name or hiring manager is missing, use 'Sir/Madam' or avoid naming.\n" +
+           $"- End with a polite, confident closing.\n" +
+           $"Do not include any explanations or placeholders. Only return the finalized cover letter in proper formatting.\n\n" +
+           $"User Profile:\n{userProfileSummary}\n\n" +
+           $"Job Description:\n{jobDescription}" +
+           $"Job Title:\n{jobTitle}" +
+           $"Company Name:\n{companyName}";
+}
+
 
     private string GenerateProfileSummaryPrompt(UserProfile userProfile)
     {

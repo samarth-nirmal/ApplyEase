@@ -39,11 +39,18 @@ import { FormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideHotToastConfig } from '@ngxpert/hot-toast';
-
+import { TooltipPosition, MatTooltipModule } from '@angular/material/tooltip';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 import {
   MatNativeDateModule,
   provideNativeDateAdapter,
 } from '@angular/material/core';
+import { CreateCoverletterComponent } from './create-coverletter/create-coverletter.component';
+import { ResumeGeneratorComponent } from './resume-generator/resume-generator.component';
+import { CreateResumeOptionsComponent } from './create-resume-options/create-resume-options.component';
+import { ExperienceNoteComponent } from './experience-note/experience-note.component';
+import { SelectTemplateComponent } from './select-template/select-template.component';
+import { ResumePreviewComponent } from './resume-preview/resume-preview.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +64,12 @@ import {
     LoadingComponent,
     UserProfileComponent,
     FetchedJobsComponent,
+    CreateCoverletterComponent,
+    ResumeGeneratorComponent,
+    CreateResumeOptionsComponent,
+    ExperienceNoteComponent,
+    SelectTemplateComponent,
+    ResumePreviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,7 +96,9 @@ import {
     MatSlideToggleModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    FormsModule
+    FormsModule,
+    MatTooltipModule,
+    AngularEditorModule 
   ],
   providers: [
     provideClientHydration(),
@@ -95,4 +110,6 @@ import {
   ],
   bootstrap: [AppComponent],
 })
+
+
 export class AppModule {}

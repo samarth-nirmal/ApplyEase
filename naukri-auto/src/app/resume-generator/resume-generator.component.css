@@ -1,0 +1,400 @@
+
+.builder-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.form-section {
+  flex: 2;
+  margin-left: 200px;
+}
+
+.preview-section {
+  flex: 1;
+  border: 1px solid #ccc;
+  padding: 20px;
+  overflow: auto;
+}
+
+.form-section h3 {
+  margin-top: 55px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.custom-input-container {
+  position: relative;
+  width: 300px;
+  max-width: 300px;
+  margin: 2px 0;
+  margin-bottom: 30px;
+}
+
+input::placeholder {
+  font-size: 14px;
+  color: #afafaf;
+}
+
+.custom-input-container input {
+  width: 100%;
+  border: 1px solid rgb(102, 102, 102);
+  padding: 8px 4px;
+  outline: none;
+  padding-left: 10px;
+}
+
+.custom-input-container .underline {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: hwb(216 0% 45%);
+  transition: width 0.5s ease;
+}
+
+.custom-input-container input:focus + .underline {
+  width: 100%;
+}
+
+.section {
+  display: flex;
+}
+
+.form-sub-section {
+  margin-right: 50px;
+}
+
+.submitbtn {
+  text-align: right;
+  margin-top: 30px;
+}
+
+.submitbtn button {
+  background-color: lab(90.27% -60.56 29.58);
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 14px 60px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 50px;
+}
+
+.submitbtn button:hover {
+  background-color: lab(89.14% -70.45 38.86);
+}
+
+.cancelbtn {
+  text-align: left;
+}
+
+.cancelbtn button {
+  background-color: transparent;
+  color: rgb(0, 0, 0);
+  border: 2px solid black;
+  padding: 14px 60px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 50px;
+}
+
+.cancelbtn button:hover {
+  background-color: rgb(243, 243, 243);
+  color: rgb(0, 0, 0);
+}
+
+.stepper-header {
+  display: flex;
+  justify-content: space-between;
+  max-width: 80%;
+  cursor: pointer;
+}
+
+.stepper-header div {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 2px solid lightgray;
+}
+
+.stepper-header .active {
+  font-weight: bold;
+  border-color: hwb(216 0% 45%);
+  color: hwb(216 0% 45%);
+}
+
+::ng-deep .custom-dialog {
+  width: 800px !important;
+  max-width: 800px !important;
+  background: white !important;
+}
+
+.popup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  width: 100%;
+}
+
+.popup {
+  background: #FAF9FD;
+  width: 800px;
+  max-width: 90vw;
+  padding: 32px;
+  border-radius: 0px;
+  text-align: center;
+  /* box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); */
+}
+
+.job-review {
+  margin-bottom: 20px;
+}
+
+.job-box {
+  border: 1px solid #ccc;
+  padding: 16px;
+  text-align: left;
+}
+
+.job-header {
+  display: flex;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.job-title {
+  margin-right: 23px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.company-name {
+  font-weight: 300;
+  margin-right: 23px;
+}
+
+.job-description {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.popup-buttons button {
+  padding: 10px 60px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 50px;
+  background-color: white;
+}
+
+.yes-button {
+  border: 3px dotted hwb(216 0% 45%);
+  color: hwb(216 0% 45%);
+}
+
+.yes-button:hover {
+  text-decoration: underline;
+}
+.no-button:hover {
+    text-decoration: underline;
+}
+
+
+.checkbox-container {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: #333;
+
+  input[type="checkbox"] {
+    margin-right: 8px;
+  }
+}
+
+.popup-container textarea {
+  width: 100%;
+  border: 1px solid rgb(102, 102, 102);
+  padding: 8px 4px;
+  outline: none;
+  padding-left: 10px;
+  font-size: 14px;
+  border-radius: 0;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.popup-container .underline {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: hwb(216 0% 45%);
+  transition: width 0.5s ease;
+}
+
+.popup-container textarea:focus + .underline {
+  width: 100%;
+}
+
+::ng-deep .angular-editor-textarea {
+  text-align: left !important;
+  border-radius: 0 !important;
+  outline: none !important;
+}
+
+::ng-deep angular-editor-toolbar {
+  background-color: transparent;
+  /* padding: 8px; */
+}
+
+::ng-deep .angular-editor-toolbar {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+::ng-deep angular-editor-toolbar button {
+  background: none;
+  border: none !important;
+  background-color: transparent !important;
+  padding: 6px 10px;
+  margin: 0 4px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+::ng-deep angular-editor-toolbar button.active {
+  background-color: #f3e3ffd8 !important;
+  color: white;
+}
+
+
+.add-button {
+  background-color: lab(90.27% -60.56 29.58) !important;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 14px 60px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 50px;
+}
+
+.add-button:hover {
+  background-color: lab(88.76% -74.09 43.64) !important;
+}
+
+.ai-button {
+  background-color: #df3fff !important;
+  border: none;
+  color: white;
+  text-align: center;
+  padding: 14px 60px;
+  font-size: 18px !important;
+  font-weight: 500;
+}
+
+.angular-editor-textarea mat-icon {
+  color: white;
+  font-size: 12px;
+  margin-right: 30px;
+}
+
+
+
+.ai-button {
+  position: relative;
+  background-color: #e69bff;
+  color: #ffffff;
+  border: none;
+  padding: 14px 60px;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 40px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  overflow: hidden;
+  z-index: 0;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.ai-button mat-icon {
+  font-size: 25px;
+}
+
+/* Thicker animated border */
+.ai-button::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  z-index: -2;
+  background: linear-gradient(
+    45deg,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet,
+    red
+  );
+  background-size: 400% 400%;
+  animation: rainbow-border 4s linear infinite;
+  border-radius: 40px;
+}
+
+.ai-button::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  background-color: #e69bff; /* match button background */
+  z-index: -1;
+  border-radius: 40px;
+}
+
+.ai-button:hover {
+  background-color: #e69bff;
+  transform: scale(1.02);
+}
+
+.ai-button:active {
+  transform: scale(0.98);
+}
+
+@keyframes rainbow-border {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

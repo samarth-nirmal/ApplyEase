@@ -1,0 +1,377 @@
+<!-- <div class="builder-container">
+    <div class="form-section">
+      <h3>How would you like recruiters to <br> contact you?</h3>
+      <h3 style="font-weight: 100; font-size: 1rem; margin-top: -20px; margin-bottom: 50px;">Include your full name and at least email or phone number</h3>
+
+      <div class="section">
+        <div class="form-sub-section">
+          <div class="custom-input-container">
+          <label>First Name</label>
+          <input type="text" placeholder="John" required />
+          <span class="underline"></span>
+          </div>
+
+          <div class="custom-input-container">
+          <label for="">City</label>
+          <input type="text" placeholder="Mumbai" required />
+          <span class="underline"></span>
+          </div>
+
+          <div class="custom-input-container">
+          <label for="">Phone Number</label>
+          <input type="text" placeholder="+91-9876543210" required />
+          <span class="underline"></span>
+          </div>
+
+          <div class="cancelbtn">
+            <button>Back</button>
+          </div>
+        </div>
+
+        <div class="form-sub-section">
+          <div class="custom-input-container">
+          <label for="">Last Name</label>
+          <input type="text" placeholder="Doe" required />
+          <span class="underline"></span>
+          </div>
+
+          <div class="custom-input-container">
+          <label for="">Country</label>
+          <input type="text" placeholder="India" required />
+          <span class="underline"></span>
+          </div>
+
+          <div class="custom-input-container">
+          <label for="">Email</label>
+          <input type="text" placeholder="john.doe@example.com" required />
+          <span class="underline"></span>
+          </div>
+          
+          <div class="submitbtn">
+            <button>Continue</button>
+          </div>
+          
+        </div>
+
+      </div>
+
+
+
+      
+  </div>
+
+  <div class="preview-section">
+
+  </div>
+</div> -->
+
+<div class="builder-container">
+  <div class="form-section">
+    <div class="stepper-header">
+      <div
+        *ngFor="let step of steps; let i = index"
+        [class.active]="i === currentStep"
+      >
+        {{ step.label }}
+      </div>
+    </div>
+
+    <div class="stepper-body">
+      <!-- Step 0: Contact Info -->
+      <div *ngIf="currentStep === 0">
+        <h3>How would you like recruiters to <br />contact you?</h3>
+        <h3
+          style="
+            font-weight: 100;
+            font-size: 1rem;
+            margin-top: -20px;
+            margin-bottom: 25px;
+          "
+        >
+          Include your full name and at least email or phone number
+        </h3>
+
+        <div class="section">
+          <div class="form-sub-section">
+            <div class="custom-input-container">
+              <label>First Name</label>
+              <input
+                type="text"
+                [(ngModel)]="resume.firstName"
+                placeholder="John"
+                required
+              />
+              <span class="underline"></span>
+            </div>
+
+            <div class="custom-input-container">
+              <label>City</label>
+              <input
+                type="text"
+                [(ngModel)]="resume.city"
+                placeholder="Mumbai"
+                required
+              />
+              <span class="underline"></span>
+            </div>
+
+            <div class="custom-input-container">
+              <label>Phone Number</label>
+              <input
+                type="text"
+                [(ngModel)]="resume.phoneNumber"
+                placeholder="+91-9876543210"
+                required
+              />
+              <span class="underline"></span>
+            </div>
+
+            <div class="cancelbtn">
+              <button>Back</button>
+            </div>
+          </div>
+
+          <div class="form-sub-section">
+            <div class="custom-input-container">
+              <label>Last Name</label>
+              <input
+                type="text"
+                [(ngModel)]="resume.lastName"
+                placeholder="Doe"
+                required
+              />
+              <span class="underline"></span>
+            </div>
+
+            <div class="custom-input-container">
+              <label>Country</label>
+              <input
+                type="text"
+                [(ngModel)]="resume.country"
+                placeholder="India"
+                required
+              />
+              <span class="underline"></span>
+            </div>
+
+            <div class="custom-input-container">
+              <label>Email</label>
+              <input
+                type="text"
+                [(ngModel)]="resume.email"
+                placeholder="john.doe@example.com"
+                required
+              />
+              <span class="underline"></span>
+            </div>
+
+            <div class="submitbtn">
+              <button (click)="nextStep()">Continue</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 1: Experience -->
+      <div *ngIf="currentStep === 1">
+        <h3>Add your experience</h3>
+        <br />
+        <p
+          style="
+            font-weight: 100;
+            font-size: 1rem;
+            margin-top: -20px;
+            margin-bottom: 25px;
+          "
+        >
+          Start with your most recent job first. You can also add voluntary
+          work, <br />internships or extracurricular activities.
+        </p>
+
+        <div class="section">
+          <div class="form-sub-section">
+            <div class="custom-input-container">
+              <label>Job Title</label>
+              <input
+                type="text"
+                [(ngModel)]="currentJob.jobTitle"
+                placeholder="Software Engineer"
+                required
+              />
+              <span class="underline"></span>
+            </div>
+
+            <div class="custom-input-container" style="margin-bottom: 37px">
+              <label>Start Date</label>
+              <input
+                type="text"
+                [(ngModel)]="currentJob.startDate"
+                placeholder="MM/YYYY"
+                required
+              />
+              <span class="underline"></span>
+            </div>
+
+            <br />
+
+            <div class="custom-input-container">
+              <label>City</label>
+              <input
+                type="text"
+                [(ngModel)]="currentJob.city"
+                placeholder="Mumbai"
+                required
+              />
+              <span class="underline"></span>
+            </div>
+
+            <div class="cancelbtn">
+              <button (click)="prevStep()">Back</button>
+            </div>
+          </div>
+
+          <div class="form-sub-section">
+            <div class="custom-input-container">
+              <label>Company Name</label>
+              <input
+                type="text"
+                [(ngModel)]="currentJob.companyName"
+                placeholder="Doe"
+                required
+              />
+              <span class="underline"></span>
+            </div>
+
+            <div class="custom-input-container" style="margin-bottom: 0px">
+              <label>End Date</label>
+              <input
+                type="text"
+                [(ngModel)]="currentJob.endDate"
+                [disabled]="currentJob.currentlyWorking"
+                placeholder="MM/YYYY"
+                required
+              />
+              <span class="underline"></span>
+            </div>
+
+            <div class="checkbox-container">
+              <label>
+                <input
+                  type="checkbox"
+                  [(ngModel)]="currentJob.currentlyWorking"
+                />
+                Currently working here
+              </label>
+            </div>
+            <br />
+
+            <div class="custom-input-container">
+              <label>Country</label>
+              <input
+                type="text"
+                [(ngModel)]="currentJob.country"
+                placeholder="India"
+                required
+              />
+              <span class="underline"></span>
+            </div>
+
+            <div class="submitbtn">
+              <button (click)="addJobDescription()">Continue</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Projects -->
+      <div *ngIf="currentStep === 2">
+        <h3>Projects</h3>
+        <!-- <textarea [(ngModel)]="resumeData.projects[0]" placeholder="Project description..."></textarea> -->
+        <button (click)="prevStep()">Back</button>
+        <button (click)="nextStep()">Next</button>
+      </div>
+
+      <!-- Step 3: Education -->
+      <div *ngIf="currentStep === 3">
+        <h3>Education</h3>
+        <!-- <input [(ngModel)]="resumeData.education[0]" placeholder="School / Degree" /> -->
+        <button (click)="prevStep()">Back</button>
+        <button (click)="nextStep()">Next</button>
+      </div>
+
+      <!-- Step 4: Skills -->
+      <div *ngIf="currentStep === 4">
+        <h3>Skills</h3>
+        <!-- <input [(ngModel)]="resumeData.skills[0]" placeholder="Skill 1" /> -->
+        <!-- <input [(ngModel)]="resumeData.skills[1]" placeholder="Skill 2" /> -->
+        <button (click)="prevStep()">Back</button>
+        <button (click)="nextStep()">Next</button>
+      </div>
+
+      <!-- Step 5: Finalize -->
+      <div *ngIf="currentStep === 5">
+        <h3>Review & Submit</h3>
+        <button (click)="prevStep()">Back</button>
+        <button (click)="submitResume()">Submit Resume</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="preview-section">
+    <!-- live preview if needed -->
+  </div>
+</div>
+
+<ng-template #experienceConfirm>
+  <div class="popup-container">
+    <div class="popup">
+      <h4>Review your Experience</h4>
+      <br />
+
+      <div class="job-review" *ngFor="let job of resume.jobs">
+        <div class="job-box">
+          <div class="job-header">
+            <span class="job-title">{{ job.jobTitle }}</span>
+            <span class="company-name">{{ job.companyName }}</span>
+            <span class="company-name">{{ job.city }}</span>
+          </div>
+          <hr />
+          <div class="job-description">
+            {{ job.description }}
+          </div>
+        </div>
+      </div>
+
+      <div class="popup-buttons">
+        <button (click)="nextStep()" class="no-button">No</button>
+        <button (click)="addAnotherJob()" class="yes-button">+ Yes</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #jobDescription>
+  <div class="popup-container">
+    <div class="popup">
+      <h4 style="font-weight: 500;">Add Job Description</h4>
+      <br />
+      <!-- <textarea
+        [(ngModel)]="currentJob.description"
+        placeholder="Describe your job responsibilities and achievements..."
+      ></textarea>
+      <button (click)="nextStep()">Continue</button> -->
+
+      <angular-editor class="angular-editor-textarea" [placeholder]="'Enter text here...'" [config]="editorConfig" [(ngModel)]="currentJob.description"></angular-editor>
+        <div class="popup-buttons">
+        <button (click)="nextStep()" class="no-button">No</button>
+        <button (click)="nextStep()" class="ai-button rainbow-button">
+          <mat-icon style="font-size: 25px;">auto_awesome</mat-icon>&nbsp;&nbsp;
+          Enhance with AI
+        </button>
+          <button (click)="addAnotherJob()" class="add-button">Add</button>
+        </div>
+      </div>
+      
+    </div>
+    
+  </ng-template>

@@ -36,6 +36,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/@kolkov/angular-editor/assets/icons",
+                "output": "assets/ae-icons/"
               }
             ],
             "styles": [
@@ -107,6 +112,8 @@
               }
             ],
             "styles": [
+              "projects/angular-editor-app/src/styles.scss",
+              "node_modules/@kolkov/angular-editor/themes/default.scss",
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css"
             ],

@@ -8,6 +8,8 @@ namespace NaukriScraperApi.Model
     public class CoverLetterRequest
     {
         public int UserId { get; set; }
+        public string? jobTitle {get; set;}
+        public string? companyName { get; set; }
         public string JobDescription { get; set; } = string.Empty;
     }
 }

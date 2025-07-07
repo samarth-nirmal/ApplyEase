@@ -125,26 +125,26 @@ export class JobInputsComponent {
         this.stopJobFacts();
         this.errorMessage = 'No jobs found. Please try again.';
         this.cdr.detectChanges();
-        this.jobFetchProgress = false;
         this.toast.error("No Jobs Found", {
           position: 'top-center'
         });
+        this.jobFetchProgress = false;
       } else {
         console.log('Jobs found:', data);
         this.toast.success("Jobs Fetched Successfully", {
           position: 'top-center'
         });
-        this.router.navigate(['fetched-jobs'])
         this.jobFetchProgress = false;
+        this.router.navigate(['fetched-jobs'])
       }
     }, (error) => {
       this.stopJobFacts();
       this.errorMessage = 'An error occurred while searching for jobs. Please try again.';
       this.toast.error("No Jobs Found", {
         position: 'top-center'
-      });;
-      this.cdr.detectChanges();
+      });
       this.jobFetchProgress = false;
+      this.cdr.detectChanges();
     });
   }
 

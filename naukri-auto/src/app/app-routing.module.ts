@@ -11,6 +11,11 @@ import { AdminGuard } from './guards/admin.guard';
 import { LoadingComponent } from './loading/loading.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FetchedJobsComponent } from './fetched-jobs/fetched-jobs.component';
+import { CreateCoverletterComponent } from './create-coverletter/create-coverletter.component';
+import { ResumeGeneratorComponent } from './resume-generator/resume-generator.component';
+import { CreateResumeOptionsComponent } from './create-resume-options/create-resume-options.component';
+import { ExperienceNoteComponent } from './experience-note/experience-note.component';
+import { SelectTemplateComponent } from './select-template/select-template.component';
 
 const routes: Routes = [
 
@@ -21,9 +26,12 @@ const routes: Routes = [
   { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AdminGuard] },
   { path: 'loading', component: LoadingComponent },
   { path : 'user-profile/:id', component : UserProfileComponent, canActivate: [AuthGuard] },
-  { path : 'fetched-jobs', component : FetchedJobsComponent, canActivate : [AuthGuard] }
-
-
+  { path : 'fetched-jobs', component : FetchedJobsComponent, canActivate : [AuthGuard] }, 
+  { path : 'create-coverletter', component : CreateCoverletterComponent, canActivate : [AuthGuard] },
+  { path : 'resume-generator/:template', component : ResumeGeneratorComponent, canActivate : [AuthGuard] },
+  { path : 'create-resume-options', component : CreateResumeOptionsComponent, canActivate: [AuthGuard] },
+  { path : 'user-experience', component : ExperienceNoteComponent, canActivate: [AuthGuard] },
+  { path : 'select-template', component : SelectTemplateComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

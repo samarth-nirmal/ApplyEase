@@ -1,0 +1,64 @@
+.resume-template-preview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+}
+
+.template-card img {
+    max-height: 450px;
+    max-width: 350px;
+    width: 350px;
+    margin: 40px;
+    border: 6px solid rgb(228, 228, 228);
+    cursor: pointer;
+}
+
+.template-card img:hover {
+    border: 6px solid hwb(216 0% 45%);
+    transition: all 0.5s ease;
+}
+
+.template-card.selected img {
+    border: 6px solid hwb(216 0% 45%);
+    transition: all 0.5s ease;
+}
+
+.bottom-navbar {
+  position: fixed;
+  bottom: -100px;
+  left: 0;
+  width: 100%;
+  height: 75px;
+  background-color: #ffffff;
+  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 400px;
+  align-items: right;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+}
+
+.bottom-navbar.visible {
+  transition: bottom 0.2s ease-in-out;
+  bottom: 0;
+}
+
+.bottom-navbar button {
+  
+  background: rgb(255, 178, 91);
+  height: 55px;
+  border-radius: 50px;
+  padding: 0px 50px;
+  text-align: center;
+  border: none;
+  font-size: 16px;
+  color: #000000;
+  cursor: pointer;
+}
+
+.bottom-navbar button:hover {
+  color: rgb(0, 0, 0);
+  background: rgb(255, 163, 58);
+  font-weight: 400;
+}

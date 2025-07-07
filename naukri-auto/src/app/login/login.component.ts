@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { HotToastService } from '@ngxpert/hot-toast';
 import { catchError, of } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { secretEnvironment } from '../../environments/environment.secret';
 
 declare const google: any;
 
@@ -16,6 +18,8 @@ export class LoginComponent implements OnInit, AfterViewChecked {
   hideRegisterPassword: any;
   hideConfirmPassword: any;
   hidePassword = true;
+  clientId: string = secretEnvironment.googleClientId || environment.googleClientId;
+
 
   user: any = {
     name: '',
@@ -35,11 +39,12 @@ export class LoginComponent implements OnInit, AfterViewChecked {
   googleRenderedRegister = false;
   loading = false;
  
-  constructor(private authService: AuthService, private router: Router, private toast: HotToastService) {}
+  constructor(private authService: AuthService, private router: Router, private toast: HotToastService) {
+  }
 
   ngOnInit() {
     google.accounts.id.initialize({
-      client_id: '1079721870613-8s9r3idpedu0gdgl5umfaa0rhf4bimqg.apps.googleusercontent.com',
+      client_id: this.clientId,
       callback: (response: any) => {
         this.loading = true
         this.authService.handleCredentialResponse(response)

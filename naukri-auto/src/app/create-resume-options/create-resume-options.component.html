@@ -1,0 +1,33 @@
+<h3 style="text-align: center; margin-top: 100px; font-weight: 500; font-size: 2.5rem;">How do you want to build your CV?</h3>
+<h5 style="text-align: center; font-weight: 100; font-size: 1.2rem;">Select your preference to create a resume</h5>
+<div class="entry-container">
+    <br>
+  <mat-card class="entry-tile" (click)="onUploadResume()">
+    <div class="options-container">
+        <mat-icon class="display-icon">upload</mat-icon>
+        <div class="sub-options">
+            <mat-card-content style="font-weight: 600; font-size: 1.3rem;">
+              Upload Resume
+            </mat-card-content>
+            
+            <mat-card-content style="font-size: 15px;">
+              Upload an existing resume to extract details using AI.
+            </mat-card-content>
+        </div>
+        
+    </div>
+  </mat-card>
+
+  <mat-card class="entry-tile" (click)="onStartFresh()">
+    <div class="options-container">
+        <mat-icon class="display-icon">add_ad</mat-icon>
+        <div class="sub-options">
+            <mat-card-content style="font-weight: 600; font-size: 1.3rem;">
+              Fresh Start
+            </mat-card-content>
+            <mat-card-content style="font-size: 15px;">
+                Start Building a Resume from Scratch.
+            </mat-card-content>
+        </div>
+    </div>
+  </mat-card>

@@ -37,6 +37,7 @@ Strict Answering Guidelines:
 10. For the questions that ask you whether you are willing to relocate to a specific location, give positive response as Yes.
 11. If asked for a goverment ID or Goverment ID number, give NA as answer.
 12. For Nouns like name, give first letter capital letter for each word, and rest of letters in small case.
+13. If a question is completly unseen, give the nearest answer possible.
 
 Answer Format:
 - Provide only the **final answer**, with **no extra words, punctuation, or context**.
@@ -111,6 +112,27 @@ def process_questionnaire(page, user_profile_summary):
             submit_answer()
             continue
 
+        # --- Handle multiselectcheckboxes style questions ---
+        elif page.query_selector(".multiselectcheckboxes"):
+            checkbox_labels = page.query_selector_all(".multicheckboxes-container .mcc__label")
+            options = [label.inner_text().strip() for label in checkbox_labels if label.inner_text().strip()]
+            answer = callGemini(
+                user_profile_summary,
+                latest_question + " Options: " + ", ".join(options)
+            )
+            selected_options = [opt.strip().lower() for opt in answer.split(",")]
+            for label in checkbox_labels:
+                if label.inner_text().strip().lower() in selected_options:
+                    # click the corresponding checkbox input
+                    checkbox_id = label.get_attribute("for")
+                    checkbox_input = page.query_selector(f"input#{checkbox_id}")
+                    if checkbox_input:
+                        checkbox_input.click()
+            time.sleep(1)
+            submit_answer()
+            continue
+
+
         elif page.query_selector(".chatbot_Chip.chipInRow"):
             chip_elements = page.query_selector_all(".chatbot_Chip.chipInRow")
             options = [chip.inner_text().strip() for chip in chip_elements]
@@ -122,6 +144,23 @@ def process_questionnaire(page, user_profile_summary):
             time.sleep(1)
             submit_answer()
             continue
+
+        # --- Handle Multi-Select Chips (chatbot_Chip.chipInRow style) ---
+        elif page.query_selector(".chatbot_Chip.chipInRow"):
+            chip_elements = page.query_selector_all(".chatbot_Chip.chipInRow")
+            options = [chip.inner_text().strip() for chip in chip_elements if chip.inner_text().strip()]
+            answer = callGemini(user_profile_summary, latest_question + " Options: " + ", ".join(options))
+            selected_options = [opt.strip().lower() for opt in answer.split(",")]
+
+            for chip in chip_elements:
+                chip_text = chip.inner_text().strip().lower()
+                if chip_text in selected_options:
+                    chip.click()
+
+            time.sleep(1)
+            submit_answer()
+            continue
+
 
         # --- Handle Text/Short Answer ---
         else:
@@ -171,9 +210,14 @@ def auto_apply_jobs(user_id, job_data_str, user_profile_summary):
                     if apply_button:
                         apply_button.click()
                         time.sleep(3)
+
                         if page.query_selector(".chatbot_DrawerContentWrapper"):
                             process_questionnaire(page, user_profile_summary)
-                        time.sleep(1)
+
+                            # Wait for chat drawer to close
+                            page.wait_for_selector(".chatbot_DrawerContentWrapper", state="detached", timeout=10000)
+                            time.sleep(2)
+
                         success_msg = page.query_selector(".apply-status-header")
                         status = "Applied" if success_msg else "Not Applied"
                     else:

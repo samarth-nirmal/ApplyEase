@@ -43,7 +43,7 @@ using Microsoft.AspNetCore.Authorization;
 
             try
             {
-                var coverLetter = await _geminiService.GenerateCoverLetter(user.UserProfileSummary, request.JobDescription);
+                var coverLetter = await _geminiService.GenerateCoverLetter(user.UserProfileSummary, request.JobDescription, request.jobTitle, request.companyName);
                 return Ok(coverLetter);
             }
             catch (Exception ex)

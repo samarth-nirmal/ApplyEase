@@ -15,4 +15,12 @@ export class DashboardComponent {
     openJobSearch() {
       this.router.navigate(['/job-inputs']);
     }
+
+    createCoverletter() {
+      this.router.navigate(['/create-coverletter']);
+    }
+
+    resumeGenerator() {
+      this.router.navigate(['/create-resume-options']);
+    }
 }

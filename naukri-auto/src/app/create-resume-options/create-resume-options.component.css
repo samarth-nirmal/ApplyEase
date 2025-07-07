@@ -1,0 +1,53 @@
+.entry-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.options-container {
+    display: flex;
+}
+
+.sub-options {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 12px;
+    flex: 1; /* allow text to take remaining space */
+
+}
+
+.display-icon {
+  font-size: 75px;   
+  width: 1.2em;       
+  height: 1.2em;
+  line-height: 1;
+  color: hwb(216 0% 45%)     
+}
+
+
+
+.entry-tile {
+  width: 600px;
+  height: 200px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding-left: 30px;
+  background-color: white;
+  border: 1px solid black;
+}
+
+
+.entry-tile:hover {
+  transform: scale(1.005);
+  border: 2px solid hwb(216 0% 45%);
+  background-color: oklab(98.668% -0.00595 -0.00609);
+  color: hwb(216 0% 45%);
+}
