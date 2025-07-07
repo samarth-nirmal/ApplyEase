@@ -5,7 +5,7 @@ from google import genai
 import pdfplumber
 from docx import Document
 
-client = genai.Client(api_key="AIzaSyCqKr7pRlibbMekjes3a-T4un1lC_hy8sM")
+client = genai.Client(api_key="YOUR_API_KEY")
 
 def extract_text_from_pdf(file_path):
     text = ""
