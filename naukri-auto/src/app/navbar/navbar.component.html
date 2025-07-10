@@ -1,9 +1,8 @@
-<mat-toolbar color="primary">
+<!-- <mat-toolbar color="primary">
   <img src="appLogo.png" alt="App Logo" class="app-logo" />
 
   <span class="spacer"></span>
   
-  <!-- Navigation Buttons (Visible when authenticated) -->
   <ng-container *ngIf="authService.isAuthenticated()">
     <button mat-button (click)="dashboard()">Home</button>
     <button mat-button (click)="jobSearch()">Job Search</button>
@@ -19,6 +18,25 @@
     <button mat-menu-item (click)="loginToNaukri()">login to Naukri</button>
   </mat-menu>
 
-  <!-- Three-dot dropdown menu -->
+</mat-toolbar> -->
 
-</mat-toolbar>
+
+<div class="nav-container">
+  <div class="app-logo">
+    <img src="logo-white.svg" alt="App Logo" />
+  </div>
+
+  <div class="nav-items">
+    <a href="#">Home</a>
+    <a href="#">Features</a>
+    <a href="#">Templates</a>
+    <a href="#">Pricing</a>
+    <a href="#">Contact</a>
+  </div>
+
+  <div class="signup-options">
+    <button class="login-btn">Sign In</button>
+    <button class="signup-btn">Sign Up</button>
+  </div>
+
+</div>

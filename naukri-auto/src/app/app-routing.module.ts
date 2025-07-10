@@ -16,6 +16,7 @@ import { ResumeGeneratorComponent } from './resume-generator/resume-generator.co
 import { CreateResumeOptionsComponent } from './create-resume-options/create-resume-options.component';
 import { ExperienceNoteComponent } from './experience-note/experience-note.component';
 import { SelectTemplateComponent } from './select-template/select-template.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 const routes: Routes = [
 
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path : 'create-resume-options', component : CreateResumeOptionsComponent, canActivate: [AuthGuard] },
   { path : 'user-experience', component : ExperienceNoteComponent, canActivate: [AuthGuard] },
   { path : 'select-template', component : SelectTemplateComponent, canActivate: [AuthGuard] },
+  { path : 'landing-page', component : LandingPageComponent }
 ];
 
 @NgModule({

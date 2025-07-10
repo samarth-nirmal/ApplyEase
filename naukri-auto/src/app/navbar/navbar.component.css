@@ -1,4 +1,4 @@
-/* Toolbar styles */
+/* 
 mat-toolbar {
   display: flex;
   align-items: center;
@@ -6,32 +6,98 @@ mat-toolbar {
   
 }
 
-/* Pushes content to the right */
 .spacer {
   flex: 1;
 }
 
-/* Three-dot menu icon */
+
 .menu-icon {
   margin-left: 30px;
 }
 
-/* .app-logo {
-  height: 50px;
-  width: auto;
-  margin-right: 10px;
-  font-size: 22px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  margin-left: 130px;
-} */
 
 .app-logo {
-  height: 230px; /* adjust as needed */
+  height: 230px;
   width: auto;
   margin-right: 10px;
   font-size: 22px;
   font-weight: bold;
   letter-spacing: 1px;
   margin-left: 100px;
+} */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* prevents horizontal scroll */
+  width: 100%;
 }
+.nav-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 18px 32px;
+  background-color: #0073ee;
+  color: white;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+}
+
+.app-logo img {
+  height: 60px;
+  max-width: 100%;   /* ensures it doesn’t overflow */
+  display: block;
+  margin-left: 50px;
+}
+
+
+.nav-items {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-items a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-items a:hover {
+  color: #d8d8d8;
+}
+
+.signup-options {
+  display: flex;
+  gap: 12px;
+  margin-right: 50px;
+}
+
+.login-btn {
+  background: transparent;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  color: #d8d8d8;
+}
+
+.signup-btn {
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  background-color: hwb(211 16% 0%);
+  padding: 8px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.signup-btn:hover {
+  background-color: #ffffff;
+  color: black;
+}
+

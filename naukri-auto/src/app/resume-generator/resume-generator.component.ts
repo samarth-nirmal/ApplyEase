@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { count } from 'console';
 import { Jobs } from '../Models/jobs';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { Education } from '../Models/education';
 
 
 @Component({
@@ -17,6 +18,30 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
   styleUrl: './resume-generator.component.css',
 })
 export class ResumeGeneratorComponent {
+
+  skillOptions: string[] = [
+  'Angular Developer',
+  'React Developer',
+  'Node.js',
+  'TypeScript',
+  'JavaScript',
+  'HTML5',
+  'CSS3',
+  'REST APIs',
+  'MongoDB',
+  'SQL',
+  'Git & GitHub',
+  'Unit Testing',
+  'Jasmine',
+  'Agile Methodologies',
+  'Responsive Design',
+  'Webpack',
+  'RxJS',
+  'Bootstrap',
+  'Tailwind CSS',
+  'Figma'
+];
+
 
 editorConfig: AngularEditorConfig = {
   editable: true,
@@ -41,17 +66,42 @@ editorConfig: AngularEditorConfig = {
       'fontSize',
       'textColor',
       'backgroundColor',
+      'customClasses',
+      'link',
+      'unlink',
+      'insertHorizontalRule',
+      'removeFormat',
     ],
     [
       'undo',
       'redo',
+      'justifyLeft',
+      'justifyCenter',
+      'justifyRight',
       'justifyFull',
       'indent',
       'outdent',
+      'insertOrderedList', // hides numbered list
     ]
   ]
 };
-  
+
+skillsEditorHtml: string = '<ul><li>&nbsp;</li></ul>';
+
+extractAndStoreSkills(): void {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(this.skillsEditorHtml, 'text/html');
+  const listItems = doc.querySelectorAll('li');
+
+  const extractedSkills = Array.from(listItems)
+    .map(li => li.textContent?.trim() || '')
+    .filter(skill => skill.length > 0);
+  this.resume.skills = [...extractedSkills];
+  this.nextStep();
+  console.log(this.resume)
+}
+
+
   resume = {
     firstName: '',
     lastName: '',
@@ -61,7 +111,19 @@ editorConfig: AngularEditorConfig = {
     phoneNumber: '',
     email: '',
     jobs: [] as Jobs[],
+    education: [] as Education[],
+    skills: [] as any[]
   };
+
+  education = {
+    schoolName: '',
+    schoolLocation: '',
+    fieldOfStudy: '',
+    qualification: '',
+    graduationYear: '',
+    percentageOrCgpa: 0,
+    country: '',
+  }
 
   currentJob: Jobs = {
     jobTitle: '',
@@ -77,11 +139,15 @@ editorConfig: AngularEditorConfig = {
   steps = [
     { label: 'Contact Info' },
     { label: 'Experience' },
-    { label: 'Projects' },
     { label: 'Education' },
     { label: 'Skills' },
+    { label: 'Summary' },
+    { label: 'Languages' },
+    { label: 'Certifications' },
+    { label: 'Achievements' },
   ];
 
+  
   currentStep = 0;
 
   constructor(
@@ -90,6 +156,7 @@ editorConfig: AngularEditorConfig = {
   ) {}
   @ViewChild('experienceConfirm') experienceConfirm!: TemplateRef<any>;
   @ViewChild('jobDescription') jobDescription!: TemplateRef<any>;
+  @ViewChild('educationDialog') educationDialog!: TemplateRef<any>;
 
   ngOnInit() {
     const savedStep = localStorage.getItem('resumeStep');
@@ -110,6 +177,28 @@ editorConfig: AngularEditorConfig = {
       this.currentStep++;
       localStorage.setItem('resumeStep', this.currentStep.toString());
     }
+    if (this.currentStep === 1) {
+      this.currentJob = {
+        jobTitle: '',
+        companyName: '',
+        startDate: '',
+        endDate: '',
+        city: '',
+        country: '',
+        description: '<ul><li>&nbsp;</li></ul>',
+        currentlyWorking: false,
+      };
+    } else if (this.currentStep === 2) {
+      this.education = {
+        schoolName: '',
+        schoolLocation: '',
+        fieldOfStudy: '',
+        qualification: '',
+        graduationYear: '',
+        percentageOrCgpa: 0,
+        country: '',
+      };
+    }
     this.dialog.closeAll();
   }
 
@@ -118,6 +207,29 @@ editorConfig: AngularEditorConfig = {
       this.currentStep--;
       localStorage.setItem('resumeStep', this.currentStep.toString());
     }
+
+    if (this.currentStep === 1) {
+      this.currentJob = {
+        jobTitle: '',
+        companyName: '',
+        startDate: '',
+        endDate: '',
+        city: '',
+        country: '',
+        description: '<ul><li>&nbsp;</li></ul>',
+        currentlyWorking: false,
+      };
+    } else if (this.currentStep === 2) {
+      this.education = {
+        schoolName: '',
+        schoolLocation: '',
+        fieldOfStudy: '',
+        qualification: '',
+        graduationYear: '',
+        percentageOrCgpa: 0,
+        country: '',
+      };
+    }
     this.dialog.closeAll();
   }
 
@@ -125,7 +237,13 @@ editorConfig: AngularEditorConfig = {
     console.log('Final Resume:', this.resume);
   }
 
-  onJobContinue() {
+  addJobDescription() {
+    this.dialog.open(this.jobDescription, {
+      panelClass: 'custom-dialog',
+    });
+  }
+
+  includeJobDescription() {
     const jobToAdd = {
       ...this.currentJob,
       endDate: this.currentJob.currentlyWorking
@@ -133,14 +251,18 @@ editorConfig: AngularEditorConfig = {
         : this.currentJob.endDate,
     };
     this.resume.jobs.push(jobToAdd);
-    console.log(this.resume)
+    console.log(this.resume);
+    this.dialog.closeAll();
     this.dialog.open(this.experienceConfirm, {
       panelClass: 'custom-dialog',
     });
   }
 
-  addJobDescription() {
-    this.dialog.open(this.jobDescription, {
+  openEducationDialog() {
+    this.resume.education.push({
+      ...this.education
+    });
+    this.dialog.open(this.educationDialog, {
       panelClass: 'custom-dialog',
     });
   }
@@ -153,8 +275,21 @@ editorConfig: AngularEditorConfig = {
       endDate: '',
       city: '',
       country: '',
-      description: '',
+      description: '<ul><li>&nbsp;</li></ul>',
       currentlyWorking: false,
+    };
+    this.dialog.closeAll();
+  }
+
+  addAnotherEducation() {
+    this.education = {
+      schoolName: '',
+      schoolLocation: '',
+      fieldOfStudy: '',
+      qualification: '',
+      graduationYear: '',
+      percentageOrCgpa: 0,
+      country: '',
     };
     this.dialog.closeAll();
   }

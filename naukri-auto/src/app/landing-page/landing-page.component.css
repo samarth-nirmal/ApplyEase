@@ -1,0 +1,102 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.nav-container {
+  height: 100vh;
+  width: auto;
+  background-color: #0073ee;
+    position: relative;
+  padding-bottom: 80px; /* space for the image height */
+  overflow: hidden;
+}
+
+.headings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60%;
+  color: white;
+  align-items: center;
+}
+
+.headings h1 {
+    font-weight: 600;
+    text-align: center;
+    font-size: 55px;
+}
+
+.headings p {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.login-btn {
+  background: transparent;
+  color: rgb(0, 0, 0);
+  border-radius: 6px;
+  border: none;
+  background-color: white;
+  padding: 15px 80px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-right: 30px;
+  font-weight: 600;
+}
+
+.login-btn:hover {
+  color: #424242;
+  background-color: rgb(243, 243, 243);
+}
+
+.signup-btn {
+  display: flex;
+  align-items: center;       /* vertically center icon + text */
+  justify-content: center;   /* center both items inside button */
+  gap: 10px;                 /* space between icon and text */
+  font-size: 17px;
+  background-color: hwb(211 16% 0%);
+  color: #ffffff;
+  border: none;
+  padding: 15px 60px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+
+.signup-btn:hover {
+  background-color: #ffffff;
+  color: black;
+}
+
+.btn-class {
+    display: flex;
+}
+
+.hero-image {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image img {
+  max-width: 46%;
+  object-fit: contain;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px 8px 0px 0px;
+  box-shadow: 0 1px 30px 0px rgba(0, 0, 0, 0.1);
+
+}
+
+

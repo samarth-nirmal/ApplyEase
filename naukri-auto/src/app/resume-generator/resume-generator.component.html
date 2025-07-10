@@ -283,20 +283,169 @@
         </div>
       </div>
 
-      <!-- Step 2: Projects -->
+      <!-- Step 2: Education -->
       <div *ngIf="currentStep === 2">
-        <h3>Projects</h3>
-        <!-- <textarea [(ngModel)]="resumeData.projects[0]" placeholder="Project description..."></textarea> -->
-        <button (click)="prevStep()">Back</button>
-        <button (click)="nextStep()">Next</button>
+        <h3>Add your Education</h3>
+        <br />
+        <p
+          style="
+            font-weight: 100;
+            font-size: 1rem;
+            margin-top: -20px;
+            margin-bottom: 25px;
+          "
+        >
+          Tell us about any colleges, vocational programs, or training courses
+          you took.
+          <br />Even if you didn’t finish, it’s important to list them.
+        </p>
+
+        <div class="section">
+          <div class="form-sub-section">
+            <div class="custom-input-container">
+              <label>School Name</label>
+              <input
+                type="text"
+                [(ngModel)]="education.schoolName"
+                placeholder="College of Engineering, Pune"
+                required
+              />
+              <span class="underline"></span>
+            </div>
+
+            <div class="custom-input-container">
+              <label>Field of Study</label>
+              <input
+                type="text"
+                [(ngModel)]="education.fieldOfStudy"
+                placeholder="Engineering"
+                required
+              />
+              <span class="underline"></span>
+            </div>
+
+            <div class="custom-input-container">
+              <label>Qualification</label>
+              <input
+                type="text"
+                [(ngModel)]="education.qualification"
+                placeholder="Enter Qualification"
+                required
+              />
+              <span class="underline"></span>
+            </div>
+
+            <div class="cancelbtn">
+              <button (click)="prevStep()">Back</button>
+            </div>
+          </div>
+
+          <div class="form-sub-section">
+            <div class="custom-input-container">
+              <label>School Location</label>
+              <input
+                type="text"
+                [(ngModel)]="education.schoolLocation"
+                placeholder="Pune"
+                required
+              />
+              <span class="underline"></span>
+            </div>
+
+            <div class="custom-input-container">
+              <label>Graduation Year</label>
+              <input
+                type="text"
+                [(ngModel)]="education.graduationYear"
+                placeholder="2023"
+                required
+              />
+              <span class="underline"></span>
+            </div>
+
+            <div class="custom-input-container">
+              <label>Country</label>
+              <input
+                type="text"
+                [(ngModel)]="education.country"
+                placeholder="India"
+                required
+              />
+              <span class="underline"></span>
+            </div>
+
+            <div class="submitbtn">
+              <button (click)="openEducationDialog()">Continue</button>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Step 3: Education -->
+      <!-- Step 3: Skills -->
       <div *ngIf="currentStep === 3">
-        <h3>Education</h3>
-        <!-- <input [(ngModel)]="resumeData.education[0]" placeholder="School / Degree" /> -->
-        <button (click)="prevStep()">Back</button>
-        <button (click)="nextStep()">Next</button>
+        <h3 style="margin-bottom: 0px !important">
+          Add your
+          <span style="color: rgb(221, 0, 221); font-weight: 500">Skills</span>
+        </h3>
+        <br />
+        <div class="skills-textarea">
+          <angular-editor
+            class="angular-editor-textarea angular-editor-textarea-skills"
+            [placeholder]="'Enter text here...'"
+            [config]="editorConfig"
+            [(ngModel)]="skillsEditorHtml"
+          ></angular-editor>
+
+          <div class="skill-suggestions">
+            <p class="skill-suggestions-heading" style="font-weight: 600">
+              Search recommended skills by job title, industry or keyword
+            </p>
+
+            <div class="search-bar">
+              <div class="custom-input-container search-skill">
+                <mat-icon class="search-icon">search</mat-icon>
+                <input
+                  type="text"
+                  placeholder="Job Title, Industry or Keyword"
+                  required
+                />
+                <span class="underline"></span>
+              </div>
+              <button class="show-skills-button">Show key Skills</button>
+            </div>
+            <br />
+
+            <div class="skill-list-scroll-wrapper">
+              <div class="skill-list" *ngFor="let skill of skillOptions">
+                <div class="skill-item">
+                  <div class="example-icon">
+                    <button class="icon-button">
+                      <mat-icon>add</mat-icon>
+                    </button>
+                  </div>
+                  <span class="skill-text">{{ skill }}</span>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="btn-div">
+              <div class="cancelbtn" style="margin-top: 30px;">
+                <button (click)="prevStep()">Back</button>
+              </div>
+              <div class="submitbtn">
+                <button (click)="extractAndStoreSkills()">Continue</button>
+              </div>
+  
+            </div>
+          </div>
+          <!-- <div class="popup-buttons">
+        <button (click)="nextStep()" class="ai-button rainbow-button">
+          <mat-icon style="font-size: 25px;">auto_awesome</mat-icon>&nbsp;&nbsp;
+          Enhance with AI
+        </button>
+          <button (click)="includeJobDescription()" class="add-button">Add</button>
+        </div> -->
+        </div>
       </div>
 
       <!-- Step 4: Skills -->
@@ -350,10 +499,36 @@
   </div>
 </ng-template>
 
+<ng-template #educationDialog>
+  <div class="popup-container">
+    <div class="popup">
+      <h4>Review your Education</h4>
+      <br />
+
+      <div class="job-review" *ngFor="let edu of resume.education">
+        <div class="job-box">
+          <div class="job-header">
+            <span class="job-title">{{ edu.schoolName }}</span>
+            <span class="company-name">{{ edu.fieldOfStudy }}</span>
+            <span class="company-name">{{ edu.graduationYear }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="popup-buttons">
+        <button (click)="nextStep()" class="no-button">No</button>
+        <button (click)="addAnotherEducation()" class="yes-button">
+          + Yes
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
 <ng-template #jobDescription>
   <div class="popup-container">
     <div class="popup">
-      <h4 style="font-weight: 500;">Add Job Description</h4>
+      <h4 style="font-weight: 500">Add Job Description</h4>
       <br />
       <!-- <textarea
         [(ngModel)]="currentJob.description"
@@ -361,17 +536,21 @@
       ></textarea>
       <button (click)="nextStep()">Continue</button> -->
 
-      <angular-editor class="angular-editor-textarea" [placeholder]="'Enter text here...'" [config]="editorConfig" [(ngModel)]="currentJob.description"></angular-editor>
-        <div class="popup-buttons">
-        <button (click)="nextStep()" class="no-button">No</button>
+      <angular-editor
+        class="angular-editor-textarea"
+        [placeholder]="'Enter text here...'"
+        [config]="editorConfig"
+        [(ngModel)]="currentJob.description"
+      ></angular-editor>
+      <div class="popup-buttons">
         <button (click)="nextStep()" class="ai-button rainbow-button">
-          <mat-icon style="font-size: 25px;">auto_awesome</mat-icon>&nbsp;&nbsp;
+          <mat-icon style="font-size: 25px">auto_awesome</mat-icon>&nbsp;&nbsp;
           Enhance with AI
         </button>
-          <button (click)="addAnotherJob()" class="add-button">Add</button>
-        </div>
+        <button (click)="includeJobDescription()" class="add-button">
+          Add
+        </button>
       </div>
-      
     </div>
-    
-  </ng-template>
+  </div>
+</ng-template>

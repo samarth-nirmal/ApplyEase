@@ -51,6 +51,7 @@ import { CreateResumeOptionsComponent } from './create-resume-options/create-res
 import { ExperienceNoteComponent } from './experience-note/experience-note.component';
 import { SelectTemplateComponent } from './select-template/select-template.component';
 import { ResumePreviewComponent } from './resume-preview/resume-preview.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { ResumePreviewComponent } from './resume-preview/resume-preview.componen
     ExperienceNoteComponent,
     SelectTemplateComponent,
     ResumePreviewComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,
