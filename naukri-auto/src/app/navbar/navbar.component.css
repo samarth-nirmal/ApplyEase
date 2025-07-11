@@ -36,13 +36,17 @@ html, body {
   justify-content: space-around;
   align-items: center;
   padding: 18px 32px;
-  background-color: #0073ee;
+  background-color: #3758f9;
   color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
 }
 
 .app-logo img {
-  height: 60px;
+  height: 55px;
   max-width: 100%;   /* ensures it doesn’t overflow */
   display: block;
   margin-left: 50px;
@@ -101,3 +105,32 @@ html, body {
   color: black;
 }
 
+.nav-container.scrolled {
+  background: rgba(255, 255, 255, 0.63); /* translucent white */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px); /* main glass effect */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  border-radius: 0 0 10px 10px;
+  transition: all 0.3s ease;
+}
+
+.nav-container.scrolled .nav-items a {
+  color: rgb(56, 56, 56);
+  font-weight: 600;
+}
+
+.nav-container.scrolled .nav-items a:hover {
+  color: hwb(211 14% 10%);
+}
+
+
+.nav-container.scrolled .login-btn {
+    color: rgb(56, 56, 56);
+    font-weight: 600;
+}
+
+.nav-container.scrolled .login-btn:hover {
+  color: hwb(211 14% 10%);
+}

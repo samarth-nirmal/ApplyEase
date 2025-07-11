@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { AuthService } from '../jobServices/auth.service';
@@ -12,6 +12,16 @@ import { JobService } from '../jobServices/job.service';
 export class NavbarComponent {
   userId : any | undefined
   constructor(public authService: AuthService, private router: Router, private jobService : JobService) {
+  }
+  logoSrc = 'applogo.png'; // default
+
+    isScrolled = false;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isScrolled = window.scrollY > 10;
+    this.logoSrc = window.scrollY > 10 ? 'app-logo-black.png' : 'applogo.png';
+
   }
 
   userProfile() {

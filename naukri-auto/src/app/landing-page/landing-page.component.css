@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -8,8 +9,8 @@ html, body {
 .nav-container {
   height: 100vh;
   width: auto;
-  background-color: #0073ee;
-    position: relative;
+  background-color: #3758f9;
+  position: relative;
   padding-bottom: 80px; /* space for the image height */
   overflow: hidden;
 }
@@ -25,15 +26,15 @@ html, body {
 }
 
 .headings h1 {
-    font-weight: 600;
-    text-align: center;
-    font-size: 55px;
+  font-weight: 600;
+  text-align: center;
+  font-size: 55px;
 }
 
 .headings p {
-    text-align: center;
-    font-size: 15px;
-    font-weight: 500;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .login-btn {
@@ -56,9 +57,9 @@ html, body {
 
 .signup-btn {
   display: flex;
-  align-items: center;       /* vertically center icon + text */
-  justify-content: center;   /* center both items inside button */
-  gap: 10px;                 /* space between icon and text */
+  align-items: center; /* vertically center icon + text */
+  justify-content: center; /* center both items inside button */
+  gap: 10px; /* space between icon and text */
   font-size: 17px;
   background-color: hwb(211 16% 0%);
   color: #ffffff;
@@ -70,14 +71,13 @@ html, body {
   transition: background-color 0.3s;
 }
 
-
 .signup-btn:hover {
   background-color: #ffffff;
   color: black;
 }
 
 .btn-class {
-    display: flex;
+  display: flex;
 }
 
 .hero-image {
@@ -96,7 +96,141 @@ html, body {
   margin: 0 auto;
   border-radius: 8px 8px 0px 0px;
   box-shadow: 0 1px 30px 0px rgba(0, 0, 0, 0.1);
-
 }
 
+.landing-page-features {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
 
+.features {
+  display: flex;
+  align-items: center;
+}
+.feature-item {
+  margin-left: 25px;
+}
+
+.feature-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  background-color: #0073ee;
+  margin-bottom: 50px;
+  z-index: 2;
+  position: relative;
+}
+
+.feature-logo-hover {
+  width: 80px;
+  height: 80px;
+  background-color: #cccccc;
+  z-index: 1;
+  position: relative;
+  top: 80px;
+  border-radius: 18px;
+}
+
+.feature-logo:hover .feature-logo-hover {
+  transition: 0.3s ease-in-out;
+  transform: rotate(-80deg);
+}
+
+.feature-logo mat-icon {
+  width: 100%;
+  height: auto;
+  color: rgb(255, 255, 255);
+  font-size: 45px;
+  text-align: center;
+  margin-top: 16px;
+  font-variation-settings: "FILL" 0;
+}
+
+.feature-body h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.feature-body p {
+  font-size: 15px;
+  color: #555;
+  max-width: 30ch;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.get-started-container {
+  width: 100%;
+  height: 450px;
+  background-color: #3758f9;
+  position: relative;
+  overflow: hidden;
+}
+
+.get-started {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+/* Common styles for shapes */
+.triangle,
+.circle {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Circle Positions */
+.circle1 {
+  top: -65%;
+  left: -16%;
+}
+.circle2 {
+  bottom: 10%;
+  left: 25%;
+}
+.circle3 {
+  top: 15%;
+  right: 15%;
+}
+.circle4 {
+  bottom: -2%;
+  right: -2%;
+}
+
+/* Triangle Positions */
+.triangle1 {    
+  top: 60%;
+  left: -5%;
+  transform: rotate(200deg);
+}
+.triangle2 {
+  bottom: 70%;
+  right: 40%;
+  transform: rotate(85deg);
+}
+.triangle3 {
+  top: 40%;
+  left: 70%;
+  transform: rotate(-30deg);
+}
+
+.payments-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.payments-card {
+    display: flex;
+}
+
+.card {
+    width: 400px;
+    height: 500px;
+}

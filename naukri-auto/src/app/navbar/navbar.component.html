@@ -21,9 +21,9 @@
 </mat-toolbar> -->
 
 
-<div class="nav-container">
+<div class="nav-container" [class.scrolled]="isScrolled">
   <div class="app-logo">
-    <img src="logo-white.svg" alt="App Logo" />
+    <img [src]="logoSrc" alt="App Logo" />
   </div>
 
   <div class="nav-items">
