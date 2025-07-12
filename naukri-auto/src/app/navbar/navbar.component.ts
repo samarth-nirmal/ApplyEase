@@ -10,20 +10,25 @@ import { JobService } from '../jobServices/job.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  constructor(public authService: AuthService, private router: Router, private jobService : JobService) {}
   userId : any | undefined
-  constructor(public authService: AuthService, private router: Router, private jobService : JobService) {
-  }
-  logoSrc = 'applogo.png'; // default
-
-    isScrolled = false;
-
+  logoSrc = 'applogo.png';
+  isScrolled = false;
+  LoggedIn : boolean = false;
+  
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.isScrolled = window.scrollY > 10;
     this.logoSrc = window.scrollY > 10 ? 'app-logo-black.png' : 'applogo.png';
-
+    
   }
 
+  isUserLoggedIn() {
+    return this.authService.isAuthenticated();
+  }
+
+
+  
   userProfile() {
     this.userId = this.authService.getUserId();
     this.router.navigate(['user-profile', this.userId])
@@ -50,6 +55,6 @@ export class NavbarComponent {
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/login']);
+    // this.router.navigate(['/login']);
   }
 }

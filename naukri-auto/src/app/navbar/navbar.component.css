@@ -28,7 +28,7 @@ mat-toolbar {
 html, body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* prevents horizontal scroll */
+  overflow-x: hidden;
   width: 100%;
 }
 .nav-container {
@@ -38,7 +38,7 @@ html, body {
   padding: 18px 32px;
   background-color: #3758f9;
   color: white;
-  position: sticky;
+  position: sticky !important;
   top: 0;
   z-index: 1000;
   transition: all 0.3s ease;
@@ -107,7 +107,7 @@ html, body {
 
 .nav-container.scrolled {
   background: rgba(255, 255, 255, 0.63); /* translucent white */
-  position: sticky;
+  position: sticky !important;
   top: 0;
   z-index: 1000;
   backdrop-filter: blur(10px); /* main glass effect */

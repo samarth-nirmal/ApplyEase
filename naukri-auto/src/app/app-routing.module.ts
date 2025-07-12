@@ -4,7 +4,7 @@ import { JobInputsComponent } from './job-inputs/job-inputs.component';
 import { LoginComponent } from './login/login.component';
 import { SecureComponent } from './secure/secure.component';
 import { AuthGuard } from './guards/auth.guard';
-import { loginGuard } from './guards/login.guard';
+import { LoginGuard } from './guards/login.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminGuard } from './guards/admin.guard';
@@ -20,20 +20,21 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 
 const routes: Routes = [
 
-  { path: 'job-inputs', component : JobInputsComponent, canActivate: [AuthGuard] }, 
-  { path: 'login', component: LoginComponent, canActivate: [loginGuard] },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/landing-page', pathMatch: 'full' },
+  { path: 'landing-page', component: LandingPageComponent },
+  { path: 'login', component: LoginComponent, canActivate: [LoginGuard] }, 
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AdminGuard] },
-  { path: 'loading', component: LoadingComponent },
-  { path : 'user-profile/:id', component : UserProfileComponent, canActivate: [AuthGuard] },
-  { path : 'fetched-jobs', component : FetchedJobsComponent, canActivate : [AuthGuard] }, 
-  { path : 'create-coverletter', component : CreateCoverletterComponent, canActivate : [AuthGuard] },
-  { path : 'resume-generator/:template', component : ResumeGeneratorComponent, canActivate : [AuthGuard] },
-  { path : 'create-resume-options', component : CreateResumeOptionsComponent, canActivate: [AuthGuard] },
-  { path : 'user-experience', component : ExperienceNoteComponent, canActivate: [AuthGuard] },
-  { path : 'select-template', component : SelectTemplateComponent, canActivate: [AuthGuard] },
-  { path : 'landing-page', component : LandingPageComponent }
+  { path: 'job-inputs', component: JobInputsComponent, canActivate: [AuthGuard] },
+  { path: 'user-profile/:id', component: UserProfileComponent, canActivate: [AuthGuard] },
+  { path: 'fetched-jobs', component: FetchedJobsComponent, canActivate: [AuthGuard] },
+  { path: 'create-coverletter', component: CreateCoverletterComponent, canActivate: [AuthGuard] },
+  { path: 'resume-generator/:template', component: ResumeGeneratorComponent, canActivate: [AuthGuard] },
+  { path: 'create-resume-options', component: CreateResumeOptionsComponent, canActivate: [AuthGuard] },
+  { path: 'user-experience', component: ExperienceNoteComponent, canActivate: [AuthGuard] },
+  { path: 'select-template', component: SelectTemplateComponent, canActivate: [AuthGuard] },
+  { path: 'loading', component: LoadingComponent }
+
 ];
 
 @NgModule({

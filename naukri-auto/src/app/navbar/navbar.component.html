@@ -35,8 +35,9 @@
   </div>
 
   <div class="signup-options">
-    <button class="login-btn">Sign In</button>
-    <button class="signup-btn">Sign Up</button>
+    <button class="login-btn" *ngIf="!isUserLoggedIn()">Sign In</button>
+    <button class="signup-btn" *ngIf="!isUserLoggedIn()">Sign Up</button>
+    <button class="signup-btn" (click)="logout()" *ngIf="isUserLoggedIn()">Logout</button>
   </div>
 
 </div>

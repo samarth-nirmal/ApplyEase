@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../jobServices/auth.service';
 
 
 @Component({
@@ -7,6 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './landing-page.component.css'
 })
 export class LandingPageComponent {
+  constructor(private router : Router, private authService : AuthService) {}
+
+  isLoggedIn : boolean = this.authService.isAuthenticated();
 
   featureList: { logo: string; heading: string; text: string; hover?: boolean }[] = [
     {
@@ -35,4 +40,38 @@ export class LandingPageComponent {
     }
   ]
 
+  pricingList: { pack: string; price: number; feature1: string; feature2: string; feature3: string; feature4: string }[] = [
+    {
+      pack: 'Basic',
+      price: 0,
+      feature1: 'Limited job applications',
+      feature2: 'Basic resume builder',
+      feature3: 'Standard cover letter templates',
+      feature4: 'Email support'
+    },
+    {
+      pack: 'Pro',
+      price: 25,
+      feature1: 'Unlimited job applications',
+      feature2: 'Advanced resume builder',
+      feature3: 'AI-powered cover letter generator',
+      feature4: 'Priority email support'
+    },
+    {
+      pack: 'Premium',
+      price: 40,
+      feature1: 'All Pro features',
+      feature2: 'Auto cold email sender',
+      feature3: 'Personalized job recommendations',
+      feature4: 'Dedicated account manager'
+    }
+  ];
+
+  loginPage() {
+    // this.router.navigate(['/login'])
+  }
+
+  goToDashboard() {
+    
+  }
 }

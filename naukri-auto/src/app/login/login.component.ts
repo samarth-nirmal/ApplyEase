@@ -90,7 +90,7 @@ export class LoginComponent implements OnInit, AfterViewChecked {
           this.authService.setAuthState(res);
           const userRole = this.authService.getUserRole();
           if (userRole === 'User') {
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/landing-page']);
           } else {
             this.router.navigate(['/admin-dashboard']);
           }

@@ -11,10 +11,15 @@
       </p>
       <br /><br />
       <div class="btn-class">
-        <button class="login-btn">Login</button>
-        <button class="signup-btn">
+        <button class="login-btn" (click)="loginPage()" *ngIf="!isLoggedIn">Login</button>
+        <button class="signup-btn" (click)="loginPage()" *ngIf="!isLoggedIn else getStarted">
           <mat-icon>rocket_launch</mat-icon>Get Started
         </button>
+        <ng-template #getStarted>
+          <button class="signup-btn" (click)="goToDashboard()">
+            <mat-icon>rocket_launch</mat-icon>Go to Dashboard
+          </button>
+        </ng-template>
       </div>
       <br />
       <br />
@@ -65,50 +70,110 @@
     </div>
   </div>
 
-  <br><br><br><br><br>
+  <br /><br /><br /><br /><br />
 
-<div class="get-started-container">
-  <!-- Decorative Shapes: Circles -->
-  <svg class="circle circle1" width="600" height="600">
-    <circle cx="300" cy="300" r="150" stroke="white" stroke-opacity="0.06" stroke-width="60" fill="none" />
-  </svg>
-  <svg class="circle circle2" width="40" height="40">
-    <circle cx="20" cy="20" r="18" stroke="white" stroke-opacity="0.04" stroke-width="6" fill="none" />
-  </svg>
-  <svg class="circle circle3" width="80" height="80">
-    <circle cx="40" cy="40" r="35" stroke="white" stroke-opacity="0.05" stroke-width="12" fill="none" />
-  </svg>
-  <svg class="circle circle4" width="300" height="300">
-    <circle cx="200" cy="200" r="150" stroke="white" stroke-opacity="0.06" stroke-width="60" fill="none" />
-  </svg>
+  <div class="get-started-container">
+    <!-- Decorative Shapes: Circles -->
+    <svg class="circle circle1" width="600" height="600">
+      <circle
+        cx="300"
+        cy="300"
+        r="150"
+        stroke="white"
+        stroke-opacity="0.06"
+        stroke-width="60"
+        fill="none"
+      />
+    </svg>
+    <svg class="circle circle2" width="40" height="40">
+      <circle
+        cx="20"
+        cy="20"
+        r="18"
+        stroke="white"
+        stroke-opacity="0.04"
+        stroke-width="6"
+        fill="none"
+      />
+    </svg>
+    <svg class="circle circle3" width="80" height="80">
+      <circle
+        cx="40"
+        cy="40"
+        r="35"
+        stroke="white"
+        stroke-opacity="0.05"
+        stroke-width="12"
+        fill="none"
+      />
+    </svg>
+    <svg class="circle circle4" width="300" height="300">
+      <circle
+        cx="200"
+        cy="200"
+        r="150"
+        stroke="white"
+        stroke-opacity="0.06"
+        stroke-width="60"
+        fill="none"
+      />
+    </svg>
 
-  <!-- Decorative Shapes: Triangles -->
-  <svg class="triangle triangle1" width="250" height="250" viewBox="220 90 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M245.406 137.609L233.985 94.9852L276.609 106.406L245.406 137.609Z"
-          stroke="white" stroke-opacity="0.03" stroke-width="12" fill="none" />
-  </svg>
-  <svg class="triangle triangle2" width="200" height="200" viewBox="220 90 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M245.406 137.609L233.985 94.9852L276.609 106.406L245.406 137.609Z"
-          stroke="white" stroke-opacity="0.04" stroke-width="10" fill="none" />
-  </svg>
+    <!-- Decorative Shapes: Triangles -->
+    <svg
+      class="triangle triangle1"
+      width="250"
+      height="250"
+      viewBox="220 90 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M245.406 137.609L233.985 94.9852L276.609 106.406L245.406 137.609Z"
+        stroke="white"
+        stroke-opacity="0.03"
+        stroke-width="12"
+        fill="none"
+      />
+    </svg>
+    <svg
+      class="triangle triangle2"
+      width="200"
+      height="200"
+      viewBox="220 90 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M245.406 137.609L233.985 94.9852L276.609 106.406L245.406 137.609Z"
+        stroke="white"
+        stroke-opacity="0.04"
+        stroke-width="10"
+        fill="none"
+      />
+    </svg>
 
-
-  <!-- Main Content -->
-  <div class="get-started">
-    <br><br><br><br>
-    <h1 style="font-weight: 600; font-size: 2.9rem;">What Are You Waiting For?</h1>
-    <p style="font-weight: 400; font-size: 2.9rem;">Get Started Now</p>
-    <p style="font-weight: 200; color: rgb(224, 224, 224); text-align: center;">
-      There are many variations of passages of Lorem Ipsum but the <br>majority have suffered in some form.
-    </p>
-    <br>
-    <button class="signup-btn" style="background-color: white; color: black;">
-      <mat-icon>rocket_launch</mat-icon>Get Started
-    </button>
+    <!-- Main Content -->
+    <div class="get-started">
+      <br /><br /><br /><br />
+      <h1 style="font-weight: 600; font-size: 2.9rem">
+        What Are You Waiting For?
+      </h1>
+      <p style="font-weight: 400; font-size: 2.9rem">Get Started Now</p>
+      <p
+        style="font-weight: 200; color: rgb(224, 224, 224); text-align: center"
+      >
+        There are many variations of passages of Lorem Ipsum but the
+        <br />majority have suffered in some form.
+      </p>
+      <br />
+      <button class="signup-btn" style="background-color: white; color: black">
+        <mat-icon>rocket_launch</mat-icon>Get Started
+      </button>
+    </div>
   </div>
-</div>
 
-<div class="payments-section">
+  <div class="payments-section">
     <p style="font-weight: 500; color: #0073ee">Pricing Table</p>
     <h2 style="font-weight: 500">Awesome Pricing Plan</h2>
     <p style="text-align: center; color: rgb(97, 97, 97)">
@@ -117,17 +182,162 @@
     </p>
     <br /><br />
     <div class="payment-cards">
-        <div class="card">
-                <p style="font-size: 24px;">Starter</p>
-                <p>$ 25.00 <span>Per Month</span></p>
-            <br>
-            <p>Features</p>
-            <p>Up to 1 User</p>
-            <p>Up to 1 User</p>
-            <p>Up to 1 User</p>
-            <p>Up to 1 User</p>
-        </div>
+      <div class="card" *ngFor="let pack of pricingList">
+        <p style="font-size: 20px; font-weight: 500">{{ pack.pack }}</p>
+        <br />
+        <p>
+          <span style="font-size: 18px">$</span>&nbsp;
+          <span style="font-size: 40px; font-weight: 500"
+            >{{ pack.price }}.00</span
+          >&nbsp; <span style="color: rgb(100, 100, 100)">Per Month</span>
+        </p>
+        <br /><br />
+        <p style="font-weight: 500; font-size: 18px; margin-bottom: 25px">
+          Features
+        </p>
+        <p style="font-size: 17px; color: grey">{{ pack.feature1 }}</p>
+        <p style="font-size: 17px; color: grey">{{ pack.feature2 }}</p>
+        <p style="font-size: 17px; color: grey">{{ pack.feature3 }}</p>
+        <p style="font-size: 17px; color: grey">{{ pack.feature4 }}</p>
+        <br /><br />
+        <button
+          class="signup-btn"
+          style="
+            background-color: #0073ee;
+            color: rgb(255, 255, 255);
+            margin-right: 50px;
+          "
+        >
+          Purchase
+        </button>
+      </div>
     </div>
-</div>
+    <br /><br />
+  </div>
+
+  <div class="contact-section">
+    <div class="contact-wrapper">
+      <!-- Left Section -->
+      <div class="contact-info">
+        <p class="contact-label">CONTACT US</p>
+        <h2 class="contact-heading">Let's talk about your problem.</h2>
+
+        <div class="contact-details">
+          <div class="contact-box">
+            <span class="icon">📍</span>
+            <div>
+              <p class="contact-title">Our Location</p>
+              <p class="contact-text">
+                Mumbai, Maharashtra
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-box">
+            <span class="icon">📧</span>
+            <div>
+              <p class="contact-title">How Can We Help?</p>
+              <p class="contact-text">info.com<br />contact.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Section -->
+      <div class="contact-form-card">
+        <h3 class="form-title">Send us a Message</h3>
+
+        <form>
+          <label>Full Name*</label>
+          <input type="text" placeholder="Adam Gelius" />
+
+          <label>Email*</label>
+          <input type="email" placeholder="example@yourmail.com" />
+
+          <label>Phone*</label>
+          <input type="tel" placeholder="+885 1254 5211 552" />
+
+          <label>Message*</label>
+          <textarea placeholder="type your message here"></textarea>
+
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="footer-container">
+    <!-- Left section -->
+    <div class="footer-brand">
+      <div class="logo">
+        <img src="applogo.png" style="width: 150px; height: 100;" alt="Logo" />
+      </div>
+      <p>We create digital experiences for brands and companies by using technology.</p>
+      <div class="social-icons">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path fill="#ffffff" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg></a>
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path fill="#ffffff" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></a>
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path fill="#ffffff" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/></svg></a>
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path fill="#ffffff" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Navigation Columns -->
+    <div class="footer-columns">
+      <div class="footer-col">
+        <h4>About Us</h4>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Features</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Testimonial</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Features</h4>
+        <ul>
+          <li><a href="#">How it works</a></li>
+          <li><a href="#">Privacy policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Refund policy</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Our Products</h4>
+        <ul>
+          <li><a href="#">Auto Applier AI</a></li>
+          <li><a href="#">AI Resume Builder</a></li>
+          <li><a href="#">Auto Cold Mailer</a></li>
+          <li><a href="#">Coverletter Generator </a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col blog">
+        <h4>Latest blog</h4>
+        <div class="blog-item">
+          <!-- <img src="assets/blog1.jpg" alt="Blog 1" /> -->
+          <p>I think really important to design with...</p>
+        </div>
+        <div class="blog-item">
+          <!-- <img src="assets/blog2.jpg" alt="Blog 2" /> -->
+          <p>Recognizing the need is the primary...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="legal-links">
+      <a href="#">Privacy policy</a>
+      <a href="#">Legal notice</a>
+      <a href="#">Terms of service</a>
+    </div>
+    <div class="credits">
+      Designed and Developed by <strong>Samarth Nirmal</strong>
+    </div>
+  </div>
+</footer>
 
 </div>

@@ -46,7 +46,7 @@ export class AuthService {
         const userRole = this.getUserRole();
         this.ngZone.run(() => {
           if (userRole === 'User') {
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/landing-page']);
           } else {
             this.router.navigate(['/admin']);
           }
