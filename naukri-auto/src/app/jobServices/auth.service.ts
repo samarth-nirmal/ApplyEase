@@ -160,6 +160,6 @@ export class AuthService {
     this.toast.success('Logged out successfully!');
     localStorage.removeItem('authToken');
     this.authState.next(null);
-    this.router.navigate(['/login']);
+    // this.router.navigate(['/login']);
   }
 }

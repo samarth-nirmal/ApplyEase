@@ -21,3 +21,52 @@ input {
 button {
     cursor: pointer;
 }
+label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.custom-input-container {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 30px;
+}
+
+.custom-input-container input {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 15px;
+  border: none;
+  border-bottom: 1px solid #999;
+  background: transparent;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.custom-input-container input::placeholder {
+  font-size: 14px;
+  color: #afafaf;
+}
+
+.custom-input-container input:focus {
+  border-color: transparent;
+}
+
+/* Underline effect */
+.custom-input-container .underline {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: hwb(216 0% 45%);
+  transition: width 0.4s ease;
+}
+
+.custom-input-container input:focus + .underline {
+  width: 100%;
+}

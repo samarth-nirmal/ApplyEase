@@ -16,8 +16,8 @@
           <mat-icon>rocket_launch</mat-icon>Get Started
         </button>
         <ng-template #getStarted>
-          <button class="signup-btn" (click)="goToDashboard()">
-            <mat-icon>rocket_launch</mat-icon>Go to Dashboard
+          <button class="signup-btn" (click)="goToFeatures('Features')">
+            <mat-icon>rocket_launch</mat-icon>Get Started
           </button>
         </ng-template>
       </div>
@@ -31,7 +31,7 @@
     </div>
   </div>
 
-  <div class="landing-page-features">
+  <div class="landing-page-features" id="Features">
     <p style="font-weight: 500; color: #0073ee">Features</p>
     <h2 style="font-weight: 500">Main Features Of Apply Ease</h2>
     <p style="text-align: center; color: rgb(97, 97, 97)">
@@ -167,7 +167,7 @@
         <br />majority have suffered in some form.
       </p>
       <br />
-      <button class="signup-btn" style="background-color: white; color: black">
+      <button class="signup-btn" style="background-color: white; color: black" (click)="goToFeatures('Features')">
         <mat-icon>rocket_launch</mat-icon>Get Started
       </button>
     </div>

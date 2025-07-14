@@ -11,6 +11,10 @@ import { AuthService } from '../jobServices/auth.service';
 export class LandingPageComponent {
   constructor(private router : Router, private authService : AuthService) {}
 
+  ngOnInit() {
+     console.log("Landing page loaded");
+  }
+
   isLoggedIn : boolean = this.authService.isAuthenticated();
 
   featureList: { logo: string; heading: string; text: string; hover?: boolean }[] = [
@@ -68,10 +72,13 @@ export class LandingPageComponent {
   ];
 
   loginPage() {
-    // this.router.navigate(['/login'])
+    this.router.navigate(['/login'])
   }
 
-  goToDashboard() {
-    
+  goToFeatures(sectionId: string) {
+      const element = document.getElementById(sectionId);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
   }
 }

@@ -1,18 +1,16 @@
-<br><br>
+<!-- <br><br>
 <mat-card class="login-card" [ngClass]="{ 'loading': loading }" *ngIf="!isRegister">
 
   <div [class.loader]="loading"></div>
   <mat-card-content>
     <h2>Login</h2>
     <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
-      
-    <!-- Email Input -->
+
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Email</mat-label>
       <input matInput type="email" [(ngModel)]="user.email" name="email" placeholder="Enter your email" required />
     </mat-form-field>
 
-    <!-- Password Input with View Icon -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Password</mat-label>
       <input 
@@ -35,7 +33,6 @@
     <br>
 
     <button mat-flat-button color="primary" type="submit" class="full-width" [disabled]="loginForm.invalid">Login</button>
-    <!-- Login Button -->
   </form>
   <br>
   <div *ngIf="!isRegister">
@@ -56,19 +53,18 @@
     <h2>Register</h2>
     <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
       
-      <!-- Name Input -->
+      
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Name</mat-label>
         <input matInput type="text" [(ngModel)]="newUser.name" name="name" placeholder="Enter your name" required />
       </mat-form-field>
 
-      <!-- Email Input -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Email</mat-label>
         <input matInput type="email" [(ngModel)]="newUser.email" name="email" placeholder="Enter your email" required />
       </mat-form-field>
 
-      <!-- Password Input -->
+
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Password</mat-label>
         <input 
@@ -89,7 +85,6 @@
         </button>
       </mat-form-field>
 
-      <!-- Register Button -->
       <button mat-flat-button color="primary" type="submit" class="full-width" [disabled]="registerForm.invalid">Register</button>
     </form>
     <br>
@@ -100,4 +95,138 @@
       {{ isRegister ? 'Already have an account? Login' : 'Not an existing user? Register here' }}
     </p>
   </mat-card-content>
-</mat-card>
+</mat-card> -->
+
+<div class="login-page">
+  <!-- Left Blue Section -->
+  <div class="login-left">
+    <div class="overlay-text">
+      <br><br><br><br><br>
+      <h2>Designed for Job Seekers</h2>
+      <p>Track your job applications and analyze your progress, all in one place!</p>
+    </div>
+
+    <div class="white-gradient-strip1"></div>
+    <div class="white-gradient-strip2"></div>
+
+    <img src="image - 2025-07-10T163903.163.png" alt="Login illustration" class="side-image" />
+  </div>
+
+  <!-- Right Section -->
+  <div class="login-right">
+    <div class="form-container">
+
+      <!-- Login Form -->
+      <form *ngIf="!isRegister" (ngSubmit)="onLogin(loginForm)" #loginForm="ngForm">
+        <h2>Login</h2>
+
+        <!-- Email -->
+        <div class="custom-input-container">
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" [(ngModel)]="user.email" placeholder="name@mail.com" required />
+          <div class="underline"></div>
+        </div>
+
+        <!-- Password -->
+        <div class="custom-input-container">
+          <label for="password">Password</label>
+          <div class="password-input-wrapper" style="position: relative;">
+            <input 
+              id="password" 
+              name="password" 
+              [type]="hidePassword ? 'password' : 'text'" 
+              [(ngModel)]="user.password" 
+              placeholder="********" 
+              required 
+              style="padding-right: 32px;"
+            />
+            <span 
+              class="toggle-password-icon" 
+              (click)="hidePassword = !hidePassword" 
+              style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); cursor: pointer;"
+              aria-label="Toggle password visibility"
+            >
+              <i class="material-icons">
+                {{ hidePassword ? 'visibility_off' : 'visibility' }}
+              </i>
+            </span>
+          </div>
+          <div class="underline"></div>
+        </div>
+
+        <div class="remember">
+          <input type="checkbox" id="remember" />
+          <label for="remember">Remember Password</label>
+        </div>
+
+        <button type="submit" class="login-btn">Login</button>
+
+        <p class="signup-text">
+          Don’t have an account?
+          <a (click)="toggleForm()" style="cursor: pointer;">Sign up</a>
+        </p>
+
+        <div class="divider"><span>or</span></div>
+
+        <div #googleLoginContainer id="googleSignIn"></div>
+      </form>
+
+      <!-- Register Form -->
+      <form *ngIf="isRegister" (ngSubmit)="onRegister(registerForm)" #registerForm="ngForm">
+        <h2>Register</h2>
+
+        <!-- Name -->
+        <div class="custom-input-container">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" [(ngModel)]="newUser.name" placeholder="Enter your name" required />
+          <div class="underline"></div>
+        </div>
+
+        <!-- Email -->
+        <div class="custom-input-container">
+          <label for="reg-email">Email address</label>
+          <input id="reg-email" name="email" type="email" [(ngModel)]="newUser.email" placeholder="name@mail.com" required />
+          <div class="underline"></div>
+        </div>
+
+        <!-- Password -->
+        <div class="custom-input-container">
+          <label for="reg-password">Password</label>
+          <div class="password-input-wrapper" style="position: relative;">
+            <input 
+              id="reg-password" 
+              name="password" 
+              [type]="hidePassword ? 'password' : 'text'" 
+              [(ngModel)]="newUser.password" 
+              placeholder="********" 
+              required 
+              style="padding-right: 32px;"
+            />
+            <span 
+              class="toggle-password-icon" 
+              (click)="hidePassword = !hidePassword" 
+              style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); cursor: pointer;"
+              aria-label="Toggle password visibility"
+            >
+              <i class="material-icons">
+          {{ hidePassword ? 'visibility_off' : 'visibility' }}
+              </i>
+            </span>
+          </div>
+          <div class="underline"></div>
+        </div>
+
+        <button type="submit" class="login-btn">Register</button>
+
+        <p class="signup-text">
+          Already have an account?
+          <a (click)="toggleForm()" style="cursor: pointer;">Login</a>
+        </p>
+
+        <div #googleSignInRegister id="googleSignInRegister"></div>
+      </form>
+
+    </div>
+  </div>
+</div>
+

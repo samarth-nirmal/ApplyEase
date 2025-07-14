@@ -38,12 +38,21 @@ html, body {
   padding: 18px 32px;
   background-color: #3758f9;
   color: white;
-  position: sticky !important;
+
+  position: sticky;
   top: 0;
   z-index: 1000;
+
   transition: all 0.3s ease;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
 }
+
+.nav-container.scrolled {
+  background: rgba(255, 255, 255, 0.63);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 0 0 10px 10px;
+}
+
 
 .app-logo img {
   height: 55px;
@@ -105,16 +114,7 @@ html, body {
   color: black;
 }
 
-.nav-container.scrolled {
-  background: rgba(255, 255, 255, 0.63); /* translucent white */
-  position: sticky !important;
-  top: 0;
-  z-index: 1000;
-  backdrop-filter: blur(10px); /* main glass effect */
-  -webkit-backdrop-filter: blur(10px); /* Safari support */
-  border-radius: 0 0 10px 10px;
-  transition: all 0.3s ease;
-}
+
 
 .nav-container.scrolled .nav-items a {
   color: rgb(56, 56, 56);
