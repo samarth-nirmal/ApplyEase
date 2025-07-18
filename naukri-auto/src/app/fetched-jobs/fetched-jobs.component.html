@@ -1,5 +1,8 @@
 <div *ngIf="!jobApplyProgress">
   <div class="table-container">
+    <h3 style="text-align: center;">Fetched Jobs</h3>
+    <p style="text-align: center; font-weight: 300;">you'll find all your fetched jobs over here with all the required filters and <br>applying to the job buttons</p>
+    <br><br>
     <div class="upperTable">
       <div class="filterButtons">
         <mat-chip-listbox aria-label="Job Relevance Filter" [(ngModel)]="selectedFilter" (ngModelChange)="filterJobs()" class="align-left">
@@ -88,12 +91,9 @@
 </div>
 
 <div *ngIf="jobApplyProgress" class="progress-card-container">
-  <mat-card class="progress-card mat-elevation-z4">
-    <mat-card-content style="text-align: center;">
-      <mat-progress-bar mode="buffer" style="margin-bottom: 30px;"></mat-progress-bar>
-      <p class="job-fact mat-body-1" style="margin: 0; color: #7c7c7c; transition: opacity 0.5s ease-in-out;">
-        💡 {{ currentFact }}
-      </p>
-    </mat-card-content>
-  </mat-card>
+  <div class="loader-wrapper">
+    <span class="loader"></span>
+  </div>
+  <br><br>
+  <p class="job-fact">💡 {{ currentFact }}</p>
 </div>

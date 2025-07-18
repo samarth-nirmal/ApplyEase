@@ -2,11 +2,14 @@ import time
 import json
 import sys
 import os
+from dotenv import load_dotenv
 from playwright.sync_api import sync_playwright
 from naukri_login import get_user_data_dir
 from google import genai
 
-client = genai.Client(api_key="YOUR_API_KEY")
+load_dotenv()
+api_key = os.getenv("GEMINI_API_KEY")
+client = genai.Client(api_key=api_key)
 
 
 def callGemini(profileSummary, question):

@@ -91,10 +91,10 @@ public class GeminiService
                 ? contentElement.GetString()
                 : contentElement.GetProperty("parts")[0].GetProperty("text").GetString();
 
-            // 🔹 Clean response text (removing ```json ... ```)
+
             string cleanedJson = Regex.Replace(rawText, @"```json|```", "").Trim();
 
-            // 🔹 Try parsing the match_score from JSON
+
             using var doc = JsonDocument.Parse(cleanedJson);
             if (doc.RootElement.TryGetProperty("match_score", out JsonElement matchScoreElement) && matchScoreElement.ValueKind == JsonValueKind.Number)
             {
@@ -225,27 +225,27 @@ public class GeminiService
     //--------------  PROMPTS ------------------//
 
 
-private string GenerateCoverLetterPrompt(string userProfileSummary, string jobDescription, string jobTitle, string companyName)
-{
-    return $"Generate a professional and concise cover letter using the details below. " +
-           $"The letter must:\n" +
-           $"- Include the candidate's name, experience, skills, and accomplishments based on the user profile.\n" +
-           $"- Align with the responsibilities and qualifications in the job description.\n" +
-           $"- Start with a formal greeting; if the company name or hiring manager is missing, use 'Sir/Madam' or avoid naming.\n" +
-           $"- End with a polite, confident closing.\n" +
-           $"Do not include any explanations or placeholders. Only return the finalized cover letter in proper formatting.\n\n" +
-           $"User Profile:\n{userProfileSummary}\n\n" +
-           $"Job Description:\n{jobDescription}" +
-           $"Job Title:\n{jobTitle}" +
-           $"Company Name:\n{companyName}";
-}
+    private string GenerateCoverLetterPrompt(string userProfileSummary, string jobDescription, string jobTitle, string companyName)
+    {
+        return $"Generate a professional and concise cover letter using the details below. " +
+               $"The letter must:\n" +
+               $"- Include the candidate's name, experience, skills, and accomplishments based on the user profile.\n" +
+               $"- Align with the responsibilities and qualifications in the job description.\n" +
+               $"- Start with a formal greeting; if the company name or hiring manager is missing, use 'Sir/Madam' or avoid naming.\n" +
+               $"- End with a polite, confident closing.\n" +
+               $"Do not include any explanations or placeholders. Only return the finalized cover letter in proper formatting.\n\n" +
+               $"User Profile:\n{userProfileSummary}\n\n" +
+               $"Job Description:\n{jobDescription}" +
+               $"Job Title:\n{jobTitle}" +
+               $"Company Name:\n{companyName}";
+    }
 
 
     private string GenerateProfileSummaryPrompt(UserProfile userProfile)
     {
         return $"Generate a detailed summary based on the following user details. This summary will be utilised to match job description with the user profile to extract job score for the user. Also this summary will be utilised to answer user related questions on job apply site e.g - What is your notice period? What is your preffered Location?:\n\n" +
-               $"The summary should be on point, dont add extra words, just plain user data"+
-               $"Also include users name and other personal details too"+
+               $"The summary should be on point, dont add extra words, just plain user data" +
+               $"Also include users name and other personal details too" +
                $"Also if no current location is mentioned, take preffered location as current location" +
                 $"{JsonSerializer.Serialize(userProfile, new JsonSerializerOptions { WriteIndented = true })}";
     }

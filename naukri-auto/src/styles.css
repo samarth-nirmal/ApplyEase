@@ -35,6 +35,13 @@ label {
   margin-bottom: 30px;
 }
 
+.submitbtn button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
 .custom-input-container input {
   width: 100%;
   padding: 8px 10px;
@@ -69,4 +76,24 @@ label {
 
 .custom-input-container input:focus + .underline {
   width: 100%;
+}
+
+.submitbtn {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.submitbtn button {
+  background-color: lab(90.27% -60.56 29.58);
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 14px 60px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 50px;
+}
+
+.submitbtn button:hover {
+  background-color: lab(89.14% -70.45 38.86);
 }

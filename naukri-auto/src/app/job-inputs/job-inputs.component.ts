@@ -34,6 +34,44 @@ export class JobInputsComponent {
   currentFact: string = '';
 
 
+  profileFields = [
+  { label: 'Full Name', name: 'fullName', placeholder: 'Full Name', type: 'text' },
+  { label: 'Phone Number', name: 'phoneNumber', placeholder: 'Phone Number', type: 'text' },
+  { label: 'Total Experience', name: 'totalExperience', placeholder: 'Total Experience', type: 'number' },
+  { label: 'Current Job Title', name: 'currentJobTitle', placeholder: 'Current Job Title', type: 'text' },
+  { label: 'Current Company', name: 'currentCompany', placeholder: 'Current Company', type: 'text' },
+  { label: 'Industry', name: 'industry', placeholder: 'Industry', type: 'text' },
+  { label: 'Primary Skills', name: 'primarySkills', placeholder: 'Primary Skills', type: 'text' },
+  { label: 'Secondary Skills', name: 'secondarySkills', placeholder: 'Secondary Skills', type: 'text' },
+  { label: 'Certifications', name: 'certifications', placeholder: 'Certifications', type: 'text' },
+  { label: 'Highest Qualification', name: 'highestQualification', placeholder: 'Highest Qualification', type: 'text' },
+  { label: 'Specialization', name: 'specialization', placeholder: 'Specialization', type: 'text' },
+  { label: 'Graduation Year', name: 'graduationYear', placeholder: 'Graduation Year', type: 'number' },
+  { label: 'GitHub URL', name: 'gitHubUrl', placeholder: 'GitHub URL', type: 'text' },
+  { label: 'LinkedIn URL', name: 'linkedInUrl', placeholder: 'LinkedIn URL', type: 'text' },
+  { label: 'Preferred Job Role', name: 'preferredJobRole', placeholder: 'Preferred Job Role', type: 'text' },
+  { label: 'Projects', name: 'projects', placeholder: 'Projects', type: 'text' },
+  { label: 'Preferred Location', name: 'preferredLocation', placeholder: 'Preferred Location', type: 'text' },
+  { label: 'Current CTC', name: 'currentSalary', placeholder: 'Current CTC', type: 'text' },
+  { label: 'Expected Salary', name: 'expectedSalary', placeholder: 'Expected Salary', type: 'text' },
+  { label: '10th Percentage', name: 'XPercentage', placeholder: '10th Percentage', type: 'text' },
+  { label: '12th Percentage', name: 'XIIPercentage', placeholder: '12th Percentage', type: 'text' },
+];
+
+noticePeriodOptions = [
+  'Immediate', '15 Days or less', '1 Month', '45 Days', '2 Months',
+  '3 Months', 'More than 3 Months', 'Serving Notice Period'
+];
+
+jobRoles = [
+  'Software Engineer', 'Data Scientist', 'DevOps Engineer', 'Frontend Developer',
+  'Backend Developer', 'Full Stack Developer', 'QA Engineer', 'UI/UX Designer',
+  'Product Manager', 'Business Analyst'
+];
+
+experiences = ['Fresher', '1 Year', '2 Years', '3 Years', '4+ Years', '5 Years', '6 Years'];
+locations = ['Mumbai', 'Bangalore', 'Delhi', 'Hyderabad', 'Chennai', 'Pune', 'Kolkata', 'Ahmedabad', 'Jaipur', 'Chandigarh'];
+
   jobFacts: string[] = [
     "Finding the best jobs for you...",
     "The IT sector in India contributes nearly 8% to the country's GDP.",
@@ -123,7 +161,6 @@ export class JobInputsComponent {
     this.jobService.searchJobs(this.jobForm.value).subscribe((data) => {
       if (Array.isArray(data) && data.length === 0) {
         this.stopJobFacts();
-        this.errorMessage = 'No jobs found. Please try again.';
         this.cdr.detectChanges();
         this.toast.error("No Jobs Found", {
           position: 'top-center'
@@ -135,11 +172,11 @@ export class JobInputsComponent {
           position: 'top-center'
         });
         this.jobFetchProgress = false;
+        this.stopJobFacts()
         this.router.navigate(['fetched-jobs'])
       }
     }, (error) => {
       this.stopJobFacts();
-      this.errorMessage = 'An error occurred while searching for jobs. Please try again.';
       this.toast.error("No Jobs Found", {
         position: 'top-center'
       });
@@ -179,6 +216,7 @@ export class JobInputsComponent {
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
+    console.log("uploading...")
 
     if (file) {
       this.showProgressBar = true;
@@ -189,6 +227,7 @@ export class JobInputsComponent {
 
       this.ResumeService.uploadResume(file).subscribe({
         next: (res) => {
+          console.log(res)
           this.uploadSuccess = true;
           console.log('Upload Success:', res);
           this.toast.success("Resume Uploaded", {

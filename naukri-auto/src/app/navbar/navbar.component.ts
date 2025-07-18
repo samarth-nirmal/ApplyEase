@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from '../jobServices/auth.service';
 import { JobService } from '../jobServices/job.service';
 
@@ -15,7 +15,8 @@ export class NavbarComponent {
   logoSrc = 'applogo.png';
   isScrolled = false;
   LoggedIn : boolean = false;
-  
+  isLandingPage: boolean = false;
+
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.isScrolled = window.scrollY > 10;
@@ -23,12 +24,22 @@ export class NavbarComponent {
     
   }
 
+  ngOnInit() {
+      this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.isLandingPage = event.url === '/landing-page' || event.urlAfterRedirects === '/landing-page';
+      }
+    });
+  }
+
   isUserLoggedIn() {
     return this.authService.isAuthenticated();
   }
 
 
-  
+  login() {
+    this.router.navigate(['/login'])
+  }
   userProfile() {
     this.userId = this.authService.getUserId();
     this.router.navigate(['user-profile', this.userId])
@@ -39,7 +50,11 @@ export class NavbarComponent {
   }
 
   dashboard() {
-    this.router.navigate(['/dashboard'])
+    this.router.navigate(['/landing-page'])
+  }
+
+  resumeBuilder() {
+    this.router.navigate(['/create-resume-options'])
   }
 
   loginToNaukri() {

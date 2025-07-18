@@ -4,8 +4,11 @@ import json
 from google import genai
 import pdfplumber
 from docx import Document
+from dotenv import load_dotenv
 
-client = genai.Client(api_key="YOUR_API_KEY")
+load_dotenv()
+api_key = os.getenv("GEMINI_API_KEY")
+client = genai.Client(api_key=api_key)
 
 def extract_text_from_pdf(file_path):
     text = ""

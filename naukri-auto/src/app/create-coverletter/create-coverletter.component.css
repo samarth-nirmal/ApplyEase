@@ -1,57 +1,108 @@
-.form-container {
-    max-width: 600px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  
-  .full-width {
-    width: 100%;
-  }
-  
-  .output-section {
-    margin-top: 16px;
-  }
+.cover-letter-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: 'Inter', sans-serif;
+}
 
-  .button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 16px;
-  }
-  
-  
-  .copy-card {
-    background: #f5f5f5;
-    padding: 16px;
-    margin: auto;
-    font-family: monospace;
-    white-space: pre-wrap;
-    word-break: break-word;       /* ✅ Break long words */
-    overflow-wrap: break-word;   
-    overflow: hidden;   
-    width: 60%; /* Full width */
-    max-width: 60%;
-    font-size: 16px;
-    box-sizing: border-box;
-    margin-bottom: 20px;
-  }
-  
+.form-card {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+}
 
-  .copy-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-    font-weight: bold;
+.form-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #1e3a8a;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 1.2rem;
+}
+
+.rainbow-button-wrapper {
+  position: relative;
+  display: inline-block;
+  padding: 2px; /* space for border */
+  border-radius: 8px;
+  background: linear-gradient(270deg, #ff6ec4, #7873f5, #4ade80, #facc15, #ff6ec4);
+  background-size: 800% 800%;
+  animation: rainbowBorder 6s linear infinite;
+}
+
+.button-container-centered {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.rainbow-button-wrapper button {
+  border-radius: 6px;
+  background-color: white;
+  color: #1e3a8a !important;
+  padding: 0.6rem 1.5rem;
+  cursor: pointer !important;
+  font-weight: 500;
+}
+
+
+/* Animation for rainbow gradient */
+@keyframes rainbowBorder {
+  0% {
+    background-position: 0% 50%;
   }
-  
-  mat-icon  {
-    cursor: pointer;
-    transition: transform 0.2s;
+  50% {
+    background-position: 100% 50%;
   }
-  
-  mat-icon:hover {
-    transform: scale(1.2);
-    color: #3f51b5; /* Material Primary Color */
+  100% {
+    background-position: 0% 50%;
   }
+}
+
+
+.output-card {
+  background: #eeeeee;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
+}
+
+.output-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.output-title {
+  font-weight: 600;
+  color: #333;
+  font-size: 1rem;
+}
+
+.output-icons mat-icon {
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: 12px;
+  color: #555;
+  transition: color 0.2s;
+}
+
+.output-icons mat-icon:hover {
+  color: #1e3a8a;
+}
+
+.output-text {
+  font-size: 0.95rem;
+  color: #444;
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.6;
+  margin: 0;
+}

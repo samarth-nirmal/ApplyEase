@@ -1,48 +1,42 @@
 .profile-card {
     display: flex;
     align-items: center;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: rgb(248, 248, 248);
+    border-radius: 0px;
+    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
     padding: 24px;
     width: 600px;
     margin: 40px auto;
     transition: transform 0.2s ease-in-out;
   
-    &:hover {
-      transform: translateY(-5px);
-    }
+
   }
 
   .sub-profile-card-summary {
    
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: rgb(248, 248, 248);
+    border-radius: 4px;
+    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
     padding: 24px;
     width: 1650px;
     margin: 40px auto;
     transition: transform 0.2s ease-in-out;
   
-    &:hover {
-      transform: translateY(-5px);
-    }
+
   }
 
   .sub-profile-card {
     display: flex;
     align-items: center;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: rgb(248, 248, 248);
+    border-radius: 4px;
+    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
     padding: 24px;
     width: 700px;
     margin: 40px auto;
     transition: transform 0.2s ease-in-out;
   
-    &:hover {
-      transform: translateY(-5px);
-    }
+
 
   }
   
@@ -134,7 +128,7 @@
     background-color: #f5f5f5;
     color: #333;
     font-weight: 500;
-    border-radius: 16px;
+    border-radius: 2px;
   }
   
 
@@ -143,17 +137,17 @@
   }
 
   .profile-card {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: rgb(248, 248, 248);
+    border-radius: 4px;
+    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
     padding: 24px;
     max-width: 600px;
     margin: 40px auto;
   }
   
   h2 {
-    font-size: 1.6rem;
-    font-weight: bold;
+    font-size: 1.9rem;
+    font-weight: 500;
     margin-bottom: 15px;
   }
   
@@ -182,7 +176,7 @@
       margin: 200px auto;
       padding: 20px;
       background-color: #fafafa;
-      border-radius: 10px;
+      border-radius: 4px;
       text-align: center;
     }
     

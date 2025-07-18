@@ -1,92 +1,175 @@
 .table-container {
-    width: 100%;
-    max-width: 1300px;
-    margin: 20px auto;
-    padding: 15px;
-    border-radius: 8px;
-    background: #ffffff;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  th {
-    text-align: left;
-    padding: 20px;
-    background: #f5f5f5;
-    color: #333;
-    font-weight: bold;
-    border-bottom: 2px solid #ddd;
-  }
-  
-  td {
-    padding: 20px;
-    border-bottom: 1px solid #eee;
-    color: #555;
-  }
-  
-  tr:hover {
-    background: #f9f9f9;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
+  width: 100%;
+  max-width: 1300px;
+  margin: 20px auto;
+  padding: 15px;
+  border-radius: 4px;
+  background: transparent;
+  /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+}
 
-  .upperTable {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .align-left {
-    flex: 1;
-  }
-  .align-right {
-    display: flex;
-    gap: 10px;
-  }
+table {
+  width: 100%;
+  /* border-collapse: collapse; */
+  border: none;
+}
 
-  .error-message {
-    color: red;
-  }
+th {
+  text-align: left;
+  padding: 20px;
+  background: #f5f5f5;
+  color: #333;
+  font-weight: 500;
+  font-size: 16px;
+  /* border-bottom: 2px solid #ddd; */
+  border: none;
+}
 
-  .no-jobs-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80%;
-  }
-  .no-jobs-text {
-    text-align: center;
-    font-size: 2rem;
-    color: gray;
-  }
+td {
+  padding: 20px;
+  /* border-bottom: 1px solid #eee; */
+  border: none;
+  color: #555;
+}
 
-  .success-message {
-    color: green;
-  }
+/* Add zebra-striping to alternate rows */
+table tr:nth-child(even) td {
+  background-color: #f9fafb; /* light gray */
+}
+
+button {
+  box-shadow: none;
+  border-radius: 6px;
+}
+
+button:hover {
+  box-shadow: none;
+}
+
+tr:hover {
+  background: #f9f9f9;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.upperTable {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.align-left {
+  flex: 1;
+}
+.align-right {
+  display: flex;
+  gap: 10px;
+}
+
+.error-message {
+  color: red;
+}
+
+.no-jobs-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+}
+.no-jobs-text {
+  text-align: center;
+  font-size: 2rem;
+  color: gray;
+}
+
+.success-message {
+  color: green;
+}
+
+.progress-card-container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+}
 
 
-  .progress-card-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 70%;
-  }
-  
-  .progress-card {
-    width: 50%;
-    padding: 20px;
-    background-color: white; /* Set background to white */
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-  }
-  
-  .centered-progress-bar {
-    width: 100%;
-  }
+.filterButtons {
+  display: flex;
+}
 
-  .filterButtons {
-    display: flex;
+.job-fact {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.95rem;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.loader-wrapper {
+  height: 40px; /* or same height as your loader */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.loader {
+  color: #3758f9;
+  position: relative;
+  font-size: 11px;
+  background: #3758f9;
+  animation: escaleY 1s infinite ease-in-out;
+  width: 1em;
+  height: 4em;
+  animation-delay: -0.16s;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 2em;
+  background: #3758f9;
+  width: 1em;
+  height: 4em;
+  animation: escaleY 1s infinite ease-in-out;
+}
+.loader:before {
+  left: -2em;
+  animation-delay: -0.32s;
+}
+
+@keyframes escaleY {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0;
+    height: 4em;
   }
+  40% {
+    box-shadow: 0 -2em;
+    height: 5em;
+  }
+}
+
+/* Animation Keyframes */
+@keyframes loadingBuffer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,71 +1,74 @@
+<div class="cover-letter-wrapper">
+  <form [formGroup]="coverLetterForm" (ngSubmit)="onSubmit()" class="form-card">
+    
+    <h2 class="form-title">📝 Generate Cover Letter</h2>
 
-<br><br>
-<div>
-<div class="form-container">
-    <form [formGroup]="coverLetterForm" (ngSubmit)="onSubmit()">
-        <!-- Company Name -->
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Company Name (optional)</mat-label>
-            <input matInput formControlName="companyName" placeholder="Enter company name" />
-        </mat-form-field>
+    <!-- Company Name -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Company Name (optional)</mat-label>
+      <input matInput formControlName="companyName" placeholder="e.g., Google" />
+    </mat-form-field>
 
-        <!-- Job Title -->
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Job Title (optional)</mat-label>
-            <input matInput formControlName="jobTitle" placeholder="Enter job title" />
-        </mat-form-field>
+    <!-- Job Title -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Job Title (optional)</mat-label>
+      <input matInput formControlName="jobTitle" placeholder="e.g., Frontend Developer" />
+    </mat-form-field>
 
-        <!-- Job Description (mandatory) -->
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Job Description *</mat-label>
-            <textarea
-                matInput
-                formControlName="jobDescription"
-                placeholder="Enter the job description"
-                rows="5"
-                required
-                minlength="50"
-            ></textarea>
-            <mat-error *ngIf="coverLetterForm.get('jobDescription')?.hasError('minlength')">
-                Job description must be at least 100 characters long.
-            </mat-error>
-        </mat-form-field>
-        <!-- Submit Button -->
-        <div class="button-container">
-            <button mat-flat-button color="primary" type="submit" [disabled]="coverLetterForm.invalid">Submit</button>
-          </div>
-          
-    </form>
-    <br>
-    <mat-progress-bar mode="indeterminate" *ngIf="isSubmitted"></mat-progress-bar>
-    <br>
+    <!-- Job Description -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Job Description *</mat-label>
+      <textarea
+        matInput
+        formControlName="jobDescription"
+        placeholder="Paste the job description here..."
+        rows="6"
+        required
+        minlength="50"
+      ></textarea>
+      <mat-error *ngIf="coverLetterForm.get('jobDescription')?.hasError('minlength')">
+        Job description must be at least 100 characters long.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Submit -->
+<div class="button-container button-container-centered">
+  <div class="rainbow-button-wrapper">
+    <button
+      mat-flat-button
+      type="submit"
+      color="Secondary"
+      [disabled]="coverLetterForm.invalid"
+    >
+      ✨ Generate
+    </button>
+  </div>
 </div>
-<mat-card class="copy-card" *ngIf="submittedText">
-    <div class="copy-card-header">
-      <span></span>
-      <div class="copy-icon">
-          <mat-icon 
-            (click)="copyText()" 
-            matRipple 
-            matTooltip="Copy to clipboard"
-            matTooltipPosition="above">
-            content_copy
-          </mat-icon>
-          &nbsp;
-          <mat-icon 
-            (click)="onSubmit()"
-            matRipple 
-            matTooltip="Regenerate"
-            matTooltipPosition="above">
-            autorenew
-            
-          </mat-icon>
+
+<br>
+    <!-- Progress -->
+    <mat-progress-bar mode="indeterminate" *ngIf="isSubmitted"></mat-progress-bar>
+  </form>
+
+  <!-- Output Box -->
+  <mat-card class="output-card" *ngIf="submittedText">
+    <div class="output-header">
+      <span class="output-title">Generated Cover Letter</span>
+      <div class="output-icons">
+        <mat-icon
+          (click)="copyText()"
+          matRipple
+          matTooltip="Copy to clipboard"
+          matTooltipPosition="above"
+          >content_copy</mat-icon>
+        <mat-icon
+          (click)="onSubmit()"
+          matRipple
+          matTooltip="Regenerate"
+          matTooltipPosition="above"
+          >autorenew</mat-icon>
       </div>
     </div>
-    <pre style="margin: 0; white-space: pre-wrap; word-break: break-word;">{{ submittedText }}</pre>
+    <pre class="output-text">{{ submittedText }}</pre>
   </mat-card>
-  
-<br><br>
-
 </div>
-  

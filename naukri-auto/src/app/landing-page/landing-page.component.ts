@@ -17,30 +17,34 @@ export class LandingPageComponent {
 
   isLoggedIn : boolean = this.authService.isAuthenticated();
 
-  featureList: { logo: string; heading: string; text: string; hover?: boolean }[] = [
+  featureList: { logo: string; heading: string; text: string; link: string; hover?: boolean }[] = [
     {
       logo: 'work',
       heading: 'Auto Job Applier',
       text: 'Automatically apply to multiple jobs with a single click',
-      hover: false
+      hover: false,
+      link: '/job-inputs'
     },
     {
       logo: 'mark_as_unread',
       heading: 'Cover Letter Generator',
       text: 'Generate personalized cover letters for each job application',
-      hover: false
+      hover: false,
+      link: '/create-coverletter'
     },
     {
       logo: 'description',
       heading: 'AI Resume Builder',
       text: 'Create a professional resume in minutes',
-      hover: false
+      hover: false,
+      link: '/create-resume-options'
     },
     {
       logo: 'alternate_email',
       heading: 'Auto Cold Email Sender',
       text: 'Automatically send cold emails to potential employers',
-      hover: false
+      hover: false,
+      link: '/auto-mailer'
     }
   ]
 
@@ -74,6 +78,11 @@ export class LandingPageComponent {
   loginPage() {
     this.router.navigate(['/login'])
   }
+
+  goToFeaturePage(link: string) {
+    this.router.navigate([link]);
+  }
+
 
   goToFeatures(sectionId: string) {
       const element = document.getElementById(sectionId);

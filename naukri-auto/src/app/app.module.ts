@@ -52,6 +52,7 @@ import { ExperienceNoteComponent } from './experience-note/experience-note.compo
 import { SelectTemplateComponent } from './select-template/select-template.component';
 import { ResumePreviewComponent } from './resume-preview/resume-preview.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     MatNativeDateModule,
     FormsModule,
     MatTooltipModule,
-    AngularEditorModule 
+    AngularEditorModule,
+    MatTabsModule
   ],
   providers: [
     provideClientHydration(),

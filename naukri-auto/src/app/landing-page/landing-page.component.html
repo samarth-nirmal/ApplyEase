@@ -45,6 +45,7 @@
         *ngFor="let feature of featureList"
         (mouseenter)="$any(feature).hover = true"
         (mouseleave)="$any(feature).hover = false"
+        (click)="goToFeaturePage(feature.link)"
       >
         <div
           class="feature-logo-hover"
