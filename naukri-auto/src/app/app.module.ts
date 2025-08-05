@@ -53,6 +53,7 @@ import { SelectTemplateComponent } from './select-template/select-template.compo
 import { ResumePreviewComponent } from './resume-preview/resume-preview.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { ResumeTemplate1Component } from './resume-template1/resume-template1.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     SelectTemplateComponent,
     ResumePreviewComponent,
     LandingPageComponent,
+    ResumeTemplate1Component,
   ],
   imports: [
     BrowserModule,

@@ -11,13 +11,100 @@
 
 .preview-section {
   flex: 1;
+  height: 95vh;
+  width: 40%;
   border: 1px solid #ccc;
   padding: 20px;
-  overflow: auto;
+  /* overflow: auto; */
 }
+
+/* Stepper Section  */
+
+.sidebar-stepper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 100vh;
+  background-color: #0A1581;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1.5rem;
+  z-index: 1000;
+  border-top-right-radius: 15px;
+  justify-content: space-between;
+  /* border-bottom-right-radius: 12px; */
+}
+
+.step-item {
+  width: 50px;
+  height: 50px;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  position: relative;
+}
+
+.step-item mat-icon {
+  margin-top: 7px;
+}
+
+.step-item.active {
+  background-color: #0900acf5;
+  transition: 0.5s ease-in-out;
+  color: #ffef13;
+}
+
+.step-item.visited {
+  color: #7affb6;
+}
+
+.step-item.visited i {
+  color: white;
+}
+
+.icon-circle i {
+  font-size: 18px;
+}
+
+.step-item::after {
+  content: attr(data-label);
+  position: absolute;
+  left: 60px;
+  background: #0A1581;
+  color: rgb(255, 255, 255);
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.step-item:hover::after {
+  opacity: 1;
+}
+
+.stepperLogo {
+  width: 30px;
+  height: auto;
+  padding-bottom: 20px;
+  cursor: pointer;
+}
+
+/* Stepper Section End  */
 
 .form-section h3 {
   margin-top: 55px;
+  font-weight: 600;
 }
 
 label {
@@ -138,10 +225,15 @@ input::placeholder {
 
 .popup-container {
   display: flex;
+  border-radius: 6px !important;
   justify-content: center;
   align-items: center;
   padding: 24px;
   width: 100%;
+}
+
+::ng-deep .mat-mdc-dialog-panel {
+  border-radius: 10px !important;
 }
 
 .popup {
@@ -296,7 +388,6 @@ input::placeholder {
 .add-button:hover {
   background-color: lab(88.76% -74.09 43.64) !important;
 }
-
 .ai-button {
   background-color: #df3fff !important;
   border: none;
@@ -409,24 +500,27 @@ input::placeholder {
   resize: none !important;
   height: 150px !important;
   border: none !important;
+  border-radius: 6px !important;
 }
 
 ::ng-deep .angular-editor-textarea-skills .angular-editor {
   border: 1.5px solid rgb(192, 192, 192) !important;
   border-bottom: none !important;
   font-size: 16px !important;
+  border-radius: 6px 6px 0px 0px!important;
 }
 
 ::ng-deep .angular-editor-textarea-skills .angular-editor-toolbar {
   border-bottom: 1.5px solid rgb(192, 192, 192) !important;
   padding: 8px !important;
+  
 }
 
 .skill-suggestions {
   width: 100%;
   border: 1.5px solid rgb(192, 192, 192) !important;
   height: 300px;
-  border-radius: 3px 3px 0px 0px !important;
+  border-radius: 3px 3px 6px 6px !important;
   padding-left: 20px;
   padding-top: 10px;
   background-color: #f6faff;
@@ -488,9 +582,10 @@ input::placeholder {
   width: 89%;
   display: flex;
   align-items: center;
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   border-radius: 6px;
   font-size: 14px;
+  border: 1px solid rgb(175, 175, 175);
   font-weight: 500;
 }
 

@@ -21,7 +21,7 @@
 </mat-toolbar> -->
 
 
-<div [class.scrolled]="isScrolled" [ngClass]="isLandingPage ? 'nav-container' : 'nav-container-bordered'">
+  <div [class.scrolled]="isScrolled" [ngClass]="isLandingPage ? 'nav-container' : 'nav-container-bordered'" *ngIf="isLandingPage && !isResumeGenerator">
   <div class="app-logo">
     <img [src]="logoSrc" alt="App Logo" />
   </div>
@@ -41,4 +41,19 @@
     <button class="signup-btn" (click)="logout()" *ngIf="isUserLoggedIn()">Logout</button>
   </div>
 
+</div>
+
+<div *ngIf="!isLandingPage && !isResumeGenerator">
+<nav class="floating-navbar">
+  <div class="navbar-contentt">
+    <div class="brand" (click)="dashboard()"><img src="tick.png" class="tickImg">ApplyEase</div>
+    <div class="links">
+      <a (click)="dashboard()">Home</a>
+      <a (click)="fetchedJobs()">Jobs</a>
+      <a (click)="userProfile()">Profile</a>
+      <a (click)="logout()">Logout</a>
+    </div>
+  </div>
+</nav>
+<br><br><br><br>
 </div>

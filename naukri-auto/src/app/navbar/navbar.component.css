@@ -47,7 +47,7 @@ html, body {
 }
 
 .nav-container-bordered {
-    display: flex;
+  display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 8px 32px;
@@ -151,4 +151,67 @@ html, body {
 
 .nav-container.scrolled .login-btn:hover {
   color: hwb(211 14% 10%);
+}
+
+.floating-navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 1000px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 2px 28px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.floating-navbar:hover {
+  transition: all 0.3s ease;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+
+.navbar-contentt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  color: rgb(0, 0, 0);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar-contentt .brand {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar-contentt .links a {
+  color: #3758f9;
+  margin-left: 25px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.navbar-contentt .links a:hover {
+  color: #000000;
+}
+
+.navbar-spacer {
+  height: 80px; /* Match or slightly exceed navbar height + top offset */
+}
+
+.brand {
+  cursor: pointer;
+}
+
+.tickImg {
+  width: 9%;
+  margin-right: 10px;
+  height: auto;
 }

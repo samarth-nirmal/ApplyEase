@@ -515,6 +515,19 @@ form button:hover {
   height: 20px;
 }
 
+.fade-in {
+  opacity: 0;
+  transform: translateY(80px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
 @media (max-width: 768px) {
   .footer-container {
     flex-direction: column;

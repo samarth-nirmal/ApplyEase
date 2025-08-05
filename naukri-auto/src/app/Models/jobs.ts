@@ -7,5 +7,4 @@ export interface Jobs {
     country: string;
     description: string;
     currentlyWorking: false;
-
 }

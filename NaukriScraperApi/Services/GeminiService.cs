@@ -232,6 +232,8 @@ public class GeminiService
                $"- Include the candidate's name, experience, skills, and accomplishments based on the user profile.\n" +
                $"- Align with the responsibilities and qualifications in the job description.\n" +
                $"- Start with a formal greeting; if the company name or hiring manager is missing, use 'Sir/Madam' or avoid naming.\n" +
+               $"- Keep the language as Humane as possible also the grammer, keep as humane as possible.\n" +
+               $"- Keep the letter short and simple (max 2 paragraphs) and smartly integrated some important keywords from the Job Description inside the letter.\n" +
                $"- End with a polite, confident closing.\n" +
                $"Do not include any explanations or placeholders. Only return the finalized cover letter in proper formatting.\n\n" +
                $"User Profile:\n{userProfileSummary}\n\n" +

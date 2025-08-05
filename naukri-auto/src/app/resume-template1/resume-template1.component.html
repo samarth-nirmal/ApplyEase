@@ -1,0 +1,115 @@
+<div class="resume-container" *ngIf="resume">
+  <h1 class="name">{{ resume.firstName }} {{ resume.lastName }}</h1>
+  <p style="border-bottom: none !important; font-weight: 300;" class="contact">
+    +91-{{resume.phoneNumber}} • {{ resume.city }}, {{ resume.country }}<br />
+    {{ resume.email }} •
+    <a [href]="'https://linkedin.com/in/'" target="_blank">linkedin.com/in/</a>
+  </p>
+
+  <hr />
+
+  <!-- EXPERIENCE -->
+  <section *ngIf="hasCurrentJob || resume.jobs.length > 0">
+    <p>Experience</p>
+
+    <!-- Show saved jobs -->
+    <div *ngIf="resume.jobs && resume.jobs.length > 0">
+      <div *ngFor="let job of resume.jobs">
+        <strong>{{ job.jobTitle }}</strong> - {{ job.companyName }}
+        <span class="right">{{ job.startDate }} - {{ job.endDate }}</span>
+        <div [innerHTML]="getSanitizedHtmlJob(job.description)"></div>
+      </div>
+    </div>
+
+    <!-- Live preview of current job -->
+    <div *ngIf="hasCurrentJob" style="opacity: 0.6">
+      <strong>{{ currentJob.jobTitle }}</strong> - {{ currentJob.companyName }}
+      <span class="right">
+        {{ currentJob.startDate }} -
+        {{ currentJob.currentlyWorking ? "PRESENT" : currentJob.endDate }}
+      </span>
+      <div [innerHTML]="getSanitizedHtmlJob(currentJob.description)"></div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section *ngIf="hasCurrentEducation || resume.education.length > 0">
+    <p>Education</p>
+
+    <!-- Saved education entries -->
+    <div *ngFor="let edu of resume.education">
+      <strong>{{ edu.qualification }}</strong> - {{ edu.fieldOfStudy }}
+      <span class="right">{{ edu.graduationYear }}</span>
+      <div>
+        {{ edu.schoolName }}, {{ edu.schoolLocation }}
+        <span *ngIf="edu.country">({{ edu.country }})</span>
+      </div>
+      <div>Grade: {{ edu.percentageOrCgpa }}%</div>
+    </div>
+
+    <!-- Realtime preview of education -->
+    <div *ngIf="hasCurrentEducation" style="opacity: 0.6; margin-top: 10px">
+      <strong>{{ education.qualification }}</strong> -
+      {{ education.fieldOfStudy }}
+      <span class="right">{{ education.graduationYear }}</span>
+      <div>
+        {{ education.schoolName }}, {{ education.schoolLocation }}
+        <span *ngIf="education.country">({{ education.country }})</span>
+      </div>
+      <div *ngIf="education.percentageOrCgpa">
+        Grade: {{ education.percentageOrCgpa }}%
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section *ngIf="hasCurrentSkill || resume.skills.length > 0">
+    <p>Skills</p>
+    <div>
+      <strong [innerHTML]="getSanitizedHtmlSkills(resume.skills)"></strong>
+    </div>
+
+    <div *ngIf="hasCurrentSkill" style="opacity: 0.6; margin-top: 10px">
+      <strong [innerHTML]="getSanitizedHtmlSkills(currentSkill)"></strong>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section *ngIf="hasCurrentProject || resume.projects.length > 0">
+    <p>Projects</p>
+    <div *ngFor="let project of resume.projects">
+      <strong>{{ project.projectName }}</strong> ({{ project.technologiesUsed }})
+      <div [innerHTML]="getSanatizedHtmlProjects(project.projectDescription)"></div>
+    </div>
+
+    <div *ngIf="hasCurrentProject" style="opacity: 0.6; margin-top: 10px">
+      <strong>{{ currentProjects.projectName }}</strong> -
+      {{ currentProjects.technologiesUsed }}
+      <div [innerHTML]="getSanatizedHtmlProjects(currentProjects.projectDescription)"></div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section *ngIf="hasCurrentCertf || resume.certifications.length > 0">
+    <p>Certifications</p>
+    <div>
+      <strong [innerHTML]="getSanatizedHtmlAchivementsAndCertifications(resume.certifications)"></strong>
+    </div>
+
+    <div *ngIf="hasCurrentCertf" style="opacity: 0.6; margin-top: 10px">
+      <strong [innerHTML]="getSanatizedHtmlAchivementsAndCertifications(currentCertifications)"></strong>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section *ngIf="hasCurrentAchivements || resume.achievements.length > 0">
+    <p>Achievements</p>
+    <div>
+      <strong [innerHTML]="getSanatizedHtmlAchivementsAndCertifications(resume.achievements)"></strong>
+    </div>
+
+    <div *ngIf="hasCurrentAchivements" style="opacity: 0.6; margin-top: 10px">
+      <strong [innerHTML]="getSanatizedHtmlAchivementsAndCertifications(currentAchivements)"></strong>
+    </div>
+  </section>
+</div>

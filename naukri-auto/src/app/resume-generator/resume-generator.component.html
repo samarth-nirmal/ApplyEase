@@ -67,12 +67,22 @@
 
 <div class="builder-container">
   <div class="form-section">
-    <div class="stepper-header">
-      <div
-        *ngFor="let step of steps; let i = index"
-        [class.active]="i === currentStep"
-      >
-        {{ step.label }}
+    <div class="sidebar-stepper">
+      <div class="steps">
+        <div
+          *ngFor="let step of steps; let i = index"
+          class="step-item"
+          [class.active]="i === currentStep"
+          [attr.data-label]="step.label"
+          [class.visited]="i < currentStep"
+        >
+          <div class="icon-circle">
+            <mat-icon>{{ step.icon }}</mat-icon>
+          </div>
+        </div>
+      </div>
+      <div class="stepLogo" routerLink="/landing-page">
+        <img src="tick.png" class="stepperLogo" alt="" />
       </div>
     </div>
 
@@ -381,17 +391,69 @@
         </div>
       </div>
 
-      <!-- Step 3: Skills -->
       <div *ngIf="currentStep === 3">
+        <h3>Add your Projects</h3>
+        <br /> 
+        <p
+          style="
+            font-weight: 100;
+            font-size: 1rem;
+            margin-top: -20px;
+            margin-bottom: 25px;
+          "
+        >
+            List your key projects, academic or professional. 
+            <br />Describe the technologies used, your role, and the impact or results achieved.
+        </p>
+
+        <div class="section">
+          <div class="form-sub-section">
+            <div class="custom-input-container">
+              <label>Project Name</label>
+              <input
+                type="text"
+                [(ngModel)]="currentProject.projectName"
+                placeholder="Enter Project Name"
+                required
+              />
+              <span class="underline"></span>
+            </div>
+
+            <div class="cancelbtn">
+              <button (click)="prevStep()">Back</button>
+            </div>
+          </div>
+
+          <div class="form-sub-section">
+            <div class="custom-input-container">
+              <label>Technologies Used</label>
+              <input
+                type="text"
+                [(ngModel)]="currentProject.technologiesUsed"
+                placeholder="Java, Python"
+                required
+              />
+              <span class="underline"></span>
+            </div>
+
+            <div class="submitbtn">
+              <button (click)="openProjectsDialogue()">Continue</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Skills -->
+      <div *ngIf="currentStep === 4">
         <h3 style="margin-bottom: 0px !important">
           Add your
-          <span style="color: rgb(221, 0, 221); font-weight: 500">Skills</span>
+          <span style="color: #707fff; font-weight: 500">Skills</span>
         </h3>
         <br />
         <div class="skills-textarea">
           <angular-editor
             class="angular-editor-textarea angular-editor-textarea-skills"
-            [placeholder]="'Enter text here...'"
+            [placeholder]="'Please enter each individual Skill as a bullet point...'"
             [config]="editorConfig"
             [(ngModel)]="skillsEditorHtml"
           ></angular-editor>
@@ -419,7 +481,10 @@
               <div class="skill-list" *ngFor="let skill of skillOptions">
                 <div class="skill-item">
                   <div class="example-icon">
-                    <button class="icon-button">
+                    <button
+                      class="icon-button"
+                      (click)="addSkillToEditor(skill)"
+                    >
                       <mat-icon>add</mat-icon>
                     </button>
                   </div>
@@ -427,15 +492,14 @@
                 </div>
               </div>
             </div>
-            <br>
+            <br />
             <div class="btn-div">
-              <div class="cancelbtn" style="margin-top: 30px;">
+              <div class="cancelbtn" style="margin-top: 30px">
                 <button (click)="prevStep()">Back</button>
               </div>
               <div class="submitbtn">
                 <button (click)="extractAndStoreSkills()">Continue</button>
               </div>
-  
             </div>
           </div>
           <!-- <div class="popup-buttons">
@@ -449,25 +513,166 @@
       </div>
 
       <!-- Step 4: Skills -->
-      <div *ngIf="currentStep === 4">
-        <h3>Skills</h3>
-        <!-- <input [(ngModel)]="resumeData.skills[0]" placeholder="Skill 1" /> -->
-        <!-- <input [(ngModel)]="resumeData.skills[1]" placeholder="Skill 2" /> -->
-        <button (click)="prevStep()">Back</button>
-        <button (click)="nextStep()">Next</button>
+      <div *ngIf="currentStep === 5">
+        <h3 style="margin-bottom: 0px !important">Show your Certifications</h3>
+        <br />
+        <h3
+          style="
+            font-weight: 100;
+            font-size: 1rem;
+            margin-top: -20px;
+            margin-bottom: 25px;
+          "
+        >
+          Show your certifications to your potential Employers
+        </h3>
+        <div class="skills-textarea">
+          <angular-editor
+            class="angular-editor-textarea angular-editor-textarea-skills"
+            [placeholder]="'Enter text here...'"
+            [config]="editorConfig"
+            [(ngModel)]="certfEditorHtml"
+          ></angular-editor>
+
+          <div class="skill-suggestions">
+            <p class="skill-suggestions-heading" style="font-weight: 600">
+              Search common Industry Certifications
+            </p>
+
+            <div class="search-bar">
+              <div class="custom-input-container search-skill">
+                <mat-icon class="search-icon">search</mat-icon>
+                <input
+                  type="text"
+                  placeholder="Job Title, Industry or Keyword"
+                  required
+                />
+                <span class="underline"></span>
+              </div>
+              <button class="show-skills-button">Search</button>
+            </div>
+            <br />
+
+            <div class="skill-list-scroll-wrapper">
+              <div
+                class="skill-list"
+                *ngFor="let certf of popularCertifications"
+              >
+                <div class="skill-item">
+                  <div class="example-icon">
+                    <button
+                      class="icon-button"
+                      (click)="addCertfToEditor(certf)"
+                    >
+                      <mat-icon>add</mat-icon>
+                    </button>
+                  </div>
+                  <span class="skill-text">{{ certf }}</span>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="btn-div">
+              <div class="cancelbtn" style="margin-top: 30px">
+                <button (click)="prevStep()">Back</button>
+              </div>
+              <div class="submitbtn">
+                <button (click)="extractAndStoreCertifications()">Continue</button>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="popup-buttons">
+        <button (click)="nextStep()" class="ai-button rainbow-button">
+          <mat-icon style="font-size: 25px;">auto_awesome</mat-icon>&nbsp;&nbsp;
+          Enhance with AI
+        </button>
+          <button (click)="includeJobDescription()" class="add-button">Add</button>
+        </div> -->
+        </div>
       </div>
 
       <!-- Step 5: Finalize -->
-      <div *ngIf="currentStep === 5">
-        <h3>Review & Submit</h3>
-        <button (click)="prevStep()">Back</button>
-        <button (click)="submitResume()">Submit Resume</button>
+      <div *ngIf="currentStep === 6">
+        <h3>Achivements</h3>
+        <h3
+          style="
+            font-weight: 100;
+            font-size: 1rem;
+            margin-top: -20px;
+            margin-bottom: 25px;
+          "
+        >
+          Showcase your significant Achivements to the Employers
+        </h3>
+        <div class="skills-textarea">
+          <angular-editor
+            class="angular-editor-textarea angular-editor-textarea-skills"
+            [placeholder]="'Enter text here...'"
+            [config]="editorConfig"
+            [(ngModel)]="achivementEditorHtml"
+          ></angular-editor>
+
+          <div class="skill-suggestions">
+            <p class="skill-suggestions-heading" style="font-weight: 600">
+              Search recommended Achivements
+            </p>
+
+            <div class="search-bar">
+              <div class="custom-input-container search-skill">
+                <mat-icon class="search-icon">search</mat-icon>
+                <input
+                  type="text"
+                  placeholder="Job Title, Industry or Keyword"
+                  required
+                />
+                <span class="underline"></span>
+              </div>
+              <button class="show-skills-button">Search</button>
+            </div>
+            <br />
+
+            <div class="skill-list-scroll-wrapper">
+              <div
+                class="skill-list"
+                *ngFor="let certf of achievements"
+              >
+                <div class="skill-item">
+                  <div class="example-icon">
+                    <button
+                      class="icon-button"
+                      (click)="addAchivemnetsToEditor(certf)"
+                    >
+                      <mat-icon>add</mat-icon>
+                    </button>
+                  </div>
+                  <span class="skill-text">{{ certf }}</span>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="btn-div">
+              <div class="cancelbtn" style="margin-top: 30px">
+                <button (click)="prevStep()">Back</button>
+              </div>
+              <div class="submitbtn">
+                <button (click)="extractAndStoreAchievements()">Confirm & Submit</button>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="popup-buttons">
+        <button (click)="nextStep()" class="ai-button rainbow-button">
+          <mat-icon style="font-size: 25px;">auto_awesome</mat-icon>&nbsp;&nbsp;
+          Enhance with AI
+        </button>
+          <button (click)="includeJobDescription()" class="add-button">Add</button>
+        </div> -->
+        </div>
       </div>
     </div>
   </div>
 
   <div class="preview-section">
-    <!-- live preview if needed -->
+    <app-resume-template1 [resume]="resume" [currentJob]="currentJob" [education]="education" [currentSkill]="skillsEditorHtml" [currentCertifications]="certfEditorHtml" [currentAchivements]="achivementEditorHtml" [currentProjects]="currentProject"></app-resume-template1>
   </div>
 </div>
 
@@ -550,6 +755,63 @@
         <button (click)="includeJobDescription()" class="add-button">
           Add
         </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #projectDescription>
+  <div class="popup-container">
+    <div class="popup">
+      <h4 style="font-weight: 500">Add Project Description</h4>
+      <br />
+      <!-- <textarea
+        [(ngModel)]="currentJob.description"
+        placeholder="Describe your job responsibilities and achievements..."
+      ></textarea>
+      <button (click)="nextStep()">Continue</button> -->
+
+      <angular-editor
+        class="angular-editor-textarea"
+        [placeholder]="'Enter text here...'"
+        [config]="editorConfig"
+        [(ngModel)]="currentProject.projectDescription"
+      ></angular-editor>
+      <div class="popup-buttons">
+        <button (click)="nextStep()" class="ai-button rainbow-button">
+          <mat-icon style="font-size: 25px">auto_awesome</mat-icon>&nbsp;&nbsp;
+          Enhance with AI
+        </button>
+        <button (click)="includeProjectDescription()" class="add-button">
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #projectConfirmation>
+  <div class="popup-container">
+    <div class="popup">
+      <h4>Review your Project</h4>
+      <br />
+
+      <div class="job-review" *ngFor="let project of resume.projects">
+        <div class="job-box">
+          <div class="job-header">
+            <span class="job-title">{{ project.projectName }}</span>
+            <span class="company-name">{{ project.technologiesUsed }}</span>
+          </div>
+          <hr />
+          <div class="job-description">
+            {{ project.projectDescription }}
+          </div>
+        </div>
+      </div>
+
+      <div class="popup-buttons">
+        <button (click)="nextStep()" class="no-button">No</button>
+        <button (click)="addAnotherJob()" class="yes-button">+ Yes</button>
       </div>
     </div>
   </div>

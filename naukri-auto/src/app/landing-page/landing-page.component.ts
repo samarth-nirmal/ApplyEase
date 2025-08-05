@@ -14,6 +14,21 @@ export class LandingPageComponent {
   ngOnInit() {
      console.log("Landing page loaded");
   }
+  ngAfterViewInit(): void {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target); // remove for one-time animation
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('[data-fade]').forEach((el) => {
+    observer.observe(el);
+  });
+}
+
 
   isLoggedIn : boolean = this.authService.isAuthenticated();
 
