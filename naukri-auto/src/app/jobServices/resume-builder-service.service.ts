@@ -7,13 +7,13 @@ export class ResumeBuilderServiceService {
 
   constructor() { }
 
-  private selectedTemplate: string | null = null;
+  private selectedTemplate: number = 0
 
-  setTemplate(template: string): void {
+  setTemplate(template: number): void {
     this.selectedTemplate = template;
   }
 
-  getTemplate(): string | null {
+  getTemplate(): number | null {
     return this.selectedTemplate;
   }
 }

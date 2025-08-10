@@ -5,9 +5,9 @@
 <div class="container">
     <div class="resume-template-preview">
         <div *ngFor="let template of templateList" class="template-card"
-             (click)="selectTemplate(template)"
-             [ngClass]="{'selected': selectedTemplate === template}">
-            <img [src]="template" alt=""/>
+             (click)="selectTemplate(template.id)"
+             [ngClass]="{'selected': selectedTemplate === template.id}">
+            <img [src]="template.name" alt=""/>
         </div>
     </div>
 </div>  

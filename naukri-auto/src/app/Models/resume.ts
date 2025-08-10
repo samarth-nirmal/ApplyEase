@@ -12,6 +12,8 @@ export interface Resume {
   skills: string;
   certifications: string;
   achievements: string;
+  resumetemplateId : number;
+  userId : number;
 }
 
 export interface Jobs {

@@ -11,6 +11,9 @@ import { Jobs } from '../Models/jobs';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { Education } from '../Models/education';
 import { Projects, Resume } from '../Models/resume';
+import { CreateResumeService } from '../jobServices/create-resume.service';
+import { AuthService } from '../jobServices/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -73,6 +76,7 @@ achivementEditorHtml: string = '';
 addedCertificate: Set<string> = new Set();
 addedSkills: Set<string> = new Set();
 addedAchivement: Set<string> = new Set();
+templateName: number = 0;
 
 addSkillToEditor(skill: string): void {
   if (this.addedSkills.has(skill)) return;
@@ -241,6 +245,15 @@ extractAndStoreAchievements(): void {
 
   console.log(this.resume)
 
+  this.createResumeService.createResume(this.resume).subscribe({
+    next: (response) => {
+      console.log('Resume created successfully:', response);
+    },
+    error: (error) => {
+      console.error('Error creating resume:', error);
+    }
+  });
+
   this.nextStep(); // move to next section
 }
 
@@ -258,7 +271,9 @@ extractAndStoreAchievements(): void {
     projects: [] as Projects[],
     skills: '',
     certifications: '',
-    achievements : ''
+    achievements : '',
+    resumetemplateId : this.ar.snapshot.params['template'],
+    userId : this.authService.getUserId()
   };
 
 currentSkills: string = '';
@@ -305,7 +320,10 @@ visitedSteps: number[] = [];
 
   constructor(
     private resumeBuilder: ResumeBuilderServiceService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private createResumeService: CreateResumeService,
+    private authService : AuthService,
+    private ar : ActivatedRoute
   ) {}
   @ViewChild('experienceConfirm') experienceConfirm!: TemplateRef<any>;
   @ViewChild('jobDescription') jobDescription!: TemplateRef<any>;
@@ -317,6 +335,9 @@ visitedSteps: number[] = [];
   ngOnInit() {
     const savedStep = localStorage.getItem('resumeStep');
     this.currentStep = savedStep ? parseInt(savedStep, 10) : 0;
+
+    this.templateName = this.resumeBuilder.getTemplate() ?? 0;
+    console.log("templatee: " + this.ar.snapshot.params['template']);
   }
 
   ngOnDestroy() {

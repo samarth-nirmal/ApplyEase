@@ -671,9 +671,52 @@
     </div>
   </div>
 
-  <div class="preview-section">
-    <app-resume-template1 [resume]="resume" [currentJob]="currentJob" [education]="education" [currentSkill]="skillsEditorHtml" [currentCertifications]="certfEditorHtml" [currentAchivements]="achivementEditorHtml" [currentProjects]="currentProject"></app-resume-template1>
+ <!-- preview.component.html -->
+<div class="preview-section" [ngSwitch]="templateName">
+
+  <!-- Template 1 -->
+  <app-resume-template1
+    *ngSwitchCase=1
+    [resume]="resume"
+    [currentJob]="currentJob"
+    [education]="education"
+    [currentSkill]="skillsEditorHtml"
+    [currentCertifications]="certfEditorHtml"
+    [currentAchivements]="achivementEditorHtml"
+    [currentProjects]="currentProject">
+  </app-resume-template1>
+
+  <!-- Template 2 -->
+  <app-resume-template2
+    *ngSwitchCase=2
+    [resume]="resume"
+    [currentJob]="currentJob"
+    [education]="education"
+    [currentSkill]="skillsEditorHtml"
+    [currentCertifications]="certfEditorHtml"
+    [currentAchivements]="achivementEditorHtml"
+    [currentProjects]="currentProject">
+  </app-resume-template2>
+
+  <!-- Template 3 -->
+  <app-resume-template3
+    *ngSwitchCase=3
+    [resume]="resume"
+    [currentJob]="currentJob"
+    [education]="education"
+    [currentSkill]="skillsEditorHtml"
+    [currentCertifications]="certfEditorHtml"
+    [currentAchivements]="achivementEditorHtml"
+    [currentProjects]="currentProject">
+  </app-resume-template3>
+
+  <!-- Default fallback -->
+  <div *ngSwitchDefault>
+    <p>Please select a resume template.</p>
   </div>
+
+</div>
+
 </div>
 
 <ng-template #experienceConfirm>

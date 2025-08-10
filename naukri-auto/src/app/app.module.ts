@@ -54,6 +54,8 @@ import { ResumePreviewComponent } from './resume-preview/resume-preview.componen
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ResumeTemplate1Component } from './resume-template1/resume-template1.component';
+import { ResumeTemplate2Component } from './resume-template2/resume-template2.component';
+import { ResumeTemplate3Component } from './resume-template3/resume-template3.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +77,8 @@ import { ResumeTemplate1Component } from './resume-template1/resume-template1.co
     ResumePreviewComponent,
     LandingPageComponent,
     ResumeTemplate1Component,
+    ResumeTemplate2Component,
+    ResumeTemplate3Component,
   ],
   imports: [
     BrowserModule,

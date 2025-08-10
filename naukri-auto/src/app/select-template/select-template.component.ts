@@ -9,18 +9,22 @@ import { Router } from '@angular/router';
 })
 export class SelectTemplateComponent {
   constructor(private resumeBuilder : ResumeBuilderServiceService, private router : Router) { }
-  templateList : string[] = ['Resume Template 1.jpeg', 'Resume Template 2.jpeg', 'Resume Template 3.jpeg'];
+  templateList: { id: number, name: string }[] = [
+    { id: 1, name: 'Resume Template 1.jpeg' },
+    { id: 2, name: 'Resume Template 2.jpeg' },
+    { id: 3, name: 'Resume Template 3.jpeg' }
+  ];
 
-  selectedTemplate: string = '';
-  transferTemplate: string = '';
+  selectedTemplate: number = 0;
+  transferTemplate: number = 0;;
 
-  selectTemplate(template: string): void {
+  selectTemplate(template: number): void {
     this.selectedTemplate = template;
   }
 
   goToResumeBuilder() {
-    this.resumeBuilder.setTemplate(this.selectedTemplate);
-    this.transferTemplate = this.selectedTemplate.replace(/\.jpeg$/, '');
+    this.transferTemplate = this.selectedTemplate;
     this.router.navigate(['/resume-generator', this.transferTemplate]);
+    this.resumeBuilder.setTemplate(this.transferTemplate);
   }
 }

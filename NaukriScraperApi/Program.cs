@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
 using NaukriScraperApi.Interfaces;
+using NaukriScraperApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +38,8 @@ builder.Services.AddSingleton<GeminiService>();
 
 builder.Services.AddScoped<JwtService>();
 builder.Services.AddScoped<IJobService, JobService>();
+builder.Services.AddScoped<IUserResumeService, UserResumeService>();
+
 
 
 builder.Services.AddCors(options =>
