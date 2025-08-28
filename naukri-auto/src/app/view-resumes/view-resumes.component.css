@@ -1,0 +1,107 @@
+.resume-template-preview {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* Card wrapper */
+.template-card {
+  position: relative; /* makes overlay bound to this card */
+  display: inline-block;
+}
+
+/* Resume preview image */
+.template-card img {
+  display: block;
+  width: 200px;         /* consistent width */
+  height: 250px;        /* consistent height */
+  margin: 40px auto;
+  border: 6px solid rgb(228, 228, 228);
+  cursor: pointer;
+  object-fit: cover;    /* no stretching */
+  transition: all 0.5s ease;
+}
+
+.template-card:hover img {
+  border: 6px solid hwb(0 53% 47%);
+  /* transform: scale(1.05); */
+}
+
+.template-card.selected img {
+  border: 6px solid hwb(216 0% 45%);
+  transition: all 0.5s ease;
+}
+
+/* Overlay styling */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;   /* match image */
+  height: 250px;  /* match image */
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0; /* hidden by default */
+  transition: opacity 0.3s ease;
+}
+
+/* Show overlay only when card hovered */
+.template-card:hover .overlay {
+  opacity: 1;
+}
+
+/* Edit button */
+.edit-btn {
+  background-color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.edit-btn:hover {
+  background-color: #eee;
+}
+
+/* Bottom navbar styles */
+.bottom-navbar {
+  position: fixed;
+  bottom: -100px;
+  left: 0;
+  width: 100%;
+  height: 75px;
+  background-color: #ffffff;
+  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 400px;
+  align-items: right;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+}
+
+.bottom-navbar.visible {
+  transition: bottom 0.2s ease-in-out;
+  bottom: 0;
+}
+
+.bottom-navbar button {
+  background: rgb(255, 178, 91);
+  height: 55px;
+  border-radius: 50px;
+  padding: 0px 50px;
+  text-align: center;
+  border: none;
+  font-size: 16px;
+  color: #000000;
+  cursor: pointer;
+}
+
+.bottom-navbar button:hover {
+  color: rgb(0, 0, 0);
+  background: rgb(255, 163, 58);
+  font-weight: 400;
+}

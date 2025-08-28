@@ -2,7 +2,7 @@
   max-width: 100%;
   max-height: 100%;
   width: 1240px; /* Reduced width */
-  height: 1754px; /* Reduced height */
+  height: auto; /* Reduced height */
   margin: auto;
   font-family: "Georgia", serif;
   color: #000;

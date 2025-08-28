@@ -7,3 +7,8 @@ obj/
 *.pdb
 secrets.json
 appsettings.json
+# Ignore everything inside the naukri_sessions folder
+NaukriScraperApi/Scripts/naukri_sessions/*
+
+# But do NOT ignore the folder itself
+!NaukriScraperApi/Scripts/naukri_sessions/.gitkeep

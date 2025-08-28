@@ -6,6 +6,8 @@ body {
   width: 100%;
 }
 
+
+
 .nav-container {
   height: 100vh;
   width: auto;
@@ -542,3 +544,4 @@ form button:hover {
     text-align: center;
   }
 }
+

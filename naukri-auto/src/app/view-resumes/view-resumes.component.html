@@ -1,0 +1,13 @@
+<h3 style="text-align: center; margin-top: 50px; font-weight: 500; font-size: 2.5rem;">View your Resumes</h3>
+
+<div class="container">
+<div class="resume-template-preview">
+  <div *ngFor="let u of userResumes" class="template-card">
+    <img [src]="getTemplateImage(u.templateId)" alt="Resume Template Preview">
+    <div class="overlay">
+      <button class="edit-btn">Edit</button>
+    </div>
+  </div>
+</div>
+
+</div>  

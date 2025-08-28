@@ -6,10 +6,11 @@ using NaukriScraperApi.Model;
 
 namespace NaukriScraperApi.Interfaces
 {
-public interface IUserResumeService
-{
-    Task<UserResume> CreateUserResumeAsync(UserResume resume);
-    Task<UserResume?> GetUserResumeByIdAsync(int id);
-}
+    public interface IUserResumeService
+    {
+        Task<UserResume> CreateUserResumeAsync(UserResume resume);
+        // Task<UserResume?> GetUserResumeByIdAsync(int id);
+        Task<IEnumerable<object>> GetUserResumeListAsync(int id);
+    }
 
 }

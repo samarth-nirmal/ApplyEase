@@ -672,7 +672,7 @@
   </div>
 
  <!-- preview.component.html -->
-<div class="preview-section" [ngSwitch]="templateName">
+<div id="resume-preview" class="preview-section" [ngSwitch]="templateName">
 
   <!-- Template 1 -->
   <app-resume-template1
@@ -718,6 +718,67 @@
 </div>
 
 </div>
+
+<!-- Resume Preview Overlay -->
+<div class="resume-preview-overlay" *ngIf="showPreview">
+  <div class="resume-preview-content">
+
+    <!-- Close button -->
+    <button class="close-btn" (click)="showPreview = false">✕</button>
+
+    <!-- Resume Content -->
+    <div id="resume-full-preview" class="resume-container">
+      <div [ngSwitch]="templateName">
+          <app-resume-template1
+    *ngSwitchCase=1
+    [resume]="resume"
+    [currentJob]="currentJob"
+    [education]="education"
+    [currentSkill]="skillsEditorHtml"
+    [currentCertifications]="certfEditorHtml"
+    [currentAchivements]="achivementEditorHtml"
+    [currentProjects]="currentProject">
+  </app-resume-template1>
+
+  <!-- Template 2 -->
+  <app-resume-template2
+    *ngSwitchCase=2
+    [resume]="resume"
+    [currentJob]="currentJob"
+    [education]="education"
+    [currentSkill]="skillsEditorHtml"
+    [currentCertifications]="certfEditorHtml"
+    [currentAchivements]="achivementEditorHtml"
+    [currentProjects]="currentProject">
+  </app-resume-template2>
+
+  <!-- Template 3 -->
+  <app-resume-template3
+    *ngSwitchCase=3
+    [resume]="resume"
+    [currentJob]="currentJob"
+    [education]="education"
+    [currentSkill]="skillsEditorHtml"
+    [currentCertifications]="certfEditorHtml"
+    [currentAchivements]="achivementEditorHtml"
+    [currentProjects]="currentProject">
+  </app-resume-template3>
+
+  <!-- Default fallback -->
+  <div *ngSwitchDefault>
+    <p>Please select a resume template.</p>
+  </div>
+      </div>
+    </div>
+
+    <!-- Download button -->
+     <div class="submitbtn">
+      <button class="download-btn" (click)="downloadResume()">Download</button>
+     </div>
+    
+  </div>
+</div>
+
 
 <ng-template #experienceConfirm>
   <div class="popup-container">

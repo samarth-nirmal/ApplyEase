@@ -16,7 +16,7 @@ export class SelectTemplateComponent {
   ];
 
   selectedTemplate: number = 0;
-  transferTemplate: number = 0;;
+  transferTemplate: number = 0;
 
   selectTemplate(template: number): void {
     this.selectedTemplate = template;
@@ -25,6 +25,6 @@ export class SelectTemplateComponent {
   goToResumeBuilder() {
     this.transferTemplate = this.selectedTemplate;
     this.router.navigate(['/resume-generator', this.transferTemplate]);
-    this.resumeBuilder.setTemplate(this.transferTemplate);
+    // this.resumeBuilder.setTemplate(this.transferTemplate);
   }
 }

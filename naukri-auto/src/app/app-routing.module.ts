@@ -17,6 +17,7 @@ import { CreateResumeOptionsComponent } from './create-resume-options/create-res
 import { ExperienceNoteComponent } from './experience-note/experience-note.component';
 import { SelectTemplateComponent } from './select-template/select-template.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { ViewResumesComponent } from './view-resumes/view-resumes.component';
 
 const routes: Routes = [
 
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'create-resume-options', component: CreateResumeOptionsComponent, canActivate: [AuthGuard] },
   { path: 'user-experience', component: ExperienceNoteComponent, canActivate: [AuthGuard] },
   { path: 'select-template', component: SelectTemplateComponent, canActivate: [AuthGuard] },
+  { path: 'view-resumes', component: ViewResumesComponent, canActivate: [AuthGuard] },
   { path: 'loading', component: LoadingComponent }
 
 ];

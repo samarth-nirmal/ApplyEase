@@ -15,18 +15,6 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router, private toast: HotToastService, private ngZone: NgZone) {}
 
-  // handleCredentialResponse(response: any) {
-  //   this.http.post<any>('http://localhost:5076/api/auth/google-login', { token: response.credential })
-  //     .subscribe(res => {
-  //       console.log(res)
-  //       localStorage.setItem('authToken', res.token);
-  //       this.authState.next(res);
-  //       if(this.getUserRole() === 'User') this.router.navigate(['/dashboard']);
-  //       else this.router.navigate(['/admin']);
-  //     });
-
-  // }
-
   handleCredentialResponse(response: any) {
     this.http.post<any>('http://localhost:5076/api/auth/google-login', { token: response.credential }).pipe(
       this.toast.observe({

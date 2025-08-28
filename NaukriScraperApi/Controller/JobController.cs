@@ -79,7 +79,7 @@ public class JobController : ControllerBase
     {
         try
         {
-            string scriptPath = @"C:\Users\10731110\OneDrive - LTIMindtree\Desktop\Practice\Naukri Scraper\NaukriScraperApi\Scripts\naukri-scraper.py";
+            string scriptPath = @"C:\Users\10731110\OneDrive - LTIMindtree\Desktop\Practice\Naukri Scraper\Naukri Scraper\NaukriScraperApi\Scripts\naukri-scraper.py";
 
             ProcessStartInfo psi = new ProcessStartInfo
             {
@@ -173,7 +173,7 @@ public class JobController : ControllerBase
             string jobLinks = string.Join("|", jobs.Select(j => $"{j.jobId},{j.link},{j.UserId}"));
 
 
-            string pythonScriptPath = @"C:\Users\10731110\OneDrive - LTIMindtree\Desktop\Practice\Naukri Scraper\NaukriScraperApi\Scripts\auto-apply.py";
+            string pythonScriptPath = @"C:\Users\10731110\OneDrive - LTIMindtree\Desktop\Practice\Naukri Scraper\Naukri Scraper\NaukriScraperApi\Scripts\auto-apply.py";
 
             ProcessStartInfo start = new ProcessStartInfo
             {

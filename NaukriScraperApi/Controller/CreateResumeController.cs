@@ -59,17 +59,27 @@ namespace NaukriScraperApi.Controller
             return Ok(resultDto);
         }
 
-
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        [HttpGet("get-resume/{id}")]
+        public async Task<IActionResult> GetAllUserResumes(int id)
         {
-            var resume = await _userResumeService.GetUserResumeByIdAsync(id);
-            if (resume == null)
+            var resumes = await _userResumeService.GetUserResumeListAsync(id);
+            if (resumes == null || !resumes.Any())
                 return NotFound();
 
-            return Ok(resume);
+            return Ok(resumes);
         }
+
+
+
+        // [HttpGet("{id}")]
+        // public async Task<IActionResult> GetById(int id)
+        // {
+        //     var resume = await _userResumeService.GetUserResumeByIdAsync(id);
+        //     if (resume == null)
+        //         return NotFound();
+
+        //     return Ok(resume);
+        // }
 
     }
 }
